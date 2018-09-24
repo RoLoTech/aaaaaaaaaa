@@ -10,8 +10,8 @@ public class Client {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
 
-    @Column(name = "client_ci", nullable = false)
-    private String ci;
+    @Column (name = "client_password", nullable = false)
+    private String password;
 
     @Column(name = "client_first_name", nullable = false)
     private String firstName;
@@ -19,25 +19,18 @@ public class Client {
     @Column(name = "client_last_name", nullable = false)
     private String lastName;
 
-    @Column(name = "client_age", nullable = false)
-    private int age;
+    @Column (name = "client_mail", nullable = false)
+    private String mail;
 
-    @Column (name = "client_address")
-    private String address;
+    @Column(name = "client_age", nullable = false)
+    private Integer age;
+    //Cambiar a DateTime para que sea nacimiento
 
     @Column (name = "client_phone_number")
     private String phone_number;
 
     @Column (name = "client_rating")
-    private float rating;
-
-    public String getCi() {
-        return ci;
-    }
-
-    public void setCi(String ci) {
-        this.ci = ci;
-    }
+    private Float rating;
 
     public String getFirstName() {
         return firstName;
@@ -63,14 +56,6 @@ public class Client {
         this.age = age;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public String getPhone_number() {
         return phone_number;
     }
@@ -85,5 +70,13 @@ public class Client {
 
     public void setRating(float rating) {
         this.rating = rating;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

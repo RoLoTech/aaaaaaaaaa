@@ -1,4 +1,8 @@
-package services.entities;
+package Entities;
+
+import exceptions.InvalidTableException;
+import exceptions.TableAlreadyInUseException;
+import exceptions.TableAlreadyReleasedException;
 
 import javax.persistence.*;
 
@@ -6,41 +10,40 @@ import javax.persistence.*;
 @Table(name = "restaurant")
 public class Restaurant {
 
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer id;
+    private boolean[] tables;
 
-    @Column(name = "restaurant_rut")
+    @Id
+    @Column(name = "restaurant_rut", nullable = false, unique = true)
     private long rut;
 
     @Column(name = "restaurant_name")
     private String name;
 
-    @Column (name = "restaurant_address")
+    @Column(name = "restaurant_address")
     private String address;
 
-    @Column (name = "restaurant_phone")
+    @Column(name = "restaurant_phone")
     private String phone;
 
-    @Column (name = "restaurant_area")
+    @Column(name = "restaurant_area")
     private String area;
 
-    @Column (name = "restaurant_capacity")
+    @Column(name = "restaurant_capacity")
     private int capacity;
 
-    @Column (name = "restaurant_food_type")
+    @Column(name = "restaurant_food_type")
     private String food_type;
 
-    @Column (name = "restaurant_style")
+    @Column(name = "restaurant_style")
     private String style;
 
-    @Column (name = "restaurant_price_range")
+    @Column(name = "restaurant_price_range")
     private String priceRange;
 
-    @Column (name = "restaurant_rating")
+    @Column(name = "restaurant_rating")
     private float rating;
 
-    @Column (name = "restaurant_completed_reservations")
+    @Column(name = "restaurant_completed_reservations")
     private int completedReservations;
 
     public String getName() {
@@ -59,87 +62,25 @@ public class Restaurant {
         this.rut = rut;
     }
 
-    public Integer getId() {
-        return id;
+    public void bookTable(int table) throws InvalidTableException, TableAlreadyInUseException {
+        if (table - 1 < 0 || table - 1 < this.capacity) {
+            throw new InvalidTableException();
+        }
+        if (this.tables[table] == false) {
+            this.tables[table] = true;
+        } else {
+            throw new TableAlreadyInUseException();
+        }
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setRut(long rut) {
-        this.rut = rut;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getArea() {
-        return area;
-    }
-
-    public void setArea(String area) {
-        this.area = area;
-    }
-
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
-
-    public String getFood_type() {
-        return food_type;
-    }
-
-    public void setFood_type(String food_type) {
-        this.food_type = food_type;
-    }
-
-    public String getStyle() {
-        return style;
-    }
-
-    public void setStyle(String style) {
-        this.style = style;
-    }
-
-    public String getPriceRange() {
-        return priceRange;
-    }
-
-    public void setPriceRange(String priceRange) {
-        this.priceRange = priceRange;
-    }
-
-    public float getRating() {
-        return rating;
-    }
-
-    public void setRating(float rating) {
-        this.rating = rating;
-    }
-
-    public int getCompletedReservations() {
-        return completedReservations;
-    }
-
-    public void setCompletedReservations(int completedReservations) {
-        this.completedReservations = completedReservations;
+    public void releaseTable(int table) throws InvalidTableException, TableAlreadyReleasedException {
+        if (table - 1 < 0 || table - 1 < this.capacity) {
+            throw new InvalidTableException();
+        }
+        if (this.tables[table] == true) {
+            this.tables[table] = false;
+        } else {
+            throw new TableAlreadyReleasedException();
+        }
     }
 }
