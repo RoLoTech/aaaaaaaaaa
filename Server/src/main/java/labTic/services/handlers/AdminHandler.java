@@ -1,8 +1,8 @@
-package services.handlers;
+package labTic.services.handlers;
 
 
-import services.entities.Client;
-import services.entities.Restaurant;
+import labTic.services.entities.Client;
+import labTic.services.entities.Restaurant;
 
 public interface AdminHandler {
 

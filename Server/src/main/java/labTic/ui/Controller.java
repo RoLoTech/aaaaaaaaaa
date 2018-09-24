@@ -1,4 +1,4 @@
-package ui;
+package labTic.ui;
 
 public class Controller {
 }

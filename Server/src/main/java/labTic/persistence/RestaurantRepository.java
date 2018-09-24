@@ -1,7 +1,7 @@
-package persistence;
+package labTic.persistence;
 
 import org.springframework.data.repository.CrudRepository;
-import services.entities.Restaurant;
+import labTic.services.entities.Restaurant;
 
 public interface RestaurantRepository extends CrudRepository<Restaurant, Integer> {
 

@@ -1,10 +1,9 @@
-package services;
+package labTic.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import persistence.ClientRepository;
-import persistence.RestaurantRepository;
-import services.entities.Client;
+import labTic.persistence.ClientRepository;
+import labTic.services.entities.Client;
 
 @Service
 public class ClientService {
