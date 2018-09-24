@@ -19,9 +19,12 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import services.ClientService;
 import javafx.*;
 
 public class Main extends Application {
+
+    private ClientService cs;
 
     @Override
     public void start(Stage primaryStage) {
@@ -37,17 +40,24 @@ public class Main extends Application {
         scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         grid.add(scenetitle, 0, 0, 2, 1);
 
-        Label userName = new Label("FormRow1:");
-        grid.add(userName, 0, 1);
+        Label firstName = new Label("First Name:");
+        grid.add(firstName, 0, 1);
 
         TextField userTextField = new TextField();
         grid.add(userTextField, 1, 1);
 
-        Label pw = new Label("FormRow2:");
-        grid.add(pw, 0, 2);
+        Label lastName = new Label("Last Name:");
+        grid.add(lastName, 0, 2);
 
-        PasswordField pwBox = new PasswordField();
-        grid.add(pwBox, 1, 2);
+        TextField userTextField2 = new TextField();
+        grid.add(userTextField2, 1, 2);
+
+        Label CI = new Label("CI:");
+        grid.add(CI, 0, 3);
+
+        TextField userTextField3 = new TextField();
+        grid.add(userTextField3, 1, 3);
+
 
         //grid.setGridLinesVisible(true);
 
@@ -65,13 +75,16 @@ public class Main extends Application {
 
             @Override
             public void handle(ActionEvent e) {
-                actiontarget.setFill(Color.FIREBRICK);
-                actiontarget.setText(userTextField.getText());
+                //actiontarget.setFill(Color.FIREBRICK);
+                //actiontarget.setText(userTextField.getText());
+                //ClientService x = new ClientService();
+                cs.addNewClient(userTextField.getText(),userTextField2.getText(),userTextField3.getText());
+
 
             }
         });
 
-        Scene scene = new Scene(grid, 300, 275);
+        Scene scene = new Scene(grid, 400, 275);
         primaryStage.setScene(scene);
 
         primaryStage.show();

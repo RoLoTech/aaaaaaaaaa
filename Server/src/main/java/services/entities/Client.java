@@ -11,7 +11,7 @@ public class Client {
     private Integer id;
 
     @Column(name = "client_ci", nullable = false)
-    private Integer ci;
+    private String ci;
 
     @Column(name = "client_first_name", nullable = false)
     private String firstName;
@@ -31,11 +31,11 @@ public class Client {
     @Column (name = "client_rating")
     private float rating;
 
-    public Integer getCi() {
+    public String getCi() {
         return ci;
     }
 
-    public void setCi(Integer ci) {
+    public void setCi(String ci) {
         this.ci = ci;
     }
 
