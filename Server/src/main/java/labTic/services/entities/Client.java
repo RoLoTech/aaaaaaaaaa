@@ -18,6 +18,10 @@ public class Client {
 
     public String address;
 
+    public Client() {
+    }
+
+
     public Client(long document, String name, String address) {
         this.document = document;
         this.name = name;
@@ -86,5 +90,13 @@ public class Client {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

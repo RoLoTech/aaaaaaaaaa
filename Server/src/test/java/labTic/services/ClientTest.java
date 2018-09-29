@@ -22,33 +22,32 @@ public class ClientTest {
     ClientService cs;
 
     @Test
-    public void testBasic() {
+    public void testBasic()  {
+
 
         try {
             cs.addClient(12345l, "daniel", "colonia 1234");
         } catch (InvalidClientInformation invalidClientInformation) {
-
-            fail(invalidClientInformation.getMessage());
-
+            invalidClientInformation.printStackTrace();
         } catch (ClientAlreadyExists clientAlreadyExists) {
-
-            fail(clientAlreadyExists.getMessage());
-
+            clientAlreadyExists.printStackTrace();
         }
+
+
+        // Se prueba agregar el mismo cliente con la cedula
 
 
         try {
-
-            // Se prueba agregar el mismo cliente con la cedula
-
             cs.addClient(12345l, "daniel","colonia 1234");
-
         } catch (InvalidClientInformation invalidClientInformation) {
             invalidClientInformation.printStackTrace();
         } catch (ClientAlreadyExists clientAlreadyExists) {
-
-            // Ok flujo correcto
+            clientAlreadyExists.printStackTrace();
         }
+
+
+        // Ok flujo correcto
+
     }
 
 
