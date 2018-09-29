@@ -1,28 +1,39 @@
-//package labTic.services;
-//
-//
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Controller;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//import labTic.persistence.RestaurantRepository;
-//import labTic.services.entities.Restaurant;
-//
-//@Controller
-//@RequestMapping(path="/demo")
-//public class RestaurantService {
-//	@Autowired
-//	private RestaurantRepository restaurantRepository;
-//
-//
-//	public String addNewRestaurant (String name, Long rut) {
-//
-//		Restaurant restaurant = new Restaurant();
-//		restaurant.setName(name);
-//		restaurantRepository.save(restaurant);
-//		return "Restaurante agregado";
-//	}
-//
-//	public Iterable<Restaurant> getAllRestaurant() {
-//		return restaurantRepository.findAll();
-//	}
-//}
+package labTic.services;
+
+import labTic.services.exceptions.RestaurantAlreadyExists;
+import labTic.services.exceptions.InvalidRestaurantInformation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import labTic.persistence.RestaurantRepository;
+import labTic.services.entities.Restaurant;
+
+@Service
+public class RestaurantService {
+
+    @Autowired
+    private RestaurantRepository restaurantRepository;
+
+
+    public void addRestaurant(long rut, String name, String adress)
+            throws InvalidRestaurantInformation, RestaurantAlreadyExists {
+
+        if (name == null || "".equals(name) || adress == null || "".equals(adress)) {
+
+            throw new InvalidRestaurantInformation("Alguno de los datos ingresados no es correcto");
+
+        }
+
+        // Verifico si el restaurante no existe
+
+        if (restaurantRepository.findOneByRut(rut) != null) {
+
+            throw new RestaurantAlreadyExists();
+        }
+
+        Restaurant oRestaurant = new Restaurant(rut, name, adress);
+
+        restaurantRepository.save(oRestaurant);
+
+    }
+
+}
