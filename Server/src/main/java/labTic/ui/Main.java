@@ -1,4 +1,4 @@
-package labTic;
+package labTic.ui;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
