@@ -26,7 +26,7 @@ public class ClientTest {
 
 
         try {
-            cs.addClient(12345l, "daniel", "colonia 1234");
+            cs.addClient("Sebastian", "Cura", "sebastiancura97@gmail.com");
         } catch (InvalidClientInformation invalidClientInformation) {
             invalidClientInformation.printStackTrace();
         } catch (ClientAlreadyExists clientAlreadyExists) {
@@ -38,7 +38,7 @@ public class ClientTest {
 
 
         try {
-            cs.addClient(12345l, "daniel","colonia 1234");
+            cs.addClient("Sebastian", "Cura","sebastiancura97@gmail.com");
         } catch (InvalidClientInformation invalidClientInformation) {
             invalidClientInformation.printStackTrace();
         } catch (ClientAlreadyExists clientAlreadyExists) {

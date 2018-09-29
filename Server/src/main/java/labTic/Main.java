@@ -83,7 +83,7 @@ public class Main extends Application {
                 //ClientService x = new ClientService();
 
                 try {
-                    cs.addClient(12345776l, "Seba", "Seba") ;
+                    cs.addClient("Sebastian", "Cura", "seba@gmail.com") ;
                 } catch (InvalidClientInformation invalidClientInformation) {
                     invalidClientInformation.printStackTrace();
                 } catch (ClientAlreadyExists clientAlreadyExists) {

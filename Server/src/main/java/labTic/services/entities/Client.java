@@ -12,33 +12,25 @@ public class Client {
     @GenericGenerator(name="clients_ids", strategy = "increment")
     public long id;
 
-    public long document;
+    public String firstName;
 
-    public String name;
+    public String lastName;
 
-    public String address;
+    public String email;
+
 
     public Client() {
     }
 
 
-    public Client(long document, String name, String address) {
-        this.document = document;
-        this.name = name;
-        this.address = address;
+    public Client(String firstName, String lastName, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
     }
-
 
     private String password;
 
-    private String firstName;
-
-    private String lastName;
-
-    private String mail;
-
-    private Integer age;
-    //Cambiar a DateTime para que sea nacimiento
 
     private String phone_number;
 
@@ -60,13 +52,6 @@ public class Client {
         this.lastName = lastName;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
 
     public String getPhone_number() {
         return phone_number;

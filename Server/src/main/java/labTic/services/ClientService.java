@@ -14,10 +14,10 @@ public class ClientService {
     private ClientRepository clientRepository;
 
 
-    public void addClient(Long document, String name, String address)
+    public void addClient(String firstName, String lastName, String email)
             throws InvalidClientInformation, ClientAlreadyExists {
 
-        if (name == null || "".equals(name) || address == null || "".equals(address)) {
+        if (firstName == null || "".equals(firstName) || lastName == null || "".equals(lastName) || email == null || "".equals(email)) {
 
             throw new InvalidClientInformation("Alguno de los datos ingresados no es correcto");
 
@@ -25,12 +25,12 @@ public class ClientService {
 
         // Verifico si el cliente no existe
 
-        if (clientRepository.findOneByDocument(document) != null) {
+        if (clientRepository.findOneByEmail(email) != null) {
 
             throw new ClientAlreadyExists();
         }
 
-        Client oClient = new Client(document, name, address);
+        Client oClient = new Client(firstName, lastName, email);
 
         clientRepository.save(oClient);
 
