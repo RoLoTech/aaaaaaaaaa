@@ -7,47 +7,25 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.5.RELEASE")
-
     }
 }
 
 apply plugin: 'java'
-apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
+group 'um.edu.ui'
+version '1.0-SNAPSHOT'
 
-
-version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
-bootJar {
-    baseName = 'gs-accessing-data-mysql'
-    version =  '0.1.0'
-}
 repositories {
     mavenCentral()
 }
 
-
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-
-
-
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.12'
     runtime('mysql:mysql-connector-java')
     testCompile('org.springframework.boot:spring-boot-starter-test')
-    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.12'
-    compile("org.springframework.boot:spring-boot-starter-web")
-
-    // JPA Data (We are going to use Repositories, Entities, Hibernate, etc...)
-    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
-
-
-    testCompile('org.springframework.boot:spring-boot-starter-test')
 }
-
-

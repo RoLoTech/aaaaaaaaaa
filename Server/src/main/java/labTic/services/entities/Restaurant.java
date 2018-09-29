@@ -1,8 +1,5 @@
-package Entities;
+package labTic.services.entities;
 
-import exceptions.InvalidTableException;
-import exceptions.TableAlreadyInUseException;
-import exceptions.TableAlreadyReleasedException;
 
 import javax.persistence.*;
 
@@ -62,25 +59,25 @@ public class Restaurant {
         this.rut = rut;
     }
 
-    public void bookTable(int table) throws InvalidTableException, TableAlreadyInUseException {
-        if (table - 1 < 0 || table - 1 < this.capacity) {
-            throw new InvalidTableException();
-        }
-        if (this.tables[table] == false) {
-            this.tables[table] = true;
-        } else {
-            throw new TableAlreadyInUseException();
-        }
-    }
-
-    public void releaseTable(int table) throws InvalidTableException, TableAlreadyReleasedException {
-        if (table - 1 < 0 || table - 1 < this.capacity) {
-            throw new InvalidTableException();
-        }
-        if (this.tables[table] == true) {
-            this.tables[table] = false;
-        } else {
-            throw new TableAlreadyReleasedException();
-        }
-    }
+//    public void bookTable(int table) throws InvalidTableException, TableAlreadyInUseException {
+//        if (table - 1 < 0 || table - 1 < this.capacity) {
+//            throw new InvalidTableException();
+//        }
+//        if (this.tables[table] == false) {
+//            this.tables[table] = true;
+//        } else {
+//            throw new TableAlreadyInUseException();
+//        }
+//    }
+//
+//    public void releaseTable(int table) throws InvalidTableException, TableAlreadyReleasedException {
+//        if (table - 1 < 0 || table - 1 < this.capacity) {
+//            throw new InvalidTableException();
+//        }
+//        if (this.tables[table] == true) {
+//            this.tables[table] = false;
+//        } else {
+//            throw new TableAlreadyReleasedException();
+//        }
+//    }
 }

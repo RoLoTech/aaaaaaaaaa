@@ -1,35 +1,43 @@
 package labTic.services.entities;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "client")
 public class Client {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(generator="clients_ids")
+    @GenericGenerator(name="clients_ids", strategy = "increment")
+    public long id;
 
-    @Column (name = "client_password", nullable = false)
+    public long document;
+
+    public String name;
+
+    public String address;
+
+    public Client(long document, String name, String address) {
+        this.document = document;
+        this.name = name;
+        this.address = address;
+    }
+
+
     private String password;
 
-    @Column(name = "client_first_name", nullable = false)
     private String firstName;
 
-    @Column(name = "client_last_name", nullable = false)
     private String lastName;
 
-    @Column (name = "client_mail", nullable = false)
     private String mail;
 
-    @Column(name = "client_age", nullable = false)
     private Integer age;
     //Cambiar a DateTime para que sea nacimiento
 
-    @Column (name = "client_phone_number")
     private String phone_number;
 
-    @Column (name = "client_rating")
     private Float rating;
 
     public String getFirstName() {

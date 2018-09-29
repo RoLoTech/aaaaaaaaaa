@@ -16,9 +16,17 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import labTic.services.ClientService;
+import labTic.services.exceptions.ClientAlreadyExists;
+import labTic.services.exceptions.InvalidClientInformation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
+@SpringBootApplication
 public class Main extends Application {
 
+
+    @Autowired
     private ClientService cs;
 
     @Override
@@ -73,8 +81,14 @@ public class Main extends Application {
                 //actiontarget.setFill(Color.FIREBRICK);
                 //actiontarget.setText(userTextField.getText());
                 //ClientService x = new ClientService();
-                cs.addNewClient(userTextField.getText(),userTextField2.getText(),userTextField3.getText());
 
+                try {
+                    cs.addClient(12345776l, "Seba", "Seba") ;
+                } catch (InvalidClientInformation invalidClientInformation) {
+                    invalidClientInformation.printStackTrace();
+                } catch (ClientAlreadyExists clientAlreadyExists) {
+                    clientAlreadyExists.printStackTrace();
+                }
 
             }
         });

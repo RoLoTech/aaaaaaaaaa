@@ -1,5 +1,7 @@
 package labTic.services;
 
+import labTic.services.exceptions.ClientAlreadyExists;
+import labTic.services.exceptions.InvalidClientInformation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import labTic.persistence.ClientRepository;
@@ -12,13 +14,26 @@ public class ClientService {
     private ClientRepository clientRepository;
 
 
-    public String addNewClient (String firstName, String lastName, String ci) {
+    public void addClient(Long document, String name, String address)
+            throws InvalidClientInformation, ClientAlreadyExists {
 
-        Client client = new Client();
-        client.setFirstName(firstName);
-        client.setLastName(lastName);
-        client.setCi(ci);
-        clientRepository.save(client);
-        return "Cliente agregado";
+        if (name == null || "".equals(name) || address == null || "".equals(address)) {
+
+            throw new InvalidClientInformation("Alguno de los datos ingresados no es correcto");
+
+        }
+
+        // Verifico si el cliente no existe
+
+        if (clientRepository.findOneByDocument(document) != null) {
+
+            throw new ClientAlreadyExists();
+        }
+
+        Client oClient = new Client(document, name, address);
+
+        clientRepository.save(oClient);
+
     }
+
 }
