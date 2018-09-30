@@ -9,6 +9,17 @@ public class Restaurant {
 
     private boolean[] tables;
 
+    public Restaurant() {
+    }
+
+
+    public Restaurant(long rut, String name, String adress) {
+        this.rut = rut;
+        this.name = name;
+        this.address = adress;
+    }
+
+
     @Id
     @Column(name = "restaurant_rut", nullable = false, unique = true)
     private long rut;
