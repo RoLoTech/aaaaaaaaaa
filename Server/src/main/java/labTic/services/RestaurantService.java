@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import labTic.persistence.RestaurantRepository;
 import labTic.services.entities.Restaurant;
 
+import java.util.List;
+
 @Service
 public class RestaurantService {
 
@@ -33,6 +35,12 @@ public class RestaurantService {
         Restaurant oRestaurant = new Restaurant(rut, name, adress);
 
         restaurantRepository.save(oRestaurant);
+
+    }
+
+    public List<Restaurant> findAllByFood_type(String food_type) {
+
+        return restaurantRepository.findAllByFood_type(food_type);
 
     }
 
