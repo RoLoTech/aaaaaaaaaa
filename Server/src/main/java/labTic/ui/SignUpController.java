@@ -12,7 +12,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import labTic.MainApp;
+import labTic.persistence.ClientRepository;
 import labTic.services.ClientService;
+import labTic.services.exceptions.ClientAlreadyExists;
+import labTic.services.exceptions.InvalidClientInformation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -25,6 +28,9 @@ public class SignUpController implements Initializable {
 
     @Autowired
     private MainApp main;
+
+    @Autowired
+    private ClientService cs;
 
     @FXML
     private TextField user;
@@ -54,13 +60,13 @@ public class SignUpController implements Initializable {
     }
 
     @FXML
-    void signup(MouseEvent event) {
+    void signup(MouseEvent event) throws ClientAlreadyExists, InvalidClientInformation {
 
         String sUser        = user.getText();
         String sPassword    = pass.getText();
         String sEmail       = email.getText();
 
-        //ClientService.addClient();
+        cs.addClient(sUser, sPassword, sEmail);
 
     }
 

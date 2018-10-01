@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import labTic.MainApp;
+import labTic.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -35,7 +36,7 @@ public class LogInController implements Initializable {
         String sUser        = user.getText();
         String sPassword    = pass.getText();
 
-        //ClientService.Login();
+
 
     }
 
