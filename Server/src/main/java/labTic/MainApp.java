@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import labTic.ui.LogInController;
+import labTic.ui.SignUpController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -29,7 +30,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
+        //fxmlLoader.setLocation(SignUpController.class.getResource("SignUp.fxml"));
         fxmlLoader.setLocation(LogInController.class.getResource("LogIn.fxml"));
         root = fxmlLoader.load();
         primaryStage.setScene(new Scene(root));
@@ -64,4 +65,11 @@ public class MainApp extends Application {
 
     }
 
+    public FXMLLoader getFxmlLoader() {
+        return fxmlLoader;
+    }
+
+    public ConfigurableApplicationContext getContext() {
+        return context;
+    }
 }

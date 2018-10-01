@@ -47,8 +47,9 @@ public class LogInController implements Initializable {
 
     @FXML
     void signupTab(MouseEvent event) throws IOException {
-
-        Parent root = FXMLLoader.load(SignUpController.class.getResource("SignUp.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(main.getContext()::getBean);
+        Parent root = fxmlLoader.load(SignUpController.class.getResource("SignUp.fxml"));
 
         Node node = (Node) event.getSource();
 

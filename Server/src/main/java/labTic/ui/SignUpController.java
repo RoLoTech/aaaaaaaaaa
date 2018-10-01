@@ -30,7 +30,7 @@ public class SignUpController implements Initializable {
     private MainApp main;
 
     @Autowired
-    private ClientService cs;
+    private ClientService clientService;
 
     @FXML
     private TextField user;
@@ -41,10 +41,14 @@ public class SignUpController implements Initializable {
     @FXML
     private TextField email;
 
+    public SignUpController() {
+        System.out.println("TESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTt");
+    }
     @FXML
     void loginTab(MouseEvent event) throws IOException {
-
-        Parent root = FXMLLoader.load(LogInController.class.getResource("LogIn.fxml"));
+        main.getFxmlLoader().setLocation(LogInController.class.getResource("LogIn.fxml"));
+        Parent root = main.getFxmlLoader().load();
+        //Parent root = FXMLLoader.load(LogInController.class.getResource("LogIn.fxml"));
 
         Node node = (Node) event.getSource();
 
@@ -66,7 +70,7 @@ public class SignUpController implements Initializable {
         String sPassword    = pass.getText();
         String sEmail       = email.getText();
 
-        cs.addClient(sUser, sPassword, sEmail);
+        clientService.addClient(sUser, sPassword, sEmail);
 
     }
 
