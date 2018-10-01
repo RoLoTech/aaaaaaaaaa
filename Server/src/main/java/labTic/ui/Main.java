@@ -21,7 +21,7 @@ import labTic.services.exceptions.InvalidClientInformation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
+/*
 @SpringBootApplication
 public class Main extends Application {
 
@@ -103,3 +103,4 @@ public class Main extends Application {
         launch(args);
     }
 }
+*/
