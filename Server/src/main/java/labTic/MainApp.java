@@ -4,15 +4,11 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import labTic.services.entities.Client;
-import labTic.ui.AppController;
+import labTic.ui.LogInController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 @SpringBootApplication
 public class MainApp extends Application {
@@ -34,7 +30,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        fxmlLoader.setLocation(AppController.class.getResource("app.fxml"));
+        fxmlLoader.setLocation(LogInController.class.getResource("LogIn.fxml"));
         root = fxmlLoader.load();
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
@@ -53,7 +49,7 @@ public class MainApp extends Application {
 
 //        context = new ConfigurableApplicationContext(MainApp.class);
 //
-//        FXMLLoader loader = new FXMLLoader(AppController.class.getResource("app.fxml"));
+//        FXMLLoader loader = new FXMLLoader(AppController.class.getResource("LogIn.fxml"));
 //        loader.setControllerFactory(context::getBean);
 //
 //        root = loader.load();
