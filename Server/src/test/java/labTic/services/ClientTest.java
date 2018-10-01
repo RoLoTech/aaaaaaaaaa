@@ -36,7 +36,7 @@ public class ClientTest {
 
         // Se prueba agregar el mismo cliente con la cedula
 
-
+/*
         try {
             cs.addClient("Sebastian", "Cura","sebastiancura97@gmail.com");
         } catch (InvalidClientInformation invalidClientInformation) {
@@ -45,7 +45,7 @@ public class ClientTest {
             clientAlreadyExists.printStackTrace();
         }
 
-
+*/
         // Ok flujo correcto
 
     }
