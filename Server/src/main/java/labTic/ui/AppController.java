@@ -1,6 +1,7 @@
 package labTic.ui;
 
 import javafx.fxml.Initializable;
+import labTic.MainApp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +12,7 @@ import java.util.ResourceBundle;
 public class AppController implements Initializable {
 
     @Autowired
-    private Main main;
+    private MainApp main;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
