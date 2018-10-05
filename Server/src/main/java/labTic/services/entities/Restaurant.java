@@ -40,7 +40,7 @@ public class Restaurant {
     private int capacity;
 
     @Column(name = "restaurant_food_type")
-    private String food_type;
+    private String foodtype;
 
     @Column(name = "restaurant_style")
     private String style;
@@ -68,6 +68,14 @@ public class Restaurant {
 
     public void setId(long rut) {
         this.rut = rut;
+    }
+
+    public String getFoodtype() {
+        return foodtype;
+    }
+
+    public void setFood_type(String foodtype) {
+        this.foodtype = foodtype;
     }
 
 //    public void bookTable(int table) throws InvalidTableException, TableAlreadyInUseException {

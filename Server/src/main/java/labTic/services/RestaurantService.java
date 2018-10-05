@@ -2,6 +2,7 @@ package labTic.services;
 
 import labTic.services.exceptions.RestaurantAlreadyExists;
 import labTic.services.exceptions.InvalidRestaurantInformation;
+import labTic.services.exceptions.RestaurantNoExists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import labTic.persistence.RestaurantRepository;
@@ -38,9 +39,25 @@ public class RestaurantService {
 
     }
 
+    public void updateRestaurant(long rut, String food_type) throws RestaurantNoExists {
+        if (restaurantRepository.findOneByRut(rut) == null) {
+            throw new RestaurantNoExists();
+        }
+
+        Restaurant oRestaurant = restaurantRepository.findOneByRut(rut);
+
+        oRestaurant.setFood_type(food_type);
+        restaurantRepository.save(oRestaurant);
+
+
+
+    }
+
+
+
     public List<Restaurant> findAllByFood_type(String food_type) {
 
-        return restaurantRepository.findAllByFood_type(food_type);
+        return restaurantRepository.findAllByFoodtype(food_type);
 
     }
 
