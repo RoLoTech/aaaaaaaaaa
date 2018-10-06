@@ -47,14 +47,23 @@ public class SignUpController {
     @FXML
     void loginTab(MouseEvent event) throws IOException {
 
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(MainApp.getContext()::getBean);
+//        FXMLLoader fxmlLoader = new FXMLLoader();
+//        fxmlLoader.setControllerFactory(MainApp.getContext()::getBean);
+//
+//        Parent root = fxmlLoader.load((LogInController.class.getResourceAsStream("LogIn.fxml")));
+//
+//        Stage stage = new Stage();
+//        stage.setScene(new Scene(root));
+//        stage.show();
 
-        Parent root = fxmlLoader.load((LogInController.class.getResourceAsStream("LogIn.fxml")));
 
-        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(LogInController.class.getResource("LogIn.fxml"));
+
+        Node node = (Node) event.getSource();
+
+        Stage stage = (Stage) node.getScene().getWindow();
+
         stage.setScene(new Scene(root));
-        stage.show();
 
     }
 
