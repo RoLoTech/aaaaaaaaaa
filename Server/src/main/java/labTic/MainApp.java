@@ -14,62 +14,34 @@ import org.springframework.context.ConfigurableApplicationContext;
 @SpringBootApplication
 public class MainApp extends Application {
 
-    private ConfigurableApplicationContext context;
-
-    private FXMLLoader fxmlLoader;
+    private static ConfigurableApplicationContext context;
 
     private Parent root;
 
 
     @Override
-    public void init() throws Exception {
+    public void init() {
         context = SpringApplication.run(MainApp.class);
-        fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(context::getBean);
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        //fxmlLoader.setLocation(SignUpController.class.getResource("SignUp.fxml"));
-        fxmlLoader.setLocation(LogInController.class.getResource("LogIn.fxml"));
-        root = fxmlLoader.load();
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(context::getBean);
+
+        root = fxmlLoader.load(LogInController.class.getResourceAsStream("LogIn.fxml"));
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
 
-/*        Parent fxml = FXMLLoader.load(getClass().getResource("app.fmxl"));
-
-        Scene scene = new Scene(fxml);
-
-        scene.setFill(Color.TRANSPARENT);
-
-        primaryStage.setScene(scene);
-
-        primaryStage.initStyle(StageStyle.TRANSPARENT);
-
-        primaryStage.show();*/
-
-//        context = new ConfigurableApplicationContext(MainApp.class);
-//
-//        FXMLLoader loader = new FXMLLoader(AppController.class.getResource("LogIn.fxml"));
-//        loader.setControllerFactory(context::getBean);
-//
-//        root = loader.load();
-//        primaryStage.setScene(new Scene(root));
-//        primaryStage.show();
-
     }
 
-          public static void main(String... args){
+    public static void main(String... args){ launch(args); }
 
-           launch(args);
+    public static ConfigurableApplicationContext getContext() { return context; }
 
-    }
-
-    public FXMLLoader getFxmlLoader() {
-        return fxmlLoader;
-    }
-
-    public ConfigurableApplicationContext getContext() {
-        return context;
+    @Override
+    public void stop() {
+        context.close();
+        MainApp.getContext().close();
     }
 }

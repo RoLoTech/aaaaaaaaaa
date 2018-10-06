@@ -21,22 +21,20 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 @Component
-public class LogInController implements Initializable {
+public class LogInController  {
 
-    @Autowired
-    private MainApp main;
+//    @Autowired
+//    private MainApp mainApp;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-    }
+//    @Override
+//    public void initialize(URL location, ResourceBundle resources) {
+//    }
 
     @FXML
     void login(MouseEvent event) {
 
         String sUser        = user.getText();
         String sPassword    = pass.getText();
-
-
 
     }
 
@@ -46,16 +44,16 @@ public class LogInController implements Initializable {
     }
 
     @FXML
-    void signupTab(MouseEvent event) throws IOException {
+    void signupTab(MouseEvent event) throws Exception {
+
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(main.getContext()::getBean);
-        Parent root = fxmlLoader.load(SignUpController.class.getResource("SignUp.fxml"));
+        fxmlLoader.setControllerFactory(MainApp.getContext()::getBean);
 
-        Node node = (Node) event.getSource();
+        Parent root = fxmlLoader.load((SignUpController.class.getResourceAsStream("SignUp.fxml")));
 
-        Stage stage = (Stage) node.getScene().getWindow();
-
+        Stage stage = new Stage();
         stage.setScene(new Scene(root));
+        stage.show();
 
     }
 

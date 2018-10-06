@@ -24,10 +24,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 @Component
-public class SignUpController implements Initializable {
+public class SignUpController {
 
-    @Autowired
-    private MainApp main;
+//    @Autowired
+//    private MainApp mainApp;
 
     @Autowired
     private ClientService clientService;
@@ -46,15 +46,15 @@ public class SignUpController implements Initializable {
     }
     @FXML
     void loginTab(MouseEvent event) throws IOException {
-        main.getFxmlLoader().setLocation(LogInController.class.getResource("LogIn.fxml"));
-        Parent root = main.getFxmlLoader().load();
-        //Parent root = FXMLLoader.load(LogInController.class.getResource("LogIn.fxml"));
 
-        Node node = (Node) event.getSource();
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(MainApp.getContext()::getBean);
 
-        Stage stage = (Stage) node.getScene().getWindow();
+        Parent root = fxmlLoader.load((LogInController.class.getResourceAsStream("LogIn.fxml")));
 
+        Stage stage = new Stage();
         stage.setScene(new Scene(root));
+        stage.show();
 
     }
 
@@ -74,8 +74,8 @@ public class SignUpController implements Initializable {
 
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
+//    @Override
+//    public void initialize(URL location, ResourceBundle resources) {
+//
+//    }
 }
