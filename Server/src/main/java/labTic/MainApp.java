@@ -29,7 +29,7 @@ public class MainApp extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(context::getBean);
 
-        root = fxmlLoader.load(LogInController.class.getResourceAsStream("LogIn.fxml"));
+        root = fxmlLoader.load(LogInController.class.getResource("LogIn.fxml"));
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
 
