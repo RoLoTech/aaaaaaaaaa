@@ -57,6 +57,8 @@ public class LogInController  {
 
         stage.setScene(new Scene(root));
 
+        stage.getScene().getStylesheets().add(SignUpController.class.getResource("LogInSignUp.css").toExternalForm());
+
     }
 
     @FXML
