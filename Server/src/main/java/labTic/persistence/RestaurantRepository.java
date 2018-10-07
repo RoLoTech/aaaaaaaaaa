@@ -9,8 +9,12 @@ public interface RestaurantRepository extends CrudRepository<Restaurant, Long> {
 
 
     List<Restaurant> findAllByFoodtype(String foodtype);
+    List<Restaurant> findRestaurantsByAreaAndFoodtype(String area, String foodtype);
 
     Restaurant findOneByRut(long rut);
+    Restaurant findOneByName(String name);
+
+    //List<Restaurant> findAll(Restaurant restaurant);
 
 //    List<Restaurant> findAllByFood_type(long rut);
 

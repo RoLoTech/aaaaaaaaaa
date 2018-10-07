@@ -1,54 +1,28 @@
 package labTic.services;
 
-
 import labTic.services.exceptions.ClientAlreadyExists;
 import labTic.services.exceptions.InvalidClientInformation;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringBootConfiguration;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertEquals;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class ClientTest {
-
     @Autowired
     ClientService cs;
 
     @Test
-    public void testBasic()  {
-
-
+    public void testAdd() {
         try {
-            cs.addClient("Sebastian", "Cura", "sebastiancura97@gmail.com","sCura","555","098666666");
-        } catch (InvalidClientInformation invalidClientInformation) {
+            cs.addClient("Rodrigo", "López", "rodri.lopez98@gmail.com", "RoLoTech", "rodrigo270", "098273340");
+        } catch (InvalidClientInformation | ClientAlreadyExists invalidClientInformation) {
             invalidClientInformation.printStackTrace();
-        } catch (ClientAlreadyExists clientAlreadyExists) {
-            clientAlreadyExists.printStackTrace();
         }
-
-
-        // Se prueba agregar el mismo cliente con la cedula
-
-/*
-        try {
-            cs.addClient("Sebastian", "Cura","sebastiancura97@gmail.com");
-        } catch (InvalidClientInformation invalidClientInformation) {
-            invalidClientInformation.printStackTrace();
-        } catch (ClientAlreadyExists clientAlreadyExists) {
-            clientAlreadyExists.printStackTrace();
-        }
-
-*/
-        // Ok flujo correcto
-
+        assertEquals(cs.findOneByEmail("rodri.lopez98@gmail.com").getEmail(), "rodri.lopez98@gmail.com");
     }
-
-
 }
