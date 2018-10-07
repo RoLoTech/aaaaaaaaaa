@@ -10,18 +10,33 @@ public class Client {
     @Id
     @GeneratedValue(generator="clients_ids")
     @GenericGenerator(name="clients_ids", strategy = "increment")
-    public long id;
+    private long id;
 
-    public String firstName;
+    private String firstName;
 
-    public String lastName;
+    private String lastName;
 
-    public String email;
+    private String email;
 
+    private String user;
+
+    private String password;
+
+    private String phoneNumber;
+
+    private Float rating;
 
     public Client() {
     }
 
+    public Client(String firstName, String lastName, String email, String user, String password, String phone_number) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.user = user;
+        this.password = password;
+        this.phoneNumber = phone_number;
+    }
 
     public Client(String firstName, String lastName, String email) {
         this.firstName = firstName;
@@ -29,12 +44,21 @@ public class Client {
         this.email = email;
     }
 
-    private String password;
+    public String getEmail() {
+        return email;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-    private String phone_number;
+    public String getUser() {
+        return user;
+    }
 
-    private Float rating;
+    public void setUser(String user) {
+        this.user = user;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -52,13 +76,12 @@ public class Client {
         this.lastName = lastName;
     }
 
-
-    public String getPhone_number() {
-        return phone_number;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhone_number(String phone_number) {
-        this.phone_number = phone_number;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public float getRating() {

@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -41,21 +42,17 @@ public class SignUpController {
     @FXML
     private TextField email;
 
-    public SignUpController() {
-        System.out.println("TESTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTt");
-    }
+    @FXML
+    private TextField firstName;
+
+    @FXML
+    private PasswordField lastName;
+
+    @FXML
+    private TextField phoneNumber;
+
     @FXML
     void loginTab(MouseEvent event) throws IOException {
-
-//        FXMLLoader fxmlLoader = new FXMLLoader();
-//        fxmlLoader.setControllerFactory(MainApp.getContext()::getBean);
-//
-//        Parent root = fxmlLoader.load((LogInController.class.getResourceAsStream("LogIn.fxml")));
-//
-//        Stage stage = new Stage();
-//        stage.setScene(new Scene(root));
-//        stage.show();
-
 
         Parent root = FXMLLoader.load(LogInController.class.getResource("LogIn.fxml"));
 
@@ -75,12 +72,38 @@ public class SignUpController {
     @FXML
     void signup(MouseEvent event) throws ClientAlreadyExists, InvalidClientInformation {
 
-        String sUser        = user.getText();
-        String sPassword    = pass.getText();
-        String sEmail       = email.getText();
+        String sFirstName = firstName.getText();
+        String sLastName = lastName.getText();
+        String sPhoneNumber = phoneNumber.getText();
+        String sUser = user.getText();
+        String sPassword = pass.getText();
+        String sEmail = email.getText();
 
-        clientService.addClient(sUser, sPassword, sEmail);
-
+        //addClient(String firstName, String lastName, String email, String user, String password, String phoneNumber)
+        try{
+            clientService.addClient(sFirstName,sLastName,sPhoneNumber,sUser,sPassword,sEmail);
+            showAlert("Registro Exitoso","Usuario Registrado Correctamente");
+            clean();
+        }catch(ClientAlreadyExists cas){
+            showAlert("Error", "El Usuario ya fue registrado");
+        }catch(InvalidClientInformation ici){
+            showAlert("Error", "No deje campos vacios");
+        }
+    }
+    private void showAlert(String title, String contextText) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(contextText);
+        alert.showAndWait();
+    }
+    private void clean() {
+        user.setText(null);
+        pass.setText(null);
+        firstName.setText(null);
+        lastName.setText(null);
+        phoneNumber.setText(null);
+        email.setText(null);
     }
 
 //    @Override

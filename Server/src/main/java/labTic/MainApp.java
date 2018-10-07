@@ -21,13 +21,13 @@ public class MainApp extends Application {
 
     @Override
     public void init() {
-        context = SpringApplication.run(MainApp.class);
+        MainApp.context = SpringApplication.run(MainApp.class);
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(context::getBean);
+        fxmlLoader.setControllerFactory(MainApp.getContext()::getBean);
 
         root = fxmlLoader.load(LogInController.class.getResource("LogIn.fxml"));
         primaryStage.setScene(new Scene(root));
@@ -35,13 +35,12 @@ public class MainApp extends Application {
 
     }
 
-    public static void main(String... args){ launch(args); }
+    public static void main(String[] args){ launch(args); }
 
     public static ConfigurableApplicationContext getContext() { return context; }
 
     @Override
     public void stop() {
-        context.close();
         MainApp.getContext().close();
     }
 }

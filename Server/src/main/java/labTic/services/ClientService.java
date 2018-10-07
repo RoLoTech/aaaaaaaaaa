@@ -14,23 +14,23 @@ public class ClientService {
     private ClientRepository clientRepository;
 
 
-    public void addClient(String firstName, String lastName, String email)
+    public void addClient(String firstName, String lastName, String email, String user, String password, String phoneNumber)
             throws InvalidClientInformation, ClientAlreadyExists {
 
-        if (firstName == null || "".equals(firstName) || lastName == null || "".equals(lastName) || email == null || "".equals(email)) {
-
+        if (firstName == null || "".equals(firstName) || lastName == null || "".equals(lastName) || email == null || "".equals(email)
+                || user == null || "".equals(user) || password == null || "".equals(password) || phoneNumber == null || "".equals(phoneNumber))
             throw new InvalidClientInformation("Alguno de los datos ingresados no es correcto");
-
-        }
 
         // Verifico si el cliente no existe
 
-        if (clientRepository.findOneByEmail(email) != null) {
-
+        if (clientRepository.findOneByEmail(email) != null)
             throw new ClientAlreadyExists();
-        }
 
-        Client oClient = new Client(firstName, lastName, email);
+        if (clientRepository.findOneByUser(user) !=null)
+            throw new ClientAlreadyExists();
+
+        //public Client(String firstName, String lastName, String email, String user, String password, String phone_number)
+        Client oClient = new Client(firstName, lastName, email, user, password, phoneNumber);
 
         clientRepository.save(oClient);
 

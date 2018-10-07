@@ -26,7 +26,7 @@ public class ClientTest {
 
 
         try {
-            cs.addClient("Sebastian", "Cura", "sebastiancura97@gmail.com");
+            cs.addClient("Sebastian", "Cura", "sebastiancura97@gmail.com","sCura","555","098666666");
         } catch (InvalidClientInformation invalidClientInformation) {
             invalidClientInformation.printStackTrace();
         } catch (ClientAlreadyExists clientAlreadyExists) {

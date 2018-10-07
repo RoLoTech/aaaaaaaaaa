@@ -6,5 +6,6 @@ package labTic.persistence;
 public interface ClientRepository extends CrudRepository<Client, Long> {
 
     Client findOneByEmail(String email);
+    Client findOneByUser(String user);
 
 }
