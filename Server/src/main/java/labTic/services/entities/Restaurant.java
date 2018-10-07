@@ -13,10 +13,10 @@ public class Restaurant {
     }
 
 
-    public Restaurant(long rut, String name, String adress) {
+    public Restaurant(long rut, String name, String address) {
         this.rut = rut;
         this.name = name;
-        this.address = adress;
+        this.address = address;
     }
 
 

@@ -68,6 +68,13 @@ public class RestaurantService {
 
     }
 
+    public List<Restaurant> filtro_v2(String area, String foodtype, String address, String pricerange, Float rating, String style, String name){
+        if(area==null || area==""){
+            area = "area";
+        }
+        return restaurantRepository.findRestaurantsByAreaAndFoodtypeAndAddressContainingAndPriceRangeAndRatingAndStyleAndNameContaining(area, foodtype, address, pricerange, rating, style, name);
+    }
+
    /* public List<Restaurant> filterBy(String... args) {
         List<Restaurant> results = new ArrayList<Restaurant>();
         if (args.length == 1){
