@@ -59,8 +59,13 @@ public class RestaurantService {
 
     }
 
-    public Restaurant findOneByName(String name){
+    public Restaurant findOneByName(String name) {
         return restaurantRepository.findOneByName(name);
+    }
+
+    public List<Restaurant> multipleFiltering(String area, String foodtype, String address, String pricerange, Float rating, String style, String name) {
+        return restaurantRepository.findRestaurantsByAreaAndFoodtypeAndAddressContainingAndPriceRangeAndRatingAndStyleAndNameContaining(area, foodtype, address, pricerange, rating, style, name);
+
     }
 
    /* public List<Restaurant> filterBy(String... args) {

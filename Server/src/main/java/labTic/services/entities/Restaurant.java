@@ -22,7 +22,7 @@ public class Restaurant {
 
     @Id
     @Column(name = "restaurant_rut", nullable = false, unique = true)
-    private long rut;
+    private Long rut;
 
     @Column(name = "restaurant_name")
     private String name;
@@ -37,7 +37,7 @@ public class Restaurant {
     private String area;
 
     @Column(name = "restaurant_capacity")
-    private int capacity;
+    private Integer capacity;
 
     @Column(name = "restaurant_food_type")
     private String foodtype;
@@ -49,10 +49,10 @@ public class Restaurant {
     private String priceRange;
 
     @Column(name = "restaurant_rating")
-    private float rating;
+    private Float rating;
 
     @Column(name = "restaurant_completed_reservations")
-    private int completedReservations;
+    private Integer completedReservations;
 
     public String getName() {
         return name;
@@ -62,7 +62,7 @@ public class Restaurant {
         this.name = name;
     }
 
-    public long getRut() {
+    public Long getRut() {
         return rut;
     }
 

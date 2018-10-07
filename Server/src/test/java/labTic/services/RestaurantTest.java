@@ -20,13 +20,11 @@ public class RestaurantTest {
     RestaurantService rs;
 
     @Test
-    public void testBasic() {
+    public void testBasic() throws InvalidRestaurantInformation {
 
         try {
             rs.addRestaurant(123456789, "La Pasiva", "Luis Alberto de Herrera");
             assertEquals(rs.findOneByName("La Pasiva").getName(), "La Pasiva");
-        } catch (InvalidRestaurantInformation invalidRestaurantInformation) {
-            invalidRestaurantInformation.printStackTrace();
         } catch (RestaurantAlreadyExists restaurantAlreadyExists) {
             restaurantAlreadyExists.printStackTrace();
         }
