@@ -61,10 +61,12 @@ public class SignUpController {
         Parent root = fxmlLoader.load(LogInController.class.getResourceAsStream("LogIn.fxml"));
 
         Node node = (Node) event.getSource();
-
         Stage stage = (Stage) node.getScene().getWindow();
 
+
         stage.setScene(new Scene(root));
+        stage.getScene().getStylesheets().add(SignUpController.class.getResource("LogInSignUp.css").toExternalForm());
+
 
     }
 
