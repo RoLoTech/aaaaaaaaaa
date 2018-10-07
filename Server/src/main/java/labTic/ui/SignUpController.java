@@ -46,7 +46,7 @@ public class SignUpController {
     private TextField firstName;
 
     @FXML
-    private PasswordField lastName;
+    private TextField lastName;
 
     @FXML
     private TextField phoneNumber;
@@ -92,6 +92,7 @@ public class SignUpController {
             clean();
         }catch(ClientAlreadyExists cas){
             showAlert("Error", "El Usuario ya fue registrado");
+            clean();
         }catch(InvalidClientInformation ici){
             showAlert("Error", "No deje campos vacios");
         }
