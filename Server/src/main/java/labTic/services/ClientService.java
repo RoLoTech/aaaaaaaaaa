@@ -40,4 +40,6 @@ public class ClientService {
         return clientRepository.findOneByEmail(email);
     }
 
+    public Client findOneByUser(String user){ return clientRepository.findOneByUser(user); }
+
 }
