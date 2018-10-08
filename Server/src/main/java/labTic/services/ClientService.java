@@ -36,4 +36,8 @@ public class ClientService {
 
     }
 
+    public Client findOneByEmail(String email){
+        return clientRepository.findOneByEmail(email);
+    }
+
 }

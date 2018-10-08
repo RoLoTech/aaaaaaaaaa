@@ -46,7 +46,7 @@ public class SignUpController {
     private TextField firstName;
 
     @FXML
-    private PasswordField lastName;
+    private TextField lastName;
 
     @FXML
     private TextField phoneNumber;
@@ -61,10 +61,12 @@ public class SignUpController {
         Parent root = fxmlLoader.load(LogInController.class.getResourceAsStream("LogIn.fxml"));
 
         Node node = (Node) event.getSource();
-
         Stage stage = (Stage) node.getScene().getWindow();
 
+
         stage.setScene(new Scene(root));
+        stage.getScene().getStylesheets().add(SignUpController.class.getResource("LogInSignUp.css").toExternalForm());
+
 
     }
 
@@ -90,6 +92,7 @@ public class SignUpController {
             clean();
         }catch(ClientAlreadyExists cas){
             showAlert("Error", "El Usuario ya fue registrado");
+            clean();
         }catch(InvalidClientInformation ici){
             showAlert("Error", "No deje campos vacios");
         }

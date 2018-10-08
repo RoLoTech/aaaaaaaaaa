@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import static org.junit.Assert.assertEquals;
+
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class RestaurantTest {
@@ -18,12 +20,11 @@ public class RestaurantTest {
     RestaurantService rs;
 
     @Test
-    public void testBasic()  {
+    public void testBasic() throws InvalidRestaurantInformation {
 
         try {
             rs.addRestaurant(123456789, "La Pasiva", "Luis Alberto de Herrera");
-        } catch (InvalidRestaurantInformation invalidRestaurantInformation) {
-            invalidRestaurantInformation.printStackTrace();
+            assertEquals(rs.findOneByName("La Pasiva").getName(), "La Pasiva");
         } catch (RestaurantAlreadyExists restaurantAlreadyExists) {
             restaurantAlreadyExists.printStackTrace();
         }
@@ -34,7 +35,7 @@ public class RestaurantTest {
             restaurantNoExists.printStackTrace();
         }
 
-         rs.findAllByFood_type("panchos");
+        rs.findAllByFood_type("panchos");
 
 
         // Se prueba agregar el mismo cliente con la cedula

@@ -102,7 +102,7 @@
                   <HBox alignment="CENTER" style="-fx-border-color: white; -fx-border-width: 0 0 2 0;">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="🖋" />
-                        <PasswordField fx:id="lastName" promptText="Apellido" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="lastName" prefHeight="26.0" prefWidth="298.0" promptText="Apellido" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" />
                      </children>
                      <opaqueInsets>
                         <Insets />

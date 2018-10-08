@@ -52,8 +52,8 @@ public class LogInController  {
         Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("SignUp.fxml"));
 
         Node node = (Node) event.getSource();
-
         Stage stage = (Stage) node.getScene().getWindow();
+
 
         stage.setScene(new Scene(root));
 

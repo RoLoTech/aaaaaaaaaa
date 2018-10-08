@@ -32,6 +32,7 @@ CREATE TABLE `client` (
   `password` varchar(255) DEFAULT NULL,
   `phone_number` varchar(255) DEFAULT NULL,
   `rating` float DEFAULT NULL,
+  `user` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -42,7 +43,7 @@ CREATE TABLE `client` (
 
 LOCK TABLES `client` WRITE;
 /*!40000 ALTER TABLE `client` DISABLE KEYS */;
-INSERT INTO `client` VALUES (1,'sebastiancura97@gmail.com','Sebastian','Cura',NULL,NULL,NULL);
+INSERT INTO `client` VALUES (1,'rodri.lopez98@gmail.com','Rodrigo','López','rodrigo270','098273340',NULL,'RoLoTech');
 /*!40000 ALTER TABLE `client` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -76,7 +77,7 @@ CREATE TABLE `restaurant` (
 
 LOCK TABLES `restaurant` WRITE;
 /*!40000 ALTER TABLE `restaurant` DISABLE KEYS */;
-INSERT INTO `restaurant` VALUES (1,'en la cancha','Punta Carretas',50,47,'Rápida','Johnny Rockets','123','$$$',4.5,'Familiar',NULL),(2,'alla lejos','Brazo Oriental',200,35,'Cara','La Pasiva','456','$$$$',3,'Familiar',NULL),(3,'cerca','Punta Carretas',35,567,'Buena','Rudy\'s','789','$$$$',4.9,'Familiar',NULL);
+INSERT INTO `restaurant` VALUES (1,'no','Pocitos',50,0,'Hamburguesas','Rudys',NULL,NULL,NULL,NULL,NULL),(2,'noo','Punta Carretas',35,0,'Hamburguesas','Gaucho Burguer',NULL,NULL,NULL,NULL,NULL),(123456789,'Luis Alberto de Herrera','Malvin',60,0,'Panchos','La Pasiva','123','$$$',5,'Familiar',NULL);
 /*!40000 ALTER TABLE `restaurant` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -89,4 +90,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-01 19:07:12
+-- Dump completed on 2018-10-07 16:50:32
