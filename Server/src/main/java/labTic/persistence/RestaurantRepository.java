@@ -19,6 +19,10 @@ public interface RestaurantRepository extends CrudRepository<Restaurant, Long> {
 
     Restaurant findOneByName(String name);
 
+    List<Restaurant> findByArea(String area);
+
+    List<Restaurant> findAll();
+
 // Filtro global en progreso
 //    @Query("select r from Restaurant r where r.restaurant_food_type=foodtype and r.area=restaurant_area and r.")
 //    List<Restaurant> filtro_v2(String area, String foodtype, String address, String pricerange, Float rating, String style, String name);

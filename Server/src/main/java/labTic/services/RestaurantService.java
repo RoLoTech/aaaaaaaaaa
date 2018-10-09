@@ -75,6 +75,14 @@ public class RestaurantService {
         return restaurantRepository.findRestaurantsByAreaAndFoodtypeAndAddressContainingAndPriceRangeAndRatingAndStyleAndNameContaining(area, foodtype, address, pricerange, rating, style, name);
     }
 
+    public List<Restaurant> findByArea(String area){
+        return restaurantRepository.findByArea(area);
+    }
+
+    public List<Restaurant> findAll(){
+        return restaurantRepository.findAll();
+    }
+
    /* public List<Restaurant> filterBy(String... args) {
         List<Restaurant> results = new ArrayList<Restaurant>();
         if (args.length == 1){

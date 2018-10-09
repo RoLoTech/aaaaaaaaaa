@@ -27,8 +27,6 @@ import java.util.ResourceBundle;
 @Component
 public class SignUpController {
 
-//    @Autowired
-//    private MainApp mainApp;
 
     @Autowired
     private ClientService clientService;

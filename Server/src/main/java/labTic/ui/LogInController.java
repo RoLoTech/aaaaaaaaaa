@@ -26,7 +26,8 @@ import java.util.ResourceBundle;
 public class LogInController  {
 
     @Autowired
-    ClientService clientService;
+    private ClientService clientService;
+
 
 //    @Autowired
 //    private MainApp mainApp;
@@ -46,16 +47,31 @@ public class LogInController  {
         }else {
             try{
                 Client cliente = (Client)clientService.findOneByUser(sUser);
-                if(cliente.getPassword().equals(sPassword))
+                if(cliente.getPassword().equals(sPassword)) {
                     showAlert("Exito", "Usuario Logueado Correctamente");
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+
+                    fxmlLoader.setControllerFactory((MainApp.getContext()::getBean));
+
+                    Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("Restaurantes.fxml"));
+
+                    Node node = (Node) event.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+
+
+                    stage.setScene(new Scene(root));
+
+                    stage.getScene().getStylesheets().add(SignUpController.class.getResource("LogInSignUp.css").toExternalForm());
+
+                }
                 else {
                     showAlert("Error", "Datos Incorrectos");
                     clean();
                     }
-                System.out.println(clientService.findOneByUser(sUser).getPassword());
 
             }catch(Exception e){
                 showAlert("Error", "Usuario No Registrado");
+                e.printStackTrace();
             }
 
         }
