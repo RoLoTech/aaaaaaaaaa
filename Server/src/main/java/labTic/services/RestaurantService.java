@@ -1,6 +1,7 @@
 package labTic.services;
 
 import com.querydsl.core.BooleanBuilder;
+import labTic.services.entities.QRestaurant;
 import labTic.services.exceptions.RestaurantAlreadyExists;
 import labTic.services.exceptions.InvalidRestaurantInformation;
 import labTic.services.exceptions.RestaurantNoExists;
@@ -16,8 +17,6 @@ public class RestaurantService {
 
     @Autowired
     private RestaurantRepository restaurantRepository;
-
-    private BooleanBuilder builder = new BooleanBuilder();
 
 
     public void addRestaurant(long rut, String name, String adress)
@@ -71,30 +70,49 @@ public class RestaurantService {
 
     }
 
-    public List<Restaurant> filtro_v2(String area, String foodtype, String address, String pricerange, Float rating, String style, String name) {
-        if (area == null || area == "") {
-            area = "area";
-        }
-        return restaurantRepository.findRestaurantsByAreaAndFoodtypeAndAddressContainingAndPriceRangeAndRatingAndStyleAndNameContaining(area, foodtype, address, pricerange, rating, style, name);
-    }
-
     public List<Restaurant> findByArea(String area) {
         return restaurantRepository.findByArea(area);
     }
 
     public List<Restaurant> findAll() {
-        return restaurantRepository.findAll();
+        return (List<Restaurant>) restaurantRepository.findAll();
     }
 
-   /* Filtro definitivo, falta generar QClasses
-   public List<Restaurant> filter(String area, String foodtype, String address, String pricerange, Float rating, String style, String name) {
+    public List<Restaurant> filter(String area, String foodtype, String address, String pricerange, Float rating, String style, String name) {
+        BooleanBuilder builder = new BooleanBuilder();
         final QRestaurant restaurant = QRestaurant.restaurant;
         if (area != null && area.trim().length() != 0) {
-            builder.and(restaurant.restaurant_area.eq(area));
+            builder.and(restaurant.area.eq(area));
         }
-        return restaurantRepository.findAll(builder);
+        if (foodtype != null && foodtype.trim().length() != 0) {
+            builder.and(restaurant.foodtype.eq(foodtype));
+        }
+        if (address != null && address.trim().length() != 0) {
+            builder.and(restaurant.address.like(address));
+        }
+        if (pricerange != null && pricerange.trim().length() != 0) {
+            builder.and(restaurant.priceRange.eq(pricerange));
+        }
+        if (rating != null) {
+            builder.and(restaurant.rating.eq(rating));
+        }
+        if (style != null && style.trim().length() != 0) {
+            builder.and(restaurant.style.eq(style));
+        }
+        if (name != null && name.trim().length() != 0) {
+            builder.and(restaurant.name.like(name));
+        }
+
+        Iterable<Restaurant> restaurants = restaurantRepository.findAll(builder);
+
+        List<Restaurant> list = new ArrayList<>();
+        for (Restaurant rest : restaurants) {
+            list.add(rest);
+        }
+
+        return list;
     }
-*/
+
 
    /* public List<Restaurant> filterBy(String... args) {
         List<Restaurant> results = new ArrayList<Restaurant>();

@@ -25,4 +25,12 @@ public class FilteringTest {
     public void testMultipleFilters(){
         assertEquals(1, rs.multipleFiltering("Malvin","Panchos","Luis Alberto de Herrera","$$$",new Float(5.0),"Familiar","La Pasiva").size());
     }
+
+    @Test
+    public void testFinalFilter(){
+        assertEquals(1, rs.filter("Malvin","Panchos","Luis Alberto de Herrera","$$$",new Float(5.0),"Familiar","La Pasiva").size());
+        assertEquals(1, rs.filter("","Panchos","Luis Alberto de Herrera","$$$",new Float(5.0),"Familiar","La Pasiva").size());
+        assertEquals(1, rs.filter(null,"Panchos","Luis Alberto de Herrera","$$$",new Float(5.0),"Familiar","La Pasiva").size());
+
+    }
 }
