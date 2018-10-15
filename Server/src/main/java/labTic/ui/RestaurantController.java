@@ -69,6 +69,19 @@ public class RestaurantController implements Initializable {
 
     @FXML
     void cbLocationClick(MouseEvent event) {
+//        x=0;
+//        if(cbLocation.getValue().equals("<Todas las zonas>")){
+//            restaurants = restaurantService.findAll();
+//            showRestaurants();
+//        }else{
+//            restaurants = restaurantService.findByArea(cbLocation.getValue());
+//            showRestaurants();
+//        }
+
+    }
+
+    @FXML
+    void btnFiltrar(MouseEvent event) {
         x=0;
         if(cbLocation.getValue().equals("<Todas las zonas>")){
             restaurants = restaurantService.findAll();
@@ -77,7 +90,6 @@ public class RestaurantController implements Initializable {
             restaurants = restaurantService.findByArea(cbLocation.getValue());
             showRestaurants();
         }
-
     }
 
 
