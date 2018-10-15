@@ -1,5 +1,8 @@
 package labTic.ui;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -14,6 +17,7 @@ import org.springframework.stereotype.Component;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -61,10 +65,18 @@ public class RestaurantController implements Initializable {
     }
 
     @FXML
-    private ChoiceBox<?> cbLocation;
+    private ChoiceBox<String> cbLocation;
 
     @FXML
     void cbLocationClick(MouseEvent event) {
+        x=0;
+        if(cbLocation.getValue().equals("<Todas las zonas>")){
+            restaurants = restaurantService.findAll();
+            showRestaurants();
+        }else{
+            restaurants = restaurantService.findByArea(cbLocation.getValue());
+            showRestaurants();
+        }
 
     }
 
@@ -72,6 +84,8 @@ public class RestaurantController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         restaurants = restaurantService.findAll();
+        ObservableList<String> arr1 = FXCollections.observableArrayList("<Todas las zonas>","Pocitos","Brazo Oriental","Punta Carretas","Malvin","Malvin Norte");
+        cbLocation.setItems(arr1);
         showRestaurants();
     }
 
