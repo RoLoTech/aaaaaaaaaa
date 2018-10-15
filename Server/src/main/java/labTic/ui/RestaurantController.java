@@ -3,13 +3,14 @@ package labTic.ui;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import labTic.services.RestaurantService;
 import labTic.services.entities.Restaurant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.awt.event.MouseEvent;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,11 +41,21 @@ public class RestaurantController implements Initializable {
 
     @FXML
     void btnNext(MouseEvent event) {
+        if(x+4<restaurants.size()) {
+            x=x+4;
+            showRestaurants();
+            System.out.println(x);
+        }
 
     }
 
     @FXML
     void btnPrev(MouseEvent event) {
+        if(x-4>=0){
+            x=x-4;
+            showRestaurants();
+            System.out.println(x);
+        }
 
     }
 
