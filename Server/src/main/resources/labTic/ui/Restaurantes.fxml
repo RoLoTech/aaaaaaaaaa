@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -12,10 +10,27 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox stylesheets="@Restaurant.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labTic.ui.RestaurantController">
+<VBox stylesheets="@Restaurant.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labTic.ui.RestaurantController">
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="back">
          <children>
+            <GridPane depthTest="DISABLE" layoutX="200.0" prefHeight="400.0" prefWidth="200.0" styleClass="gridpane" stylesheets="@Restaurant.css" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="100.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Restaurant1" />
+                     </children>
+                  </VBox>
+               </children>
+            </GridPane>
             <HBox alignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <padding>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
@@ -27,64 +42,6 @@
                      </effect>
                   </Text>
                   <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS" />
-               </children>
-            </HBox>
-            <GridPane layoutX="30.0" layoutY="113.0" prefHeight="259.0" prefWidth="540.0" style="-fx-border-width: 2; -fx-bord: white; -fx-background-color: #aeaeae;">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: white;" GridPane.rowIndex="1">
-                     <children>
-                        <ImageView fitHeight="100.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
-                        <VBox prefHeight="130.0" prefWidth="76.0">
-                           <children>
-                              <Text fx:id="text3" strokeType="OUTSIDE" strokeWidth="0.0" text="3" />
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: white;">
-                     <children>
-                        <ImageView fitHeight="100.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
-                        <VBox prefHeight="130.0" prefWidth="76.0">
-                           <children>
-                              <Text fx:id="text1" strokeType="OUTSIDE" strokeWidth="0.0" text="1" />
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: white;" GridPane.columnIndex="1">
-                     <children>
-                        <ImageView fitHeight="100.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
-                        <VBox prefHeight="130.0" prefWidth="76.0">
-                           <children>
-                              <Text fx:id="text2" strokeType="OUTSIDE" strokeWidth="0.0" text="2" />
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <children>
-                        <ImageView fitHeight="100.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" />
-                        <VBox prefHeight="130.0" prefWidth="76.0">
-                           <children>
-                              <Text fx:id="text4" strokeType="OUTSIDE" strokeWidth="0.0" text="4" />
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-               </children>
-            </GridPane>
-            <HBox layoutX="314.0" layoutY="36.0" prefHeight="65.0" prefWidth="270.0">
-               <children>
-                  <Button fx:id="btnPrev" mnemonicParsing="false" text="Previous" />
-                  <Button fx:id="btnNext" mnemonicParsing="false" text="Next" />
                </children>
             </HBox>
          </children>
