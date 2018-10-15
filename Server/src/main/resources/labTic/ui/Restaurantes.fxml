@@ -21,7 +21,7 @@
                <children>
                   <Button contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#btnPrev" style="-fx-background-radius: 25; -fx-min-width: 30; -fx-min-height: 30; -fx-max-width: 30; -fx-max-height: 30;" styleClass="gridpane" text="&lt;" textAlignment="CENTER">
                      <cursor>
-                        <Cursor fx:constant="OPEN_HAND" />
+                        <Cursor fx:constant="HAND" />
                      </cursor>
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -38,7 +38,7 @@
                               </ChoiceBox>
                               <Button mnemonicParsing="false" onMouseClicked="#btnFiltrar" style="-fx-background-color: red;" text="Filtrar">
                                  <cursor>
-                                    <Cursor fx:constant="OPEN_HAND" />
+                                    <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Button>
                            </children>
@@ -98,7 +98,7 @@
                   </VBox>
                   <Button contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#btnNext" style="-fx-background-radius: 25; -fx-min-width: 30; -fx-min-height: 30; -fx-max-width: 30; -fx-max-height: 30;" styleClass="gridpane" text="&gt;" textAlignment="CENTER">
                      <cursor>
-                        <Cursor fx:constant="OPEN_HAND" />
+                        <Cursor fx:constant="HAND" />
                      </cursor>
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
