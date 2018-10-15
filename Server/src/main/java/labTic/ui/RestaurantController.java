@@ -37,8 +37,16 @@ public class RestaurantController implements Initializable {
 
     @FXML
     private Text text4;
+
     @FXML
-    private Button btnPrev;
+    void btnNext(MouseEvent event) {
+
+    }
+
+    @FXML
+    void btnPrev(MouseEvent event) {
+
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -46,12 +54,6 @@ public class RestaurantController implements Initializable {
         showRestaurants();
     }
 
-    @FXML
-    void btnNext(MouseEvent event){
-        x++;
-        showRestaurants();
-
-    }
     void showRestaurants(){
         if(x<restaurants.size())
             text1.setText(restaurants.get(x).getName());
