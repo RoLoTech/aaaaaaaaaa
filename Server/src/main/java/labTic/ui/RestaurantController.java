@@ -3,6 +3,7 @@ package labTic.ui;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import labTic.services.RestaurantService;
@@ -58,6 +59,15 @@ public class RestaurantController implements Initializable {
         }
 
     }
+
+    @FXML
+    private ChoiceBox<?> cbLocation;
+
+    @FXML
+    void cbLocationClick(MouseEvent event) {
+
+    }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
