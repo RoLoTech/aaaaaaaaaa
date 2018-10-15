@@ -2,6 +2,7 @@ package labTic;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -29,10 +30,10 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(MainApp.getContext()::getBean);
-
-        root = fxmlLoader.load(LogInController.class.getResource("LogIn.fxml"));
+        fxmlLoader.setControllerFactory((MainApp.getContext()::getBean));
+        root = fxmlLoader.load(LogInController.class.getResourceAsStream("LogIn.fxml"));
         primaryStage.setScene(new Scene(root));
+        primaryStage.getScene().getStylesheets().add(SignUpController.class.getResource("LogInSignUp.css").toExternalForm());
         primaryStage.show();
 
     }

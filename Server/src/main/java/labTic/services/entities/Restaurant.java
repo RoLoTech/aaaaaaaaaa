@@ -78,6 +78,7 @@ public class Restaurant {
         this.foodtype = foodtype;
     }
 
+
 //    public void bookTable(int table) throws InvalidTableException, TableAlreadyInUseException {
 //        if (table - 1 < 0 || table - 1 < this.capacity) {
 //            throw new InvalidTableException();
