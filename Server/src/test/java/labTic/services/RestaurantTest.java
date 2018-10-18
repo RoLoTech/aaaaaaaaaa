@@ -23,19 +23,19 @@ public class RestaurantTest {
     public void testBasic() throws InvalidRestaurantInformation {
 
         try {
-            rs.addRestaurant(123456789, "La Pasiva", "Luis Alberto de Herrera");
-            assertEquals(rs.findOneByName("La Pasiva").getName(), "La Pasiva");
+            rs.addRestaurant(12, "La Redonda", "Luis Alberto de Herrera");
+            assertEquals(rs.findOneByName("La Redonda").getName(), "La Redonda");
         } catch (RestaurantAlreadyExists restaurantAlreadyExists) {
             restaurantAlreadyExists.printStackTrace();
         }
 
         try {
-            rs.updateRestaurant(123456789, "Panchos");
+            rs.updateRestaurant(12, "Pizzas Hamburguesas");
         } catch (RestaurantNoExists restaurantNoExists) {
             restaurantNoExists.printStackTrace();
         }
 
-        rs.findAllByFood_type("panchos");
+//        rs.findAllByFood_type("Pizzas");
 
 
         // Se prueba agregar el mismo cliente con la cedula

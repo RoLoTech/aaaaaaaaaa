@@ -85,7 +85,7 @@ public class RestaurantService {
             builder.and(restaurant.area.eq(area));
         }
         if (foodtype != null && foodtype.trim().length() != 0) {
-            builder.and(restaurant.foodtype.eq(foodtype));
+            builder.and(restaurant.foodtype.contains(foodtype));
         }
         if (address != null && address.trim().length() != 0) {
             builder.and(restaurant.address.like(address));
