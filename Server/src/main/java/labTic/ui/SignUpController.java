@@ -50,23 +50,7 @@ public class SignUpController {
     private TextField phoneNumber;
 
     @FXML
-    void loginTab(MouseEvent event) throws IOException {
-
-        FXMLLoader fxmlLoader = new FXMLLoader();
-
-        fxmlLoader.setControllerFactory((MainApp.getContext()::getBean));
-
-        Parent root = fxmlLoader.load(LogInController.class.getResourceAsStream("LogIn.fxml"));
-
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-
-
-        stage.setScene(new Scene(root));
-        stage.getScene().getStylesheets().add(SignUpController.class.getResource("LogInSignUp.css").toExternalForm());
-
-
-    }
+    void loginTab(MouseEvent event) throws Exception {MainApp.changeScene("Login.fxml",event);}
 
     @FXML
     void signupTab(MouseEvent event) {
@@ -86,21 +70,14 @@ public class SignUpController {
         //addClient(String firstName, String lastName, String email, String user, String password, String phoneNumber)
         try{
             clientService.addClient(sFirstName,sLastName,sPhoneNumber,sUser,sPassword,sEmail);
-            showAlert("Registro Exitoso","Usuario Registrado Correctamente");
+            MainApp.showAlert("Registro Exitoso","Usuario Registrado Correctamente");
             clean();
         }catch(ClientAlreadyExists cas){
-            showAlert("Error", "El Usuario ya fue registrado");
+            MainApp.showAlert("Error", "El Usuario ya fue registrado");
             clean();
         }catch(InvalidClientInformation ici){
-            showAlert("Error", "No deje campos vacios");
+            MainApp.showAlert("Error", "No deje campos vacios");
         }
-    }
-    private void showAlert(String title, String contextText) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(contextText);
-        alert.showAndWait();
     }
     private void clean() {
         user.setText(null);

@@ -66,6 +66,22 @@ public class Restaurant {
         return rut;
     }
 
+    public String getArea() {
+        return area;
+    }
+
+    public String getStyle() {
+        return style;
+    }
+
+    public String getPriceRange() {
+        return priceRange;
+    }
+
+    public Float getRating() {
+        return rating;
+    }
+
     public void setId(long rut) {
         this.rut = rut;
     }
@@ -78,8 +94,18 @@ public class Restaurant {
         this.foodtype = foodtype;
     }
 
+    @Override
+    public String toString() {
+        return "Restaurant{" +
+                "name='" + name + '\'' +
+                ", area='" + area + '\'' +
+                ", foodtype='" + foodtype + '\'' +
+                ", priceRange='" + priceRange + '\'' +
+                ", rating=" + rating +
+                '}';
+    }
 
-//    public void bookTable(int table) throws InvalidTableException, TableAlreadyInUseException {
+    //    public void bookTable(int table) throws InvalidTableException, TableAlreadyInUseException {
 //        if (table - 1 < 0 || table - 1 < this.capacity) {
 //            throw new InvalidTableException();
 //        }

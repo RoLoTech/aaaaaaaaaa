@@ -1,10 +1,12 @@
 package labTic;
 
 import javafx.application.Application;
+import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import labTic.services.ClientService;
 import labTic.ui.LogInController;
@@ -45,5 +47,27 @@ public class MainApp extends Application {
     @Override
     public void stop() {
         MainApp.getContext().close();
+    }
+
+    public static void showAlert(String title, String contextText) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(contextText);
+        alert.showAndWait();
+    }
+
+    public static void changeScene(String newFXML, Event event) throws Exception{
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory((MainApp.getContext()::getBean));
+
+        Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream(newFXML));
+
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+
+        stage.setScene(new Scene(root));
+        stage.getScene().getStylesheets().add(SignUpController.class.getResource("LogInSignUp.css").toExternalForm());
+
     }
 }

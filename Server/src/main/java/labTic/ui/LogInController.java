@@ -43,34 +43,21 @@ public class LogInController  {
         String sPassword = pass.getText();
 
         if(sUser==null || "".equals(sUser) || sPassword==null || "".equals(sPassword)) {
-            showAlert("Error","No Deje Campos Vacios");
+            MainApp.showAlert("Error","No Deje Campos Vacios");
         }else {
             try{
                 Client cliente = (Client)clientService.findOneByUser(sUser);
                 if(cliente.getPassword().equals(sPassword)) {
-                    showAlert("Exito", "Usuario Logueado Correctamente");
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-
-                    fxmlLoader.setControllerFactory((MainApp.getContext()::getBean));
-
-                    Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("Restaurantes.fxml"));
-
-                    Node node = (Node) event.getSource();
-                    Stage stage = (Stage) node.getScene().getWindow();
-
-
-                    stage.setScene(new Scene(root));
-
-                    stage.getScene().getStylesheets().add(SignUpController.class.getResource("LogInSignUp.css").toExternalForm());
-
+                    MainApp.showAlert("Exito", "Usuario Logueado Correctamente");
+                    MainApp.changeScene("Restaurantes.fxml", event);
                 }
                 else {
-                    showAlert("Error", "Datos Incorrectos");
+                    MainApp.showAlert("Error", "Datos Incorrectos");
                     clean();
                     }
 
             }catch(Exception e){
-                showAlert("Error", "Usuario No Registrado");
+                MainApp.showAlert("Error", "Usuario No Registrado");
                 e.printStackTrace();
             }
 
@@ -84,30 +71,9 @@ public class LogInController  {
     }
 
     @FXML
-    void signupTab(MouseEvent event) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-
-        fxmlLoader.setControllerFactory((MainApp.getContext()::getBean));
-
-        Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("SignUp.fxml"));
-
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
+    void signupTab(MouseEvent event) throws Exception {MainApp.changeScene("SignUp.fxml", event);}
 
 
-        stage.setScene(new Scene(root));
-
-        stage.getScene().getStylesheets().add(SignUpController.class.getResource("LogInSignUp.css").toExternalForm());
-
-    }
-
-    private void showAlert(String title, String contextText) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(contextText);
-        alert.showAndWait();
-    }
     private void clean() {
         user.setText(null);
         pass.setText(null);
