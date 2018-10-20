@@ -49,7 +49,6 @@ public class RestaurantController implements Initializable {
         if(x+4<restaurants.size()) {
             x=x+4;
             showRestaurants();
-            System.out.println(x);
         }
 
     }
@@ -59,7 +58,6 @@ public class RestaurantController implements Initializable {
         if(x-4>=0){
             x=x-4;
             showRestaurants();
-            System.out.println(x);
         }
 
     }
@@ -93,7 +91,7 @@ public class RestaurantController implements Initializable {
     }
 
 
-    void showRestaurants(){
+    private void showRestaurants(){
         if(x<restaurants.size())
             text1.setText(restaurants.get(x).getName()+"\n"+ restaurants.get(x).getArea()+"\n"+restaurants.get(x).getPriceRange()+
                             "\n"+restaurants.get(x).getRating());
