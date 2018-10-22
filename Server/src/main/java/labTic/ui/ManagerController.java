@@ -1,42 +1,77 @@
 package labTic.ui;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import labTic.MainApp;
+import labTic.services.RestaurantService;
+import labTic.services.exceptions.InvalidRestaurantInformation;
+import labTic.services.exceptions.RestaurantAlreadyExists;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ManagerController {
 
-    @FXML
-    private TextField user;
+    @Autowired
+    RestaurantService restaurantService;
 
     @FXML
-    private PasswordField pass;
+    private TextField rut;
 
     @FXML
-    private TextField email;
+    private TextField address; //address
 
     @FXML
-    private TextField firstName;
+    private TextField area; //area
 
     @FXML
-    private TextField lastName;
+    private TextField name; //name
+
+    @FXML
+    private TextField style; //style
 
     @FXML
     private TextField phoneNumber;
 
     @FXML
-    void buscarRestaurantTab(MouseEvent event) {
+    void createRestaurantTab(MouseEvent event) {
 
     }
 
     @FXML
-    void nuevoRestaurantTab(MouseEvent event) {
+    void searchRestaurantTab(MouseEvent event) {
 
     }
 
     @FXML
-    void registrarButton(MouseEvent event) {
+    void createRestaurant(MouseEvent event) {
+        String name = this.name.getText();
+        String style = this.style.getText();
+        String sPhoneNumber = phoneNumber.getText();
+        String address = this.address.getText();
+        String area = this.area.getText();
 
+        //addClient(String firstName, String lastName, String email, String user, String password, String phoneNumber)
+        try{
+            long rut = Long.parseLong(this.rut.getText());
+            restaurantService.addRestaurant(rut, name, address, style, sPhoneNumber, area);
+            MainApp.showAlert("Registro Exitoso","Restaurante Registrado Correctamente");
+            clean();
+        }catch(RestaurantAlreadyExists ras){
+            MainApp.showAlert("Error", "El Restaurante ya fue registrado");
+        }catch(InvalidRestaurantInformation iri){
+            MainApp.showAlert("Error", "No deje campos vacios");
+        }catch(NumberFormatException nfe){
+            MainApp.showAlert("Error","El rut solo debe contener numeros");
+        }
+    }
+    private void clean(){
+        name.setText(null);
+        address.setText(null);
+        area.setText(null);
+        style.setText(null);
+        phoneNumber.setText(null);
+        rut.setText(null);
     }
 }

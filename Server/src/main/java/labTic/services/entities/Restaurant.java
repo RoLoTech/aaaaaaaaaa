@@ -11,12 +11,20 @@ public class Restaurant {
 
     public Restaurant() {
     }
+ /* String name = firstName.getText();
+    String style = lastName.getText();
+    String sPhoneNumber = phoneNumber.getText();
+    String address = pass.getText();
+    String area = email.getText();
+*/
 
-
-    public Restaurant(long rut, String name, String address) {
+    public Restaurant(long rut, String name, String address, String style, String phoneNumber, String area) {
         this.rut = rut;
         this.name = name;
         this.address = address;
+        this.style = style;
+        this.phone = phoneNumber;
+        this.area = area;
     }
 
 

@@ -23,7 +23,7 @@ public class RestaurantTest {
     public void testBasic() throws InvalidRestaurantInformation {
 
         try {
-            rs.addRestaurant(12, "La Redonda", "Luis Alberto de Herrera");
+            rs.addRestaurant(12, "La Redonda", "Luis Alberto de Herrera","Casual","099886555","Brazo Oriental");
             assertEquals(rs.findOneByName("La Redonda").getName(), "La Redonda");
         } catch (RestaurantAlreadyExists restaurantAlreadyExists) {
             restaurantAlreadyExists.printStackTrace();
