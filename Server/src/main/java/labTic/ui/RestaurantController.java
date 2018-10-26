@@ -41,6 +41,26 @@ public class RestaurantController implements Initializable {
     private Text text4;
 
     @FXML
+    void cardRestaurant1(MouseEvent event) {
+
+    }
+
+    @FXML
+    void cardRestaurant2(MouseEvent event) {
+
+    }
+
+    @FXML
+    void cardRestaurant3(MouseEvent event) {
+
+    }
+
+    @FXML
+    void cardRestaurant4(MouseEvent event) {
+
+    }
+
+    @FXML
     void btnNext(MouseEvent event) {
         if(x+4<restaurants.size()) {
             x=x+4;
