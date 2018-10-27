@@ -43,7 +43,7 @@
                <children>
                   <HBox alignment="CENTER" prefHeight="40.0" style="-fx-border-color: white; -fx-border-width: 0 0 2 0;">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="👤" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="🔢" />
                         <TextField fx:id="rut" promptText="RUT" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" HBox.hgrow="ALWAYS" />
                      </children>
                      <opaqueInsets>
@@ -55,7 +55,7 @@
                   </HBox>
                   <HBox alignment="CENTER" style="-fx-border-color: white; -fx-border-width: 0 0 2 0;">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="🔑" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="📍" />
                         <TextField fx:id="address" prefHeight="26.0" prefWidth="262.0" promptText="Direccion" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" />
                      </children>
                      <opaqueInsets>
@@ -67,7 +67,7 @@
                   </HBox>
                   <HBox alignment="CENTER" style="-fx-border-color: white; -fx-border-width: 0 0 2 0;">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="📧" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="🗺" />
                         <TextField fx:id="area" promptText="Area" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" HBox.hgrow="ALWAYS" />
                      </children>
                      <opaqueInsets>
