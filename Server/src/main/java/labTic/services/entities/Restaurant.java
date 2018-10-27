@@ -2,6 +2,8 @@ package labTic.services.entities;
 
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 @Table(name = "restaurant")
@@ -61,6 +63,16 @@ public class Restaurant {
 
     @Column(name = "restaurant_completed_reservations")
     private Integer completedReservations;
+
+    @Lob
+    @Column
+    private byte[] profilePicture;
+
+    @Column
+    private LocalTime openingTime;
+
+    @Column
+    private LocalTime closingTime;
 
     public String getName() {
         return name;
