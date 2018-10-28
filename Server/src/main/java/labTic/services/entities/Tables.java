@@ -12,11 +12,11 @@ public class Tables {
     @Id
     @GeneratedValue(generator="tables_ids")
     @GenericGenerator(name="tables_ids", strategy = "increment")
-    private long id;
+    private Long id;
 
-    private long restaurantRut;
+    private Long restaurantRut;
 
-    private int capacity;
+    private Integer capacity;
 
     private String occupant;
 

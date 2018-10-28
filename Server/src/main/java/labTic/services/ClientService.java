@@ -1,11 +1,17 @@
 package labTic.services;
 
+import labTic.services.entities.Restaurant;
+import labTic.services.entities.Tables;
 import labTic.services.exceptions.ClientAlreadyExists;
 import labTic.services.exceptions.InvalidClientInformation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import labTic.persistence.ClientRepository;
 import labTic.services.entities.Client;
+
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ClientService {
