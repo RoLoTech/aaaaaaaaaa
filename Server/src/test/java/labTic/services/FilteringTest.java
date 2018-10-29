@@ -1,5 +1,6 @@
 package labTic.services;
 
+import labTic.MainApp;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
-@SpringBootTest
+@SpringBootTest(classes = MainApp.class)
 @RunWith(SpringRunner.class)
 public class FilteringTest {
 
@@ -18,7 +19,7 @@ public class FilteringTest {
 
     @Test
     public void testSimpleFilter(){
-        assertEquals(1, rs.findAllByFood_type("Pizzas").size());
+        assertEquals(1, rs.findAllByFood_type("Panchos").size());
     }
 
 //    @Test
@@ -28,7 +29,7 @@ public class FilteringTest {
 //
     @Test
     public void testFinalFilter(){
-        assertEquals(1, rs.filter("","Hamburguesas","Luis Alberto de Herrera","", null,"","La Redonda").size());
+        assertEquals(1, rs.filter("","Panchos","Luis Alberto de Herrera","", null,"","La Pasiva").size());
 //        assertEquals(1, rs.filter("","Panchos","Luis Alberto de Herrera","$$$",new Float(5.0),"Familiar","La Pasiva").size());
 //        assertEquals(1, rs.filter(null,"Panchos","Luis Alberto de Herrera","$$$",new Float(5.0),"Familiar","La Pasiva").size());
 //

@@ -1,6 +1,8 @@
 package labTic.services.entities;
 
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -31,7 +33,8 @@ public class Restaurant {
 
 
     @Id
-    @Column(name = "restaurant_rut", nullable = false, unique = true)
+    @GeneratedValue(generator="restaurant_rut")
+    @GenericGenerator(name="restaurant_rut", strategy = "increment")
     private Long rut;
 
     @Column(name = "restaurant_name")

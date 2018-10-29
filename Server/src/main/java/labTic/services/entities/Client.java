@@ -10,7 +10,7 @@ public class Client {
     @Id
     @GeneratedValue(generator="clients_ids")
     @GenericGenerator(name="clients_ids", strategy = "increment")
-    private long id;
+    private Long id;
 
     private String firstName;
 

@@ -1,6 +1,7 @@
 package labTic.services;
 
 
+import labTic.MainApp;
 import labTic.services.exceptions.FullRestaurantException;
 import labTic.services.exceptions.InvalidRestaurantInformation;
 import labTic.services.exceptions.RestaurantAlreadyExists;
@@ -15,7 +16,7 @@ import java.time.LocalTime;
 
 import static org.junit.Assert.assertEquals;
 
-@SpringBootTest
+@SpringBootTest(classes = MainApp.class)
 @RunWith(SpringRunner.class)
 public class RestaurantTest {
 
@@ -33,13 +34,13 @@ public class RestaurantTest {
     @Test
     public void testBasic() throws InvalidRestaurantInformation {
         try {
-            rs.addRestaurant(12, "La Redonda", "Luis Alberto de Herrera", "Casual", "099886555", "Brazo Oriental");
-            assertEquals(rs.findOneByName("La Redonda").getName(), "La Redonda");
+            rs.addRestaurant(12l, "La Pasiva", "Luis Alberto de Herrera", "Casual", "099886555", "Brazo Oriental");
+            assertEquals(rs.findOneByName("La Pasiva").getName(), "La Pasiva");
         } catch (RestaurantAlreadyExists restaurantAlreadyExists) {
             restaurantAlreadyExists.printStackTrace();
         }
         try {
-            rs.updateRestaurant(12, "Pizzas Hamburguesas");
+            rs.updateRestaurant(12l, "Pizzas Hamburguesas");
         } catch (RestaurantNoExists restaurantNoExists) {
             restaurantNoExists.printStackTrace();
         }
