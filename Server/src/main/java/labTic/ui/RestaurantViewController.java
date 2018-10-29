@@ -16,6 +16,10 @@ public class RestaurantViewController implements Initializable {
 
    // public Restaurant restaurant;
 
+
+    @FXML
+    private Text titulo;
+
     @FXML
     private Text desc1;
 
@@ -24,6 +28,12 @@ public class RestaurantViewController implements Initializable {
 
     @FXML
     private Text desc3;
+
+
+    @FXML
+    void btnReservar(MouseEvent event) {
+
+    }
 
     @FXML
     void btnVolver(MouseEvent event) throws Exception {
@@ -41,7 +51,7 @@ public class RestaurantViewController implements Initializable {
     }
 
     void setRestaurant(Restaurant restaurant){
-        desc1.setText(restaurant.getName());
+        titulo.setText(restaurant.getName());
         desc2.setText(restaurant.getArea());
         desc3.setText(restaurant.getFoodtype());
     }
