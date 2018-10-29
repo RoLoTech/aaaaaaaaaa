@@ -2,6 +2,7 @@ package labTic.ui;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,7 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -34,6 +35,16 @@ public class RestaurantController implements Initializable {
     public int x=0;
 
     public List<Restaurant> restaurants;
+
+    @FXML
+    private MenuButton filtroMultiple;
+
+    @FXML
+    void btnFiltroMultiple(ActionEvent event) {
+        CheckMenuItem Check1 = new CheckMenuItem("1");
+        filtroMultiple.getItems().add(Check1);
+        filtroMultiple.getItems().add(new MenuItem("hOLA"));
+    }
 
     @FXML
     private Text text3;
