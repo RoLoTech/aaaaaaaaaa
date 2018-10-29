@@ -4,6 +4,7 @@ package labTic.services.entities;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.sql.Blob;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
@@ -69,11 +70,16 @@ public class Restaurant {
     @Column
     private byte[] profilePicture;
 
+//    @Lob
+//    @Column(name="pic")
+//    private byte[] pic;
+
     @Column
     private LocalTime openingTime;
 
     @Column
     private LocalTime closingTime;
+
 
     public String getName() {
         return name;
@@ -125,6 +131,17 @@ public class Restaurant {
                 ", rating=" + rating +
                 '}';
     }
+
+
+
+    public byte[] getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(byte[] profilePicture) {
+        this.profilePicture = profilePicture;
+    }
+
 
     //    public void bookTable(int table) throws InvalidTableException, TableAlreadyInUseException {
 //        if (table - 1 < 0 || table - 1 < this.capacity) {

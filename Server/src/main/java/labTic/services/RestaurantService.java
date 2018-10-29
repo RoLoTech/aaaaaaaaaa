@@ -80,6 +80,19 @@ public class RestaurantService {
 
     }
 
+    public void addPic (long rut, byte[] pic) throws RestaurantNoExists {
+        if (restaurantRepository.findOneByRut(rut) == null) {
+            throw new RestaurantNoExists();
+        }
+
+        Restaurant oRestaurant = restaurantRepository.findOneByRut(rut);
+
+        oRestaurant.setProfilePicture(pic);
+        restaurantRepository.save(oRestaurant);
+
+    }
+
+
 
     public List<Restaurant> findAllByFood_type(String food_type) {
 
