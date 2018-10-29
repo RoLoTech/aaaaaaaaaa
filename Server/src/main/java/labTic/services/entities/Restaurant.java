@@ -80,6 +80,24 @@ public class Restaurant {
     @Column
     private LocalTime closingTime;
 
+<<<<<<< HEAD
+=======
+    public LocalTime getOpeningTime() {
+        return openingTime;
+    }
+
+    public void setOpeningTime(LocalTime openingTime) {
+        this.openingTime = openingTime;
+    }
+
+    public LocalTime getClosingTime() {
+        return closingTime;
+    }
+
+    public void setClosingTime(LocalTime closingTime) {
+        this.closingTime = closingTime;
+    }
+>>>>>>> b60daea8cfc46163aa40f3a6c914fdb9bef9bfde
 
     public String getName() {
         return name;

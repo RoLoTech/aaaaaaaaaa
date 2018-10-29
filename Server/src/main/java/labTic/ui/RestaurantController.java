@@ -22,6 +22,8 @@ import org.springframework.stereotype.Component;
 
 
 import java.net.URL;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -123,9 +125,17 @@ public class RestaurantController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        LocalTime horaActual = LocalTime.now();
         restaurants = restaurantService.findAll();
-        ObservableList<String> arr1 = FXCollections.observableArrayList("<Todas las zonas>","Pocitos","Brazo Oriental","Punta Carretas","Malvin","Malvin Norte");
-        cbLocation.setItems(arr1);
+        String thisLocation;
+        ObservableList<String> locations = FXCollections.observableArrayList("<Todas las zonas>");
+
+        for(int i = 0;i<locations.size();i++){
+            thisLocation = restaurants.get(i).getArea();
+            if(!locations.contains(thisLocation))
+                locations.add(thisLocation);
+        }
+        cbLocation.setItems(locations);
         showRestaurants();
     }
 
@@ -161,16 +171,6 @@ public class RestaurantController implements Initializable {
     private void selectRestaurant(int listPosition, Event event) throws Exception{
 
         if(listPosition < restaurants.size()) {
-            /*FXMLLoader loader = new FXMLLoader(getClass().getResource("RestaurantView.fxml"));
-            Parent root = loader.load();
-
-            RestaurantViewController controller = loader.getController();
-            controller.setRestaurant(restaurants.get(listPosition));
-            Node node = (Node) event.getSource();
-            Stage stage = (Stage) node.getScene().getWindow();
-
-            stage.setScene(new Scene(root));
-            stage.getScene().getStylesheets().add(SignUpController.class.getResource("LogInSignUp.css").toExternalForm());*/
             FXMLLoader loader = new FXMLLoader();
             loader.setControllerFactory((MainApp.getContext()::getBean));
 
@@ -183,7 +183,17 @@ public class RestaurantController implements Initializable {
 
             stage.setScene(new Scene(root));
             stage.getScene().getStylesheets().add(SignUpController.class.getResource("LogInSignUp.css").toExternalForm());
-        }
 
+            /*FXMLLoader loader = new FXMLLoader(getClass().getResource("RestaurantView.fxml"));
+            Parent root = loader.load();
+
+            RestaurantViewController controller = loader.getController();
+            controller.setRestaurant(restaurants.get(listPosition));
+            Node node = (Node) event.getSource();
+            Stage stage = (Stage) node.getScene().getWindow();
+
+            stage.setScene(new Scene(root));
+            stage.getScene().getStylesheets().add(SignUpController.class.getResource("LogInSignUp.css").toExternalForm());*/
+        }
     }
 }
