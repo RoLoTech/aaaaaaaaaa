@@ -159,6 +159,7 @@ public class RestaurantService {
             throw new FullRestaurantException();
         }
         Booking booking = new Booking((restaurant.hashCode() + alias.hashCode()), restaurant, alias, tables);
+        bookingRepository.save(booking);
 
     }
 

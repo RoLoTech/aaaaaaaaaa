@@ -23,15 +23,16 @@ public class TableService {
     private RestaurantRepository restaurantRepository;
 
 
-    public void addTable(Long restaurantRut)
+    public void addTable(long restaurantRut, int capacity)
             throws RestaurantNoExists {
 
 
-        if (restaurantRepository.findOneByRut(restaurantRut) == null)
+        if (restaurantRepository.findOneByRut(restaurantRut) == null) {
             throw new RestaurantNoExists();
+        }
 
 
-        Tables oTable = new Tables(restaurantRut);
+        Tables oTable = new Tables(restaurantRut, capacity);
 
         tableRepository.save(oTable);
 

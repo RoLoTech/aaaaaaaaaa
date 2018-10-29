@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface TableRepository extends CrudRepository<Tables, Long> {
 
-    Tables findOneByRestaurantRut(Long restaurantRut);
+    Tables findOneByRestaurantRut(long restaurantRut);
 
-    List<Tables> findAllByRestaurantRut(Long rut);
+    List<Tables> findAllByRestaurantRut(long rut);
 
 }

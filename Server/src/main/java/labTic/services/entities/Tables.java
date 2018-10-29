@@ -9,6 +9,7 @@ import java.time.LocalTime;
 
 @Entity
 public class Tables {
+
     @Id
     @GeneratedValue(generator="tables_ids")
     @GenericGenerator(name="tables_ids", strategy = "increment")
@@ -39,13 +40,7 @@ public class Tables {
 
 
 
-    public long getId() {
-        return id;
-    }
 
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public long getRestaurantRut() {
         return restaurantRut;
@@ -77,5 +72,13 @@ public class Tables {
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

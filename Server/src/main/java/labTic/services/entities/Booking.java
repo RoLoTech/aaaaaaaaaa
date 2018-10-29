@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-@Table(name = "restaurant")
+@Table(name = "booking")
 public class Booking {
 
     @Id
@@ -25,6 +25,9 @@ public class Booking {
     @JoinColumn(name = "tables_ids")
     private Tables table;
 
+    public Booking() {
+    }
+
     public Booking(long id, Restaurant restaurant, String alias, Tables table) {
         this.id = id;
         this.restaurant = restaurant;
@@ -38,5 +41,13 @@ public class Booking {
 
     public void setAlias(String alias) {
         this.alias = alias;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

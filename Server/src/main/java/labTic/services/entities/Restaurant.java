@@ -31,10 +31,8 @@ public class Restaurant {
         this.area = area;
     }
 
-
     @Id
-    @GeneratedValue(generator="restaurant_rut")
-    @GenericGenerator(name="restaurant_rut", strategy = "increment")
+    @Column(name = "restaurant_rut", nullable = false, unique = true)
     private Long rut;
 
     @Column(name = "restaurant_name")
