@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox stylesheets="@Restaurant.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labTic.ui.RestaurantController">
+<VBox stylesheets="@Restaurant.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labTic.ui.RestaurantController">
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="back" VBox.vgrow="ALWAYS">
          <children>
@@ -32,11 +32,12 @@
                      <children>
                         <HBox prefHeight="100.0" prefWidth="200.0" styleClass="gridpane">
                            <children>
-                              <ChoiceBox fx:id="cbLocation" onMouseClicked="#cbLocationClick" prefWidth="150.0" style="-fx-background-color: white; -fx-border-color: white;">
+                              <ChoiceBox fx:id="cbLocation" onMouseClicked="#cbLocationClick" prefHeight="27.0" prefWidth="146.0" style="-fx-background-color: white; -fx-border-color: white;">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
                               </ChoiceBox>
+                              <ChoiceBox fx:id="cbFoodType" onMouseClicked="#cbLocationClick" prefHeight="27.0" prefWidth="124.0" style="-fx-background-color: white; -fx-border-color: white;" />
                               <MenuButton fx:id="filtroMultiple" mnemonicParsing="false" onContextMenuRequested="#btnFiltroMultiple" text="MenuButton" />
                               <Button mnemonicParsing="false" onMouseClicked="#btnFiltrar" style="-fx-background-color: red;" text="Filtrar">
                                  <cursor>

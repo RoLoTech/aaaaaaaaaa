@@ -6,7 +6,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import labTic.MainApp;
 import labTic.services.entities.Restaurant;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
@@ -17,19 +16,22 @@ public class RestaurantViewController implements Initializable {
 
    // public Restaurant restaurant;
 
-    Restaurant restaurant;
+    private Restaurant restaurant;
 
     @FXML
     private Text titulo;
 
     @FXML
-    private Text desc1;
+    private Text horario;
 
     @FXML
-    private Text desc2;
+    private Text ubicacion;
 
     @FXML
-    private Text desc3;
+    private Text tipoComida;
+
+    @FXML
+    private Text precio;
 
 
     @FXML
@@ -55,8 +57,10 @@ public class RestaurantViewController implements Initializable {
     void setRestaurant(Restaurant newRestaurant){
         this.restaurant = newRestaurant;
         titulo.setText(restaurant.getName());
-        desc2.setText(restaurant.getArea());
-        desc3.setText(restaurant.getFoodtype());
+        ubicacion.setText(restaurant.getAddress());
+        tipoComida.setText(restaurant.getFoodtype());
+        horario.setText("L a V de " +restaurant.getOpeningTime()+ " a "+ restaurant.getClosingTime());
+        precio.setText(restaurant.getPriceRange());
     }
 
 

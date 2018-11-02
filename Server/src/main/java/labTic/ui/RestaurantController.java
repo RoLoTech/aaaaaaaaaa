@@ -39,13 +39,13 @@ public class RestaurantController implements Initializable {
     public List<Restaurant> restaurants;
 
     @FXML
+    private ChoiceBox<String> cbFoodType;
+
+    @FXML
     private MenuButton filtroMultiple;
 
     @FXML
     void btnFiltroMultiple(ActionEvent event) {
-        CheckMenuItem Check1 = new CheckMenuItem("1");
-        filtroMultiple.getItems().add(Check1);
-        filtroMultiple.getItems().add(new MenuItem("hOLA"));
     }
 
     @FXML
@@ -113,29 +113,36 @@ public class RestaurantController implements Initializable {
     @FXML
     void btnFiltrar(MouseEvent event) {
         x=0;
-        if(cbLocation.getValue().equals("<Todas las zonas>")){
-            restaurants = restaurantService.findAll();
-            showRestaurants();
-        }else{
-            restaurants = restaurantService.findByArea(cbLocation.getValue());
-            showRestaurants();
-        }
+        restaurants = restaurantService.filter(cbLocation.getValue(),cbFoodType.getValue(),"","",null,"","");
+        showRestaurants();
     }
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         LocalTime horaActual = LocalTime.now();
-        restaurants = restaurantService.findAll();
-        String thisLocation;
-        ObservableList<String> locations = FXCollections.observableArrayList("<Todas las zonas>");
 
-        for(int i = 0;i<locations.size();i++){
+
+        CheckMenuItem Check1 = new CheckMenuItem("1");
+        filtroMultiple.getItems().add(Check1);
+        filtroMultiple.getItems().add(new CheckMenuItem("hOLA"));
+
+        restaurants = restaurantService.findAll();
+        String thisFoodType;
+        String thisLocation;
+        ObservableList<String> foodTypes = FXCollections.observableArrayList("");
+        ObservableList<String> locations = FXCollections.observableArrayList("");
+
+        for(int i = 0;i<restaurants.size();i++){
             thisLocation = restaurants.get(i).getArea();
+            thisFoodType = restaurants.get(i).getFoodtype();
             if(!locations.contains(thisLocation))
                 locations.add(thisLocation);
+            if(!foodTypes.contains(thisFoodType))
+                foodTypes.add(thisFoodType);
         }
         cbLocation.setItems(locations);
+        cbFoodType.setItems(foodTypes);
         showRestaurants();
     }
 
@@ -143,25 +150,25 @@ public class RestaurantController implements Initializable {
     private void showRestaurants(){
         if(x<restaurants.size())
             text1.setText(restaurants.get(x).getName()+"\n"+ restaurants.get(x).getArea()+"\n"+restaurants.get(x).getPriceRange()+
-                            "\n"+restaurants.get(x).getRating()+"\n"+restaurants.get(x).getFoodtype());
+                            "\n"+restaurants.get(x).getFoodtype());
         else
             text1.setText(null);
 
         if(x<restaurants.size()-1)
             text2.setText(restaurants.get(x + 1).getName()+"\n"+restaurants.get(x + 1).getArea()+"\n"+restaurants.get(x + 1).getPriceRange()+
-                            "\n"+restaurants.get(x + 1).getRating()+"\n"+restaurants.get(x + 1).getFoodtype());
+                            "\n"+restaurants.get(x + 1).getFoodtype());
         else
             text2.setText(null);
 
         if(x<restaurants.size()-2)
             text3.setText(restaurants.get(x + 2).getName()+"\n"+restaurants.get(x + 2).getArea()+"\n"+restaurants.get(x + 2).getPriceRange()+
-                            "\n"+restaurants.get(x + 2).getRating()+"\n"+restaurants.get(x + 2).getFoodtype());
+                            "\n"+restaurants.get(x + 2).getFoodtype());
         else
             text3.setText(null);
 
         if(x<restaurants.size()-3)
             text4.setText(restaurants.get(x + 3).getName()+"\n"+restaurants.get(x + 3).getArea()+"\n"+restaurants.get(x + 3).getPriceRange()+
-                            "\n"+restaurants.get(x + 3).getRating()+"\n"+restaurants.get(x + 3).getFoodtype());
+                            "\n"+restaurants.get(x + 3).getFoodtype());
         else
             text4.setText(null);
 

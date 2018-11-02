@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox stylesheets="@Restaurant.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labTic.ui.RestaurantViewController">
+<VBox stylesheets="@Restaurant.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labTic.ui.RestaurantViewController">
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="back">
          <children>
@@ -60,20 +60,26 @@
                                  <children>
                                     <HBox>
                                        <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Horario:" />
-                                          <Text fx:id="desc1" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Horario:" />
+                                          <Text fx:id="horario" strokeType="OUTSIDE" strokeWidth="0.0" />
                                        </children>
                                     </HBox>
                                     <HBox>
                                        <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ubicación:" />
-                                          <Text fx:id="desc2" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Ubicación:" />
+                                          <Text fx:id="ubicacion" strokeType="OUTSIDE" strokeWidth="0.0" />
                                        </children>
                                     </HBox>
                                     <HBox>
                                        <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo de Comida:" />
-                                          <Text fx:id="desc3" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo de Comida:" />
+                                          <Text fx:id="tipoComida" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                       </children>
+                                    </HBox>
+                                    <HBox>
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Precio Promedio:" />
+                                          <Text fx:id="precio" strokeType="OUTSIDE" strokeWidth="0.0" />
                                        </children>
                                     </HBox>
                                  </children>

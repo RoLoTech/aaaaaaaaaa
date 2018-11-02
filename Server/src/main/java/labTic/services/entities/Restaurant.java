@@ -105,6 +105,10 @@ public class Restaurant {
         this.name = name;
     }
 
+    public String getAddress(){
+        return address;
+    }
+
     public Long getRut() {
         return rut;
     }
