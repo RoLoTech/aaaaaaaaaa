@@ -181,7 +181,7 @@ public class RestaurantController implements Initializable {
             FXMLLoader loader = new FXMLLoader();
             loader.setControllerFactory((MainApp.getContext()::getBean));
 
-            Parent root = loader.load(SignUpController.class.getResourceAsStream("RestaurantView.fxml"));
+            Parent root = loader.load(SignUpController.class.getResourceAsStream("Client/RestaurantView.fxml"));
             RestaurantViewController controller = loader.getController();
             controller.setRestaurant(restaurants.get(listPosition));
 
@@ -189,7 +189,7 @@ public class RestaurantController implements Initializable {
             Stage stage = (Stage) node.getScene().getWindow();
 
             stage.setScene(new Scene(root));
-            stage.getScene().getStylesheets().add(SignUpController.class.getResource("LogInSignUp.css").toExternalForm());
+            stage.getScene().getStylesheets().add(SignUpController.class.getResource("Client/LogInSignUp.css").toExternalForm());
 
             /*FXMLLoader loader = new FXMLLoader(getClass().getResource("RestaurantView.fxml"));
             Parent root = loader.load();

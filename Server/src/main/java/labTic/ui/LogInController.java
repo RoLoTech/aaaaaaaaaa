@@ -49,7 +49,7 @@ public class LogInController  {
                 Client cliente = (Client)clientService.findOneByUser(sUser);
                 if(cliente.getPassword().equals(sPassword)) {
                     MainApp.showAlert("Exito", "Usuario Logueado Correctamente");
-                    MainApp.changeScene("Restaurantes.fxml", event);
+                    MainApp.changeScene("Client/Restaurantes.fxml", event);
                 }
                 else {
                     MainApp.showAlert("Error", "Datos Incorrectos");
@@ -71,7 +71,7 @@ public class LogInController  {
     }
 
     @FXML
-    void signupTab(MouseEvent event) throws Exception {MainApp.changeScene("SignUp.fxml", event);}
+    void signupTab(MouseEvent event) throws Exception {MainApp.changeScene("Client/SignUp.fxml", event);}
 
 
     private void clean() {

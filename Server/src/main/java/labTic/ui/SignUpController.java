@@ -50,7 +50,7 @@ public class SignUpController {
     private TextField phoneNumber;
 
     @FXML
-    void loginTab(MouseEvent event) throws Exception {MainApp.changeScene("Login.fxml",event);}
+    void loginTab(MouseEvent event) throws Exception {MainApp.changeScene("Client/Login.fxml",event);}
 
     @FXML
     void signupTab(MouseEvent event) {

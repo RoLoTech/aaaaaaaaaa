@@ -41,7 +41,7 @@ public class RestaurantViewController implements Initializable {
 
     @FXML
     void btnVolver(MouseEvent event) throws Exception {
-        MainApp.changeScene("Restaurantes.fxml", event);
+        MainApp.changeScene("Client/Restaurantes.fxml", event);
     }
 
     @FXML
