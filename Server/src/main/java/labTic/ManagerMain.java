@@ -27,9 +27,9 @@ public class ManagerMain extends Application {
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory((ManagerMain.getContext()::getBean));
-        root = fxmlLoader.load(ManagerController.class.getResourceAsStream("Manager.fxml"));
+        root = fxmlLoader.load(ManagerController.class.getResourceAsStream("Manager/Manager.fxml"));
         primaryStage.setScene(new Scene(root));
-        primaryStage.getScene().getStylesheets().add(SignUpController.class.getResource("LogInSignUp.css").toExternalForm());
+        primaryStage.getScene().getStylesheets().add(SignUpController.class.getResource("Client/LogInSignUp.css").toExternalForm());
         primaryStage.show();
 
     }
