@@ -39,13 +39,31 @@ public class RestaurantController implements Initializable {
     public List<Restaurant> restaurants;
 
     @FXML
-    private ChoiceBox<String> cbFoodType;
+    private MenuButton filtroMultiple1;
 
     @FXML
-    private MenuButton filtroMultiple;
+    private MenuButton filtroMultiple2;
 
     @FXML
-    void btnFiltroMultiple(ActionEvent event) {
+    private MenuButton filtroMultiple3;
+
+    @FXML
+    private MenuButton filtroMultiple4;
+
+    @FXML
+    void btnFiltroMultiple1 (ActionEvent event) {
+    }
+
+    @FXML
+    void btnFiltroMultiple2 (ActionEvent event) {
+    }
+
+    @FXML
+    void btnFiltroMultiple3 (ActionEvent event) {
+    }
+
+    @FXML
+    void btnFiltroMultiple4 (ActionEvent event) {
     }
 
     @FXML
@@ -65,24 +83,19 @@ public class RestaurantController implements Initializable {
         selectRestaurant(x,event);
     }
 
-
-
     @FXML
     void cardRestaurant2(MouseEvent event) throws Exception{
         selectRestaurant(x+1,event);
-
     }
 
     @FXML
     void cardRestaurant3(MouseEvent event) throws Exception {
         selectRestaurant(x+2,event);
-
     }
 
     @FXML
     void cardRestaurant4(MouseEvent event) throws  Exception{
         selectRestaurant(x+3,event);
-
     }
 
     @FXML
@@ -100,21 +113,13 @@ public class RestaurantController implements Initializable {
             x=x-4;
             showRestaurants();
         }
-
-    }
-
-    @FXML
-    private ChoiceBox<String> cbLocation;
-
-    @FXML
-    void cbLocationClick(MouseEvent event) {
     }
 
     @FXML
     void btnFiltrar(MouseEvent event) {
-        x=0;
-        restaurants = restaurantService.filter(cbLocation.getValue(),cbFoodType.getValue(),"","",null,"","");
-        showRestaurants();
+//        x=0;
+//        restaurants = restaurantService.filter(cbLocation.getValue(),cbFoodType.getValue(),"","",null,"","");
+//        showRestaurants();
     }
 
 
@@ -124,8 +129,8 @@ public class RestaurantController implements Initializable {
 
 
         CheckMenuItem Check1 = new CheckMenuItem("1");
-        filtroMultiple.getItems().add(Check1);
-        filtroMultiple.getItems().add(new CheckMenuItem("hOLA"));
+        filtroMultiple1.getItems().add(Check1);
+        filtroMultiple1.getItems().add(new CheckMenuItem("hOLA"));
 
         restaurants = restaurantService.findAll();
         String thisFoodType;
@@ -141,8 +146,8 @@ public class RestaurantController implements Initializable {
             if(!foodTypes.contains(thisFoodType))
                 foodTypes.add(thisFoodType);
         }
-        cbLocation.setItems(locations);
-        cbFoodType.setItems(foodTypes);
+//        cbLocation.setItems(locations);
+//        cbFoodType.setItems(foodTypes);
         showRestaurants();
     }
 
