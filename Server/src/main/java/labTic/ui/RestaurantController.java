@@ -240,29 +240,79 @@ public class RestaurantController implements Initializable {
 
 
     private void showRestaurants(){
-        if(x<restaurants.size())
-            text1.setText(restaurants.get(x).getName()+"\n"+ restaurants.get(x).getArea()+"\n"+restaurants.get(x).getPriceRange()+
-                            "\n"+restaurants.get(x).getFoodtype());
-        else
-            text1.setText(null);
 
-        if(x<restaurants.size()-1)
-            text2.setText(restaurants.get(x + 1).getName()+"\n"+restaurants.get(x + 1).getArea()+"\n"+restaurants.get(x + 1).getPriceRange()+
-                            "\n"+restaurants.get(x + 1).getFoodtype());
-        else
-            text2.setText(null);
+        /* private Text textRestaurant1;
 
-        if(x<restaurants.size()-2)
-            text3.setText(restaurants.get(x + 2).getName()+"\n"+restaurants.get(x + 2).getArea()+"\n"+restaurants.get(x + 2).getPriceRange()+
-                            "\n"+restaurants.get(x + 2).getFoodtype());
-        else
-            text3.setText(null);
+    @FXML
+    private Text textRating1;
 
-        if(x<restaurants.size()-3)
-            text4.setText(restaurants.get(x + 3).getName()+"\n"+restaurants.get(x + 3).getArea()+"\n"+restaurants.get(x + 3).getPriceRange()+
-                            "\n"+restaurants.get(x + 3).getFoodtype());
-        else
-            text4.setText(null);
+    @FXML
+    private Text textLocation1;
+
+    @FXML
+    private Text textComida1;
+
+    @FXML
+    private Text textEstilo1;
+
+    @FXML
+    private Text textPrecio1;*/
+        if(x<restaurants.size()){
+            textRestaurant1.setText(restaurants.get(x).getName());
+            textLocation1.setText(restaurants.get(x).getArea());
+            textPrecio1.setText(restaurants.get(x).getPriceRange());
+            textComida1.setText(restaurants.get(x).getFoodtype());
+            textEstilo1.setText(restaurants.get(x).getStyle());
+        }
+        else {
+            textRestaurant1.setText(null);
+            textLocation1.setText(null);
+            textPrecio1.setText(null);
+            textComida1.setText(null);
+            textEstilo1.setText(null);
+        }
+
+        if(x<restaurants.size()-1) {
+            textRestaurant2.setText(restaurants.get(x+1).getName());
+            textLocation2.setText(restaurants.get(x+1).getArea());
+            textPrecio2.setText(restaurants.get(x+1).getPriceRange());
+            textComida2.setText(restaurants.get(x+1).getFoodtype());
+            textEstilo2.setText(restaurants.get(x+1).getStyle());
+        }else {
+            textRestaurant2.setText(null);
+            textLocation2.setText(null);
+            textPrecio2.setText(null);
+            textComida2.setText(null);
+            textEstilo2.setText(null);
+        }
+
+        if(x<restaurants.size()-2) {
+            textRestaurant3.setText(restaurants.get(x+2).getName());
+            textLocation3.setText(restaurants.get(x+2).getArea());
+            textPrecio3.setText(restaurants.get(x+2).getPriceRange());
+            textComida3.setText(restaurants.get(x+2).getFoodtype());
+            textEstilo3.setText(restaurants.get(x+2).getStyle());
+        }else {
+            textRestaurant3.setText(null);
+            textLocation3.setText(null);
+            textPrecio3.setText(null);
+            textComida3.setText(null);
+            textEstilo3.setText(null);
+        }
+
+        if(x<restaurants.size()-3) {
+            textRestaurant4.setText(restaurants.get(x+3).getName());
+            textLocation4.setText(restaurants.get(x+3).getArea());
+            textPrecio4.setText(restaurants.get(x+3).getPriceRange());
+            textComida4.setText(restaurants.get(x+3).getFoodtype());
+            textEstilo4.setText(restaurants.get(x+3).getStyle());
+        }else {
+            textRestaurant4.setText(null);
+            textLocation4.setText(null);
+            textPrecio4.setText(null);
+            textComida4.setText(null);
+            textEstilo4.setText(null);
+        }
 
 
     }
