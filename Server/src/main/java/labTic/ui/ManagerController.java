@@ -57,11 +57,13 @@ public class ManagerController {
         String sPhoneNumber = phoneNumber.getText();
         String address = this.address.getText();
         String area = this.area.getText();
+        String food = this.food.getText();
+        String price = this.price.getText();
 
         //addClient(String firstName, String lastName, String email, String user, String password, String phoneNumber)
         try{
             long rut = Long.parseLong(this.rut.getText());
-            restaurantService.addRestaurant(rut, name, address, style, sPhoneNumber, area);
+            restaurantService.addRestaurant(rut, name, address, style, sPhoneNumber, area, food, price);
             ClientMain.showAlert("Registro Exitoso","Restaurante Registrado Correctamente");
             clean();
         }catch(RestaurantAlreadyExists ras){
@@ -79,5 +81,7 @@ public class ManagerController {
         style.setText(null);
         phoneNumber.setText(null);
         rut.setText(null);
+        price.setText(null);
+        food.setText(null);
     }
 }

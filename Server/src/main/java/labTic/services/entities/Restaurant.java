@@ -23,13 +23,15 @@ public class Restaurant {
     String area = email.getText();
 */
 
-    public Restaurant(long rut, String name, String address, String style, String phoneNumber, String area) {
+    public Restaurant(long rut, String name, String address, String style, String phoneNumber, String area, String food, String price) {
         this.rut = rut;
         this.name = name;
         this.address = address;
         this.style = style;
         this.phone = phoneNumber;
         this.area = area;
+        this.foodtype = food;
+        this.priceRange = price;
     }
 
     @Id

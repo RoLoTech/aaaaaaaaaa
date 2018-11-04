@@ -44,11 +44,12 @@ public class RestaurantService {
         return bookingRepository;
     }
 
-    public void addRestaurant(long rut, String name, String address, String style, String phoneNumber, String area)
+    public void addRestaurant(long rut, String name, String address, String style, String phoneNumber, String area, String food, String price)
             throws InvalidRestaurantInformation, RestaurantAlreadyExists {
 
         if (name == null || "".equals(name) || address == null || "".equals(address) || style == null || "".equals(style) ||
-                phoneNumber == null || "".equals(phoneNumber) || area == null || "".equals(area)) {
+                phoneNumber == null || "".equals(phoneNumber) || area == null || "".equals(area) || food == null || "".equals(food)
+                        || price == null || "".equals(price)) {
 
             throw new InvalidRestaurantInformation("Alguno de los datos ingresados no es correcto");
 
@@ -61,7 +62,7 @@ public class RestaurantService {
             throw new RestaurantAlreadyExists();
         }
 
-        Restaurant oRestaurant = new Restaurant(rut, name, address, style, phoneNumber, area);
+        Restaurant oRestaurant = new Restaurant(rut, name, address, style, phoneNumber, area, food, price);
 
         restaurantRepository.save(oRestaurant);
 
