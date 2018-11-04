@@ -1,10 +1,17 @@
 package labTic.ui;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
-import labTic.MainApp;
+import javafx.stage.Stage;
+import labTic.ClientMain;
+import labTic.services.entities.Client;
 import labTic.services.entities.Restaurant;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +24,8 @@ public class RestaurantViewController implements Initializable {
    // public Restaurant restaurant;
 
     private Restaurant restaurant;
+
+    private Client client;
 
     @FXML
     private Text titulo;
@@ -41,8 +50,20 @@ public class RestaurantViewController implements Initializable {
 
     @FXML
     void btnVolver(MouseEvent event) throws Exception {
-        MainApp.changeScene("Client/Restaurantes.fxml", event);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setControllerFactory((ClientMain.getContext()::getBean));
+
+        Parent root = loader.load(SignUpController.class.getResourceAsStream("Client/Restaurantes.fxml"));
+        RestaurantController controller = loader.getController();
+        controller.setClient(client);
+
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+
+        stage.setScene(new Scene(root));
+        stage.getScene().getStylesheets().add(SignUpController.class.getResource("Client/LogInSignUp.css").toExternalForm());
     }
+
 
     @FXML
     void loginTab(MouseEvent event) {
@@ -52,6 +73,10 @@ public class RestaurantViewController implements Initializable {
     @FXML
     void signupTab(MouseEvent event) {
 
+    }
+
+    void setClient(Client client){
+        this.client = client;
     }
 
     void setRestaurant(Restaurant newRestaurant){

@@ -3,7 +3,7 @@ package labTic.ui;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import labTic.MainApp;
+import labTic.ClientMain;
 import labTic.services.RestaurantService;
 import labTic.services.exceptions.InvalidRestaurantInformation;
 import labTic.services.exceptions.RestaurantAlreadyExists;
@@ -56,14 +56,14 @@ public class ManagerController {
         try{
             long rut = Long.parseLong(this.rut.getText());
             restaurantService.addRestaurant(rut, name, address, style, sPhoneNumber, area);
-            MainApp.showAlert("Registro Exitoso","Restaurante Registrado Correctamente");
+            ClientMain.showAlert("Registro Exitoso","Restaurante Registrado Correctamente");
             clean();
         }catch(RestaurantAlreadyExists ras){
-            MainApp.showAlert("Error", "El Restaurante ya fue registrado");
+            ClientMain.showAlert("Error", "El Restaurante ya fue registrado");
         }catch(InvalidRestaurantInformation iri){
-            MainApp.showAlert("Error", "No deje campos vacios");
+            ClientMain.showAlert("Error", "No deje campos vacios");
         }catch(NumberFormatException nfe){
-            MainApp.showAlert("Error","El rut solo debe contener numeros");
+            ClientMain.showAlert("Error","El rut solo debe contener numeros");
         }
     }
     private void clean(){

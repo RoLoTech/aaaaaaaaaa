@@ -1,10 +1,8 @@
 package labTic.services;
 
 
-import labTic.MainApp;
-import labTic.services.exceptions.FullRestaurantException;
+import labTic.ClientMain;
 import labTic.services.exceptions.InvalidRestaurantInformation;
-import labTic.services.exceptions.RestaurantAlreadyExists;
 import labTic.services.exceptions.RestaurantNoExists;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,11 +12,10 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
-import java.time.LocalTime;
 
 import static org.junit.Assert.assertEquals;
 
-@SpringBootTest(classes = MainApp.class)
+@SpringBootTest(classes = ClientMain.class)
 @RunWith(SpringRunner.class)
 public class RestaurantTest {
 

@@ -1,6 +1,6 @@
 package labTic.services;
 
-import labTic.MainApp;
+import labTic.ClientMain;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
-@SpringBootTest(classes = MainApp.class)
+@SpringBootTest(classes = ClientMain.class)
 @RunWith(SpringRunner.class)
 public class FilteringTest {
 
