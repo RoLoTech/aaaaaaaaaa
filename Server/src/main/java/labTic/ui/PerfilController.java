@@ -3,6 +3,10 @@ package labTic.ui;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
+import java.io.File;
 
 public class PerfilController {
 
@@ -35,7 +39,22 @@ public class PerfilController {
     }
 
     @FXML
+    void btnGuardar(MouseEvent event) {
+
+    }
+
+    @FXML
     void btnBuscarImagen(MouseEvent event) {
+
+//        FileChooser chooser = new FileChooser();
+//        File file = chooser.showOpenDialog(stage);
+//        if (file != null) {
+//            String fileAsString = file.toString();
+//
+//            image.setText("Chosen: " + fileAsString);
+//        } else {
+//            image.setText(null);
+//        }
 
     }
 
