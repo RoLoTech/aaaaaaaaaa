@@ -72,13 +72,9 @@ public class RestaurantService {
         if (restaurantRepository.findOneByRut(rut) == null) {
             throw new RestaurantNoExists();
         }
-
         Restaurant oRestaurant = restaurantRepository.findOneByRut(rut);
-
         oRestaurant.setFood_type(food_type);
         restaurantRepository.save(oRestaurant);
-
-
     }
 
     public void addPic (long rut, byte[] pic) throws RestaurantNoExists {
@@ -104,6 +100,7 @@ public class RestaurantService {
     public Restaurant findOneByName(String name) {
         return restaurantRepository.findOneByName(name);
     }
+    public Restaurant findOneByRut(long rut){return restaurantRepository.findOneByRut(rut);}
 
     public List<Restaurant> multipleFiltering(String area, String foodtype, String address, String pricerange, Float rating, String style, String name) {
         return restaurantRepository.findRestaurantsByAreaAndFoodtypeAndAddressContainingAndPriceRangeAndRatingAndStyleAndNameContaining(area, foodtype, address, pricerange, rating, style, name);

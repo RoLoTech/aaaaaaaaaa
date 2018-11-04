@@ -1,15 +1,41 @@
 package labTic.ui;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import labTic.persistence.RestaurantRepository;
+import labTic.services.RestaurantService;
+import labTic.services.entities.Restaurant;
+import labTic.services.exceptions.RestaurantNoExists;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.time.LocalTime;
+import java.util.ResourceBundle;
 
-public class PerfilController {
+@Component
+public class PerfilController implements Initializable {
+
+    private Restaurant restaurant;
+
+    @Autowired
+    private RestaurantService restaurantService;
+
+    @Autowired
+    private RestaurantRepository restaurantRepository;
+
+    @FXML
+    private TextArea descripcion;
 
     @FXML
     private TextField houropen;
@@ -29,8 +55,9 @@ public class PerfilController {
     @FXML
     private TextField image;
 
-    @FXML
-    private TextArea descripcion;
+    void setRestaurant(Restaurant restaurant){
+        this.restaurant = restaurant;
+    }
 
     @FXML
     void perfilTab(MouseEvent event) {
@@ -44,6 +71,34 @@ public class PerfilController {
 
     @FXML
     void btnGuardar(MouseEvent event) {
+        if(image!=null){
+            Resource backImgFile = new FileSystemResource(image.getText());
+            byte[] arrayPic = new byte[0];
+            try {
+                arrayPic = new byte[(int) backImgFile.contentLength()];
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                backImgFile.getInputStream().read(arrayPic);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                restaurantService.addPic(restaurant.getRut(), arrayPic);
+            } catch (RestaurantNoExists restaurantNoExists) {
+                restaurantNoExists.printStackTrace();
+            }
+        }
+        restaurant.setOpeningTime(LocalTime.parse(houropen.getText()));
+        restaurant.setClosingTime(LocalTime.parse(hourclose.getText()));
+        restaurant.setName(name.getText());
+        restaurant.setPhone(phoneNumber.getText());
+        restaurant.setAddress(address.getText());
+
+        restaurantRepository.save(restaurant);
+
 
     }
 
@@ -62,4 +117,13 @@ public class PerfilController {
 
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        houropen.setText(restaurant.getOpeningTime().toString());
+        hourclose.setText(restaurant.getClosingTime().toString());
+        name.setText(restaurant.getName());
+        phoneNumber.setText(restaurant.getPhone());
+        address.setText(restaurant.getAddress());
+
+    }
 }

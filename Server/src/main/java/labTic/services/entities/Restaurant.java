@@ -68,6 +68,17 @@ public class Restaurant {
     @Column(name = "restaurant_completed_reservations")
     private Integer completedReservations;
 
+    @Column(name = "restaurant_password")
+    private String password;
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     @Lob
     @Column
     private byte[] profilePicture;
@@ -82,6 +93,13 @@ public class Restaurant {
     @Column
     private LocalTime closingTime;
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public LocalTime getOpeningTime() {
         return openingTime;
@@ -142,6 +160,8 @@ public class Restaurant {
     public void setFood_type(String foodtype) {
         this.foodtype = foodtype;
     }
+
+    public String getPhone(){ return phone; }
 
     @Override
     public String toString() {

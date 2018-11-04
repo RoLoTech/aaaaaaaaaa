@@ -47,7 +47,6 @@ public class LogInController  {
                 }
                 else {
                     ClientMain.showAlert("Error", "Datos Incorrectos");
-                    clean();
                     }
 
             }catch(Exception e){
