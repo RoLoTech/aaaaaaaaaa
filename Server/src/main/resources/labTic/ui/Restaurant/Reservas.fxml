@@ -28,8 +28,14 @@
                         </Text>
                         <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                            <children>
-                              <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#reservasTab" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white; -fx-font-weight: bold; -fx-font-size: 12;" text="Reservas" />
-                              <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#perfilTab" style="-fx-background-color: transparent; -fx-text-fill: #aeaeae; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #aeaeae; -fx-font-weight: bold; -fx-font-size: 12;" text="Perfil" />
+                              <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#reservasTab" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white; -fx-font-weight: bold; -fx-font-size: 12;" text="Reservas">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin></Button>
+                              <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#perfilTab" style="-fx-background-color: transparent; -fx-text-fill: #aeaeae; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #aeaeae; -fx-font-weight: bold; -fx-font-size: 12;" text="Perfil">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin></Button>
                            </children></HBox>
                      </children>
                   </HBox>

@@ -9,10 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-
 <VBox stylesheets="@../Client/LogInSignUp.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labTic.ui.ManagerController">
    <children>
-      <AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="back">
+      <AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="back" stylesheets="@Manager.css">
          <children>
             <VBox alignment="TOP_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -44,7 +43,7 @@
                   </HBox>
                   <HBox alignment="CENTER">
                      <children>
-                        <VBox alignment="TOP_CENTER">
+                        <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
                            <children>
                               <HBox alignment="CENTER" style="-fx-border-color: white; -fx-border-width: 0 0 2 0;">
                                  <children>
@@ -61,7 +60,7 @@
                               <HBox alignment="CENTER" style="-fx-border-color: white; -fx-border-width: 0 0 2 0;">
                                  <children>
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="📍" />
-                                    <TextField fx:id="address" prefHeight="26.0" prefWidth="262.0" promptText="Direccion" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" />
+                                    <TextField fx:id="address" promptText="Direccion" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" HBox.hgrow="ALWAYS" />
                                  </children>
                                  <opaqueInsets>
                                     <Insets />
@@ -96,10 +95,10 @@
                               </HBox>
                            </children>
                            <HBox.margin>
-                              <Insets right="10.0" />
+                              <Insets />
                            </HBox.margin>
                         </VBox>
-                        <VBox alignment="TOP_CENTER">
+                        <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
                            <children>
                               <HBox alignment="CENTER" style="-fx-border-color: white; -fx-border-width: 0 0 2 0;">
                                  <children>
@@ -128,7 +127,7 @@
                               <HBox alignment="CENTER" style="-fx-border-color: white; -fx-border-width: 0 0 2 0;">
                                  <children>
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="🏦" />
-                                    <TextField fx:id="style" prefHeight="26.0" prefWidth="298.0" promptText="Estilo" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" />
+                                    <TextField fx:id="style" promptText="Estilo" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" HBox.hgrow="ALWAYS" />
                                  </children>
                                  <opaqueInsets>
                                     <Insets />
@@ -140,7 +139,7 @@
                               <HBox alignment="CENTER" style="-fx-border-color: white; -fx-border-width: 0 0 2 0;">
                                  <children>
                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="💲" />
-                                    <TextField fx:id="price" prefHeight="26.0" prefWidth="298.0" promptText="Precio" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" />
+                                    <TextField fx:id="price" promptText="Precio" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" HBox.hgrow="ALWAYS" />
                                  </children>
                                  <opaqueInsets>
                                     <Insets />
@@ -151,8 +150,11 @@
                               </HBox>
                            </children>
                            <HBox.margin>
-                              <Insets right="10.0" />
+                              <Insets />
                            </HBox.margin>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
                         </VBox>
                      </children>
                      <VBox.margin>
