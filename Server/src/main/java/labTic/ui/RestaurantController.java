@@ -204,6 +204,10 @@ public class RestaurantController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         LocalTime horaActual = LocalTime.now();
+        textRating1.setText(null);
+        textRating2.setText(null);
+        textRating3.setText(null);
+        textRating4.setText(null);
 
         restaurants = restaurantService.findAll();
         CheckMenuItem thisFoodType;

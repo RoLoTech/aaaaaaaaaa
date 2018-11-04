@@ -9,6 +9,9 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
@@ -43,6 +46,7 @@ public class RestaurantTest {
 //        } catch (RestaurantNoExists restaurantNoExists) {
 //            restaurantNoExists.printStackTrace();
 //        }
+        //Resource backImgFile = new FileSystemResource("C:\\Users\\matia\\OneDrive\\Desktop\\descarga.jpg");
         ClassPathResource backImgFile = new ClassPathResource("image/20180204_193708.jpg");
         byte[] arrayPic = new byte[0];
         try {
@@ -57,7 +61,7 @@ public class RestaurantTest {
         }
 
         try {
-            rs.addPic(123455, arrayPic);
+            rs.addPic(1234, arrayPic);
         } catch (RestaurantNoExists restaurantNoExists) {
             restaurantNoExists.printStackTrace();
         }

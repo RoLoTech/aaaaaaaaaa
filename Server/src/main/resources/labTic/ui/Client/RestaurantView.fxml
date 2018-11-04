@@ -37,7 +37,7 @@
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: white;">
                            <children>
                               <Text fx:id="titulo" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 24;" text="Restaurant 1 Extra Espacio" />
-                              <ImageView fitHeight="200.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="restaurantProfilePic" fitHeight="200.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true" />
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                  <children>
                                     <ImageView fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true" />
