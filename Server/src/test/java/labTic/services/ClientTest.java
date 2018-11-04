@@ -1,6 +1,6 @@
 package labTic.services;
 
-import labTic.MainApp;
+import labTic.ClientMain;
 import labTic.services.exceptions.ClientAlreadyExists;
 import labTic.services.exceptions.InvalidClientInformation;
 import org.junit.Test;
@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.assertEquals;
 
-@SpringBootTest(classes = MainApp.class)
+@SpringBootTest(classes = ClientMain.class)
 @RunWith(SpringRunner.class)
 public class ClientTest {
     @Autowired

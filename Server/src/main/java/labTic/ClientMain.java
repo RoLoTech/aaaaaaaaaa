@@ -8,16 +8,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
-import labTic.services.ClientService;
 import labTic.ui.LogInController;
 import labTic.ui.SignUpController;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
-public class MainApp extends Application {
+public class ClientMain extends Application {
 
     private static ConfigurableApplicationContext context;
 
@@ -26,13 +24,13 @@ public class MainApp extends Application {
 
     @Override
     public void init() {
-        MainApp.context = SpringApplication.run(MainApp.class);
+        ClientMain.context = SpringApplication.run(ClientMain.class);
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory((MainApp.getContext()::getBean));
+        fxmlLoader.setControllerFactory((ClientMain.getContext()::getBean));
         root = fxmlLoader.load(LogInController.class.getResourceAsStream("Client/LogIn.fxml"));
         primaryStage.setScene(new Scene(root));
         primaryStage.getScene().getStylesheets().add(SignUpController.class.getResource("Client/LogInSignUp.css").toExternalForm());
@@ -46,7 +44,7 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        MainApp.getContext().close();
+        ClientMain.getContext().close();
     }
 
     public static void showAlert(String title, String contextText) {
@@ -59,7 +57,7 @@ public class MainApp extends Application {
 
     public static void changeScene(String newFXML, Event event) throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory((MainApp.getContext()::getBean));
+        fxmlLoader.setControllerFactory((ClientMain.getContext()::getBean));
 
         Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream(newFXML));
 

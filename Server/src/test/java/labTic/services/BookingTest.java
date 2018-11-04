@@ -1,10 +1,8 @@
 package labTic.services;
 
-import labTic.MainApp;
+import labTic.ClientMain;
 import labTic.services.entities.Restaurant;
-import labTic.services.entities.Tables;
 import labTic.services.exceptions.FullRestaurantException;
-import labTic.services.exceptions.RestaurantNoExists;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.time.LocalTime;
 
 
-@SpringBootTest(classes = MainApp.class)
+@SpringBootTest(classes = ClientMain.class)
 @RunWith(SpringRunner.class)
 public class BookingTest {
 

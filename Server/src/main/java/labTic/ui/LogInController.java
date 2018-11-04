@@ -1,26 +1,20 @@
 package labTic.ui;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import labTic.MainApp;
+import labTic.ClientMain;
 import labTic.services.ClientService;
 import labTic.services.entities.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 @Component
 public class LogInController  {
@@ -43,21 +37,21 @@ public class LogInController  {
         String sPassword = pass.getText();
 
         if(sUser==null || "".equals(sUser) || sPassword==null || "".equals(sPassword)) {
-            MainApp.showAlert("Error","No Deje Campos Vacios");
+            ClientMain.showAlert("Error","No Deje Campos Vacios");
         }else {
             try{
                 Client cliente = (Client)clientService.findOneByUser(sUser);
                 if(cliente.getPassword().equals(sPassword)) {
-                    MainApp.showAlert("Exito", "Usuario Logueado Correctamente");
-                    MainApp.changeScene("Client/Restaurantes.fxml", event);
+                    ClientMain.showAlert("Exito", "Usuario Logueado Correctamente");
+                    goToRestaurant(cliente,event);
                 }
                 else {
-                    MainApp.showAlert("Error", "Datos Incorrectos");
+                    ClientMain.showAlert("Error", "Datos Incorrectos");
                     clean();
                     }
 
             }catch(Exception e){
-                MainApp.showAlert("Error", "Usuario No Registrado");
+                ClientMain.showAlert("Error", "Usuario No Registrado");
                 e.printStackTrace();
             }
 
@@ -71,7 +65,8 @@ public class LogInController  {
     }
 
     @FXML
-    void signupTab(MouseEvent event) throws Exception {MainApp.changeScene("Client/SignUp.fxml", event);}
+    void signupTab(MouseEvent event) throws Exception {
+        ClientMain.changeScene("Client/SignUp.fxml", event);}
 
 
     private void clean() {
@@ -84,5 +79,20 @@ public class LogInController  {
 
     @FXML
     private PasswordField pass;
+
+    private void goToRestaurant(Client client, Event event) throws  Exception {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setControllerFactory((ClientMain.getContext()::getBean));
+
+        Parent root = loader.load(SignUpController.class.getResourceAsStream("Client/Restaurantes.fxml"));
+        RestaurantController controller = loader.getController();
+        controller.setClient(client);
+
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+
+        stage.setScene(new Scene(root));
+        stage.getScene().getStylesheets().add(SignUpController.class.getResource("Client/LogInSignUp.css").toExternalForm());
+    }
 
 }

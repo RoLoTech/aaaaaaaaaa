@@ -14,8 +14,9 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import labTic.MainApp;
+import labTic.ClientMain;
 import labTic.services.RestaurantService;
+import labTic.services.entities.Client;
 import labTic.services.entities.Restaurant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,7 +24,6 @@ import org.springframework.stereotype.Component;
 
 import java.net.URL;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -33,6 +33,8 @@ public class RestaurantController implements Initializable {
 
     @Autowired
     private RestaurantService restaurantService;
+
+    private Client client;
 
     public int x=0;
 
@@ -77,6 +79,10 @@ public class RestaurantController implements Initializable {
 
     @FXML
     private Text text4;
+
+    void setClient(Client client){
+        this.client = client;
+    }
 
     @FXML
     void cardRestaurant1(MouseEvent event) throws Exception {
@@ -184,11 +190,12 @@ public class RestaurantController implements Initializable {
 
         if(listPosition < restaurants.size()) {
             FXMLLoader loader = new FXMLLoader();
-            loader.setControllerFactory((MainApp.getContext()::getBean));
+            loader.setControllerFactory((ClientMain.getContext()::getBean));
 
             Parent root = loader.load(SignUpController.class.getResourceAsStream("Client/RestaurantView.fxml"));
             RestaurantViewController controller = loader.getController();
             controller.setRestaurant(restaurants.get(listPosition));
+            controller.setClient(client);
 
             Node node = (Node) event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
