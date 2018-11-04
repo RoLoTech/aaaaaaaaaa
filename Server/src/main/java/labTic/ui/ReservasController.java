@@ -23,4 +23,14 @@ public class ReservasController {
 
     }
 
+    @FXML
+    void perfilTab(MouseEvent event) {
+
+    }
+
+    @FXML
+    void reservasTab(MouseEvent event) {
+
+    }
+
 }

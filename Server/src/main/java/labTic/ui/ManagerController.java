@@ -35,6 +35,12 @@ public class ManagerController {
     private TextField phoneNumber;
 
     @FXML
+    private TextField price;
+
+    @FXML
+    private TextField food;
+
+    @FXML
     void createRestaurantTab(MouseEvent event) {
 
     }

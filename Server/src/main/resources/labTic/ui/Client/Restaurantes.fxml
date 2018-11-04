@@ -31,7 +31,7 @@
                   </Button>
                   <VBox HBox.hgrow="ALWAYS">
                      <children>
-                        <HBox style="-fx-background-radius: 10;" styleClass="gridpane2" VBox.vgrow="ALWAYS">
+                        <HBox style="-fx-background-radius: 10;" styleClass="gridpane2">
                            <children>
                               <MenuButton fx:id="filtroMultiple1" mnemonicParsing="false" onContextMenuRequested="#btnFiltroMultiple1" style="-fx-background-color: transparent; -fx-background-radius: 0;" text="Barrio" HBox.hgrow="ALWAYS" />
                               <MenuButton fx:id="filtroMultiple2" mnemonicParsing="false" onContextMenuRequested="#btnFiltroMultiple2" style="-fx-background-color: transparent; -fx-background-radius: 0;" text="Comida" HBox.hgrow="ALWAYS" />
