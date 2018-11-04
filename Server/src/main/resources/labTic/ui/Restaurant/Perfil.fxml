@@ -115,6 +115,7 @@
                                        <children>
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="📷" />
                                           <TextField fx:id="image" promptText="Imagen" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" HBox.hgrow="ALWAYS" />
+                                          <Button mnemonicParsing="false" onMouseClicked="#btnBuscarImagen" style="-fx-background-radius: 0; -fx-background-color: white;" text="Buscar" />
                                        </children>
                                        <opaqueInsets>
                                           <Insets />

@@ -34,4 +34,9 @@ public class PerfilController {
 
     }
 
+    @FXML
+    void btnBuscarImagen(MouseEvent event) {
+
+    }
+
 }
