@@ -1,0 +1,8 @@
+.text-area {
+    text-area-background: white ;
+    text-area-background-radius: 20 ;
+}
+
+.text-area .content {
+    -fx-background-color: text-area-background ;
+}
