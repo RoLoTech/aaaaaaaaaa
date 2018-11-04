@@ -67,7 +67,16 @@
                                           <Insets top="20.0" />
                                        </VBox.margin>
                                     </HBox>
-                                    <TextArea prefHeight="200.0" prefWidth="200.0" promptText="Descripción" />
+                                    <VBox>
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción">
+                                             <VBox.margin>
+                                                <Insets bottom="5.0" top="10.0" />
+                                             </VBox.margin>
+                                          </Text>
+                                          <TextArea fx:id="descripcion" prefHeight="200.0" prefWidth="200.0" style="-fx-border-width: 2; -fx-border-color: white; -fx-border-radius: 10;" styleClass="textbok" stylesheets="@Perfil.css" />
+                                       </children>
+                                    </VBox>
                                  </children>
                                  <HBox.margin>
                                     <Insets />
