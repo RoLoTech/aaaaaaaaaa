@@ -69,6 +69,78 @@ public class RestaurantController implements Initializable {
     }
 
     @FXML
+    private Text textRestaurant4;
+
+    @FXML
+    private Text textRating4;
+
+    @FXML
+    private Text textLocation4;
+
+    @FXML
+    private Text textComida4;
+
+    @FXML
+    private Text textEstilo4;
+
+    @FXML
+    private Text textPrecio4;
+
+    @FXML
+    private Text textRestaurant3;
+
+    @FXML
+    private Text textRating3;
+
+    @FXML
+    private Text textLocation3;
+
+    @FXML
+    private Text textComida3;
+
+    @FXML
+    private Text textEstilo3;
+
+    @FXML
+    private Text textPrecio3;
+
+    @FXML
+    private Text textRestaurant2;
+
+    @FXML
+    private Text textRating2;
+
+    @FXML
+    private Text textLocation2;
+
+    @FXML
+    private Text textComida2;
+
+    @FXML
+    private Text textEstilo2;
+
+    @FXML
+    private Text textPrecio2;
+
+    @FXML
+    private Text textRestaurant1;
+
+    @FXML
+    private Text textRating1;
+
+    @FXML
+    private Text textLocation1;
+
+    @FXML
+    private Text textComida1;
+
+    @FXML
+    private Text textEstilo1;
+
+    @FXML
+    private Text textPrecio1;
+    
+    @FXML
     private Text text3;
 
     @FXML
