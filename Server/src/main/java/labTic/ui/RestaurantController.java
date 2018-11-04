@@ -133,24 +133,33 @@ public class RestaurantController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         LocalTime horaActual = LocalTime.now();
 
-
-        CheckMenuItem Check1 = new CheckMenuItem("1");
-        filtroMultiple1.getItems().add(Check1);
-        filtroMultiple1.getItems().add(new CheckMenuItem("hOLA"));
-
         restaurants = restaurantService.findAll();
-        String thisFoodType;
-        String thisLocation;
+        CheckMenuItem thisFoodType;
+        CheckMenuItem thisLocation;
+        CheckMenuItem thisPrice;
+        CheckMenuItem thisStyle;
+        /*ObservableList<String> prices = FXCollections.observableArrayList("");
         ObservableList<String> foodTypes = FXCollections.observableArrayList("");
-        ObservableList<String> locations = FXCollections.observableArrayList("");
+        ObservableList<String> locations = FXCollections.observableArrayList("");*/
 
         for(int i = 0;i<restaurants.size();i++){
-            thisLocation = restaurants.get(i).getArea();
-            thisFoodType = restaurants.get(i).getFoodtype();
-            if(!locations.contains(thisLocation))
-                locations.add(thisLocation);
-            if(!foodTypes.contains(thisFoodType))
-                foodTypes.add(thisFoodType);
+            thisLocation = new CheckMenuItem(restaurants.get(i).getArea());
+            thisFoodType = new CheckMenuItem(restaurants.get(i).getFoodtype());
+            thisPrice = new CheckMenuItem(restaurants.get(i).getPriceRange());
+            thisStyle = new CheckMenuItem(restaurants.get(i).getStyle());
+
+            if(!filtroMultiple1.getItems().contains(thisLocation))
+                filtroMultiple1.getItems().add(thisLocation);
+
+            if(!filtroMultiple2.getItems().contains(thisFoodType))
+                filtroMultiple2.getItems().add(thisFoodType);
+
+            if(!filtroMultiple3.getItems().contains(thisStyle))
+                filtroMultiple3.getItems().add(thisStyle);
+
+            if(!filtroMultiple4.getItems().contains(thisPrice))
+                filtroMultiple4.getItems().add(thisPrice);
+
         }
 //        cbLocation.setItems(locations);
 //        cbFoodType.setItems(foodTypes);
