@@ -1,4 +1,4 @@
 .back {
--fx-background-image: url(back.jpeg);
--fx-background-size: cover;
+    -fx-background-image: url(LoginSignUpFilter.jpg);
+    -fx-background-size: cover;
 }
