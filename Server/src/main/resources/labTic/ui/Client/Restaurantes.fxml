@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox stylesheets="@Restaurant.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labTic.ui.RestaurantController">
+<VBox stylesheets="@Restaurant.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labTic.ui.RestaurantController">
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="back" VBox.vgrow="ALWAYS">
          <children>
@@ -32,13 +31,10 @@
                      <children>
                         <HBox prefHeight="100.0" prefWidth="200.0" styleClass="gridpane">
                            <children>
-                              <ChoiceBox fx:id="cbLocation" onMouseClicked="#cbLocationClick" prefHeight="27.0" prefWidth="146.0" style="-fx-background-color: white; -fx-border-color: white;">
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </ChoiceBox>
-                              <ChoiceBox fx:id="cbFoodType" onMouseClicked="#cbLocationClick" prefHeight="27.0" prefWidth="124.0" style="-fx-background-color: white; -fx-border-color: white;" />
-                              <MenuButton fx:id="filtroMultiple" mnemonicParsing="false" onContextMenuRequested="#btnFiltroMultiple" text="MenuButton" />
+                              <MenuButton fx:id="filtroMultiple1" mnemonicParsing="false" onContextMenuRequested="#btnFiltroMultiple1" style="-fx-background-color: white; -fx-border-radius: 0;" text="MenuButton" />
+                              <MenuButton fx:id="filtroMultiple2" mnemonicParsing="false" onContextMenuRequested="#btnFiltroMultiple2" style="-fx-background-color: white; -fx-border-radius: 0;" text="MenuButton" />
+                              <MenuButton fx:id="filtroMultiple3" mnemonicParsing="false" onContextMenuRequested="#btnFiltroMultiple3" style="-fx-background-color: white; -fx-border-radius: 0;" text="MenuButton" />
+                              <MenuButton fx:id="filtroMultiple4" mnemonicParsing="false" onContextMenuRequested="#btnFiltroMultiple4" style="-fx-background-color: white; -fx-border-radius: 0;" text="MenuButton" />
                               <Button mnemonicParsing="false" onMouseClicked="#btnFiltrar" style="-fx-background-color: red;" text="Filtrar">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
