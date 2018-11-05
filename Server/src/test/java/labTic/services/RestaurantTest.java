@@ -46,8 +46,8 @@ public class RestaurantTest {
 //        } catch (RestaurantNoExists restaurantNoExists) {
 //            restaurantNoExists.printStackTrace();
 //        }
-        //Resource backImgFile = new FileSystemResource("C:\\Users\\matia\\OneDrive\\Desktop\\descarga.jpg");
-        ClassPathResource backImgFile = new ClassPathResource("image/20180204_193708.jpg");
+        Resource backImgFile = new FileSystemResource("C:\\Users\\matia\\OneDrive\\Desktop\\descarga.jpg");
+        //ClassPathResource backImgFile = new ClassPathResource("image/20180204_193708.jpg");
         byte[] arrayPic = new byte[0];
         try {
             arrayPic = new byte[(int) backImgFile.contentLength()];
@@ -61,7 +61,7 @@ public class RestaurantTest {
         }
 
         try {
-            rs.addPic(1234, arrayPic);
+            rs.addPic(1235, arrayPic);
         } catch (RestaurantNoExists restaurantNoExists) {
             restaurantNoExists.printStackTrace();
         }

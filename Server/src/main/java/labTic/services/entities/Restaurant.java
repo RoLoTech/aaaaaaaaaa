@@ -93,8 +93,19 @@ public class Restaurant {
     @Column(name = "restaurant_sunday")
     private String hoursSunday;
 
+    @Column (name = "restaurant_description")
+    private String description;
 
+    @Column (name = "restaurant_availability")
+    private Boolean availability;
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     @Lob
     @Column (name = "restaurant_profile_picture")

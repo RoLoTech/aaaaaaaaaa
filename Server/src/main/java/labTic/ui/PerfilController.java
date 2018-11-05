@@ -78,7 +78,11 @@ public class PerfilController implements Initializable {
     private TextField image;
 
     void setRestaurant(Restaurant restaurant){
+
         this.restaurant = restaurant;
+        name.setText(restaurant.getName());
+        phoneNumber.setText(restaurant.getPhone());
+        address.setText(restaurant.getAddress());
     }
 
     @FXML
@@ -93,7 +97,16 @@ public class PerfilController implements Initializable {
 
     @FXML
     void btnGuardar(MouseEvent event) {
-        if(image!=null){
+
+        restaurant.setName(name.getText());
+        restaurant.setPhone(phoneNumber.getText());
+        restaurant.setAddress(address.getText());
+
+        restaurantRepository.save(restaurant);
+
+
+        if(image.getText()!=null){
+            String imageSource = image.getText();
             Resource backImgFile = new FileSystemResource(image.getText());
             byte[] arrayPic = new byte[0];
             try {
@@ -115,11 +128,7 @@ public class PerfilController implements Initializable {
         }
 //        restaurant.setOpeningTime(LocalTime.parse(houropen.getText()));
 //        restaurant.setClosingTime(LocalTime.parse(hourclose.getText()));
-        restaurant.setName(name.getText());
-        restaurant.setPhone(phoneNumber.getText());
-        restaurant.setAddress(address.getText());
 
-        restaurantRepository.save(restaurant);
 
 
     }
@@ -143,9 +152,9 @@ public class PerfilController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 //        houropen.setText(restaurant.getOpeningTime().toString());
 //        hourclose.setText(restaurant.getClosingTime().toString());
-        name.setText(restaurant.getName());
+       /* name.setText(restaurant.getName());
         phoneNumber.setText(restaurant.getPhone());
-        address.setText(restaurant.getAddress());
+        address.setText(restaurant.getAddress());*/
 
     }
 }

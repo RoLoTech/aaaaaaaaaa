@@ -74,6 +74,7 @@ public class LogInRestaurantController {
            stage.setScene(new Scene(root));
            stage.getScene().getStylesheets().add(SignUpController.class.getResource("Client/LogInSignUp.css").toExternalForm());
        }catch(Exception e){
+           e.printStackTrace();
 
        }
     }
