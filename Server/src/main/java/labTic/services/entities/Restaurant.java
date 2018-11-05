@@ -34,8 +34,9 @@ public class Restaurant {
         this.priceRange = price;
     }
 
+
     @Id
-    @Column(name = "restaurant_rut", nullable = false, unique = true)
+    @Column (name = "restaurant_rut", nullable = false, unique = true)
     private Long rut;
 
     @Column(name = "restaurant_name")
@@ -71,26 +72,18 @@ public class Restaurant {
     @Column(name = "restaurant_password")
     private String password;
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     @Lob
-    @Column
+    @Column (name = "restaurant_profile_picture")
     private byte[] profilePicture;
 
 //    @Lob
 //    @Column(name="pic")
 //    private byte[] pic;
 
-    @Column
+    @Column (name = "restaurant_opening_time")
     private LocalTime openingTime;
 
-    @Column
+    @Column (name = "restaurant_closing_time")
     private LocalTime closingTime;
 
     public String getPassword() {
@@ -182,6 +175,14 @@ public class Restaurant {
 
     public void setProfilePicture(byte[] profilePicture) {
         this.profilePicture = profilePicture;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
 

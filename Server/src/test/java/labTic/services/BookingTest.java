@@ -37,7 +37,7 @@ public class BookingTest {
 
         try {
 
-            rs.book(rest, LocalTime.parse("10:15:30"), "prueba");
+            rs.book(rest.getRut(), LocalTime.parse("10:15:30"), "prueba");
         } catch (FullRestaurantException e) {
             e.printStackTrace();
         }

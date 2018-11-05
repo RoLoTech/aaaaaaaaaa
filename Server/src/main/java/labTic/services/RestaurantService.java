@@ -150,9 +150,9 @@ public class RestaurantService {
         return list;
     }
 
-    public void book(Restaurant restaurant, LocalTime startDate, String alias) throws FullRestaurantException {
+    public void book(Long rut, LocalTime startDate, String alias) throws FullRestaurantException {
         Tables tables = null;
-        Iterable<Tables> result = tableRepository.findAllByRestaurantRut(restaurant.getRut());
+        Iterable<Tables> result = tableRepository.findAllByRestaurantRut(rut);
         List<Tables> list = new ArrayList<>();
         for (Tables tableToIterate : result) {
             list.add(tableToIterate);
@@ -169,7 +169,7 @@ public class RestaurantService {
         if (succesfulBooking == false) {
             throw new FullRestaurantException();
         }
-        Booking booking = new Booking((restaurant.hashCode() + alias.hashCode()), restaurant, alias, tables);
+        Booking booking = new Booking((rut.hashCode() + alias.hashCode()), rut, alias, tables);
         bookingRepository.save(booking);
 
     }
@@ -188,6 +188,14 @@ public class RestaurantService {
                 succesfulRelease = true;
             }
         }
+    }
+
+    public void confirmBooking(Booking booking){
+        booking.setConfirmed();
+    }
+
+    public void rejectBooking(Booking booking){
+        bookingRepository.delete(booking);
     }
 
    /* public List<Restaurant> filterBy(String... args) {

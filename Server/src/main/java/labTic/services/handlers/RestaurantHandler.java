@@ -1,4 +1,4 @@
-package tic.services.handlers;
+package labTic.services.handlers;
 
 public interface RestaurantHandler {
     public void bookTable(int restaurantID, int tableNumber);
