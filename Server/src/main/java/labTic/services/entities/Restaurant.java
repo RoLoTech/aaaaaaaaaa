@@ -72,6 +72,30 @@ public class Restaurant {
     @Column(name = "restaurant_password")
     private String password;
 
+    @Column(name = "restaurant_monday")
+    private String hoursMonday;
+
+    @Column(name = "restaurant_tuesday")
+    private String hoursTuesday;
+
+    @Column(name = "restaurant_wednesday")
+    private String hoursWednesday;
+
+    @Column(name = "restaurant_thursday")
+    private String hoursThursday;
+
+    @Column(name = "restaurant_friday")
+    private String hoursFriday;
+
+    @Column(name = "restaurant_saturday")
+    private String hoursSaturday;
+
+    @Column(name = "restaurant_sunday")
+    private String hoursSunday;
+
+
+
+
     @Lob
     @Column (name = "restaurant_profile_picture")
     private byte[] profilePicture;
@@ -80,11 +104,11 @@ public class Restaurant {
 //    @Column(name="pic")
 //    private byte[] pic;
 
-    @Column (name = "restaurant_opening_time")
-    private LocalTime openingTime;
-
-    @Column (name = "restaurant_closing_time")
-    private LocalTime closingTime;
+//    @Column (name = "restaurant_opening_time")
+//    private LocalTime openingTime;
+//
+//    @Column (name = "restaurant_closing_time")
+//    private LocalTime closingTime;
 
     public String getPassword() {
         return password;
@@ -94,21 +118,21 @@ public class Restaurant {
         this.password = password;
     }
 
-    public LocalTime getOpeningTime() {
-        return openingTime;
-    }
+//    public LocalTime getOpeningTime() {
+//        return openingTime;
+//    }
+//
+//    public void setOpeningTime(LocalTime openingTime) {
+//        this.openingTime = openingTime;
+//    }
 
-    public void setOpeningTime(LocalTime openingTime) {
-        this.openingTime = openingTime;
-    }
-
-    public LocalTime getClosingTime() {
-        return closingTime;
-    }
-
-    public void setClosingTime(LocalTime closingTime) {
-        this.closingTime = closingTime;
-    }
+//    public LocalTime getClosingTime() {
+//        return closingTime;
+//    }
+//
+//    public void setClosingTime(LocalTime closingTime) {
+//        this.closingTime = closingTime;
+//    }
 
     public String getName() {
         return name;
@@ -183,6 +207,62 @@ public class Restaurant {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getHoursMonday() {
+        return hoursMonday;
+    }
+
+    public void setHoursMonday(String hoursMonday) {
+        this.hoursMonday = hoursMonday;
+    }
+
+    public String getHoursTuesday() {
+        return hoursTuesday;
+    }
+
+    public void setHoursTuesday(String hoursTuesday) {
+        this.hoursTuesday = hoursTuesday;
+    }
+
+    public String getHoursWednesday() {
+        return hoursWednesday;
+    }
+
+    public void setHoursWednesday(String hoursWednesday) {
+        this.hoursWednesday = hoursWednesday;
+    }
+
+    public String getHoursThursday() {
+        return hoursThursday;
+    }
+
+    public void setHoursThursday(String hoursThursday) {
+        this.hoursThursday = hoursThursday;
+    }
+
+    public String getHoursFriday() {
+        return hoursFriday;
+    }
+
+    public void setHoursFriday(String hoursFriday) {
+        this.hoursFriday = hoursFriday;
+    }
+
+    public String getHoursSaturday() {
+        return hoursSaturday;
+    }
+
+    public void setHoursSaturday(String hoursSaturday) {
+        this.hoursSaturday = hoursSaturday;
+    }
+
+    public String getHoursSunday() {
+        return hoursSunday;
+    }
+
+    public void setHoursSunday(String hoursSunday) {
+        this.hoursSunday = hoursSunday;
     }
 
 

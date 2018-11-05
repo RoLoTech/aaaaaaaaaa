@@ -37,6 +37,28 @@ public class PerfilController implements Initializable {
     @FXML
     private TextArea descripcion;
 
+
+//    @FXML
+//    private TextField hourMonday;
+//
+//    @FXML
+//    private TextField hourTuesday;
+//
+//    @FXML
+//    private TextField hourWednesday;
+//
+//    @FXML
+//    private TextField hourThursday;
+//
+//    @FXML
+//    private TextField hourFriday;
+//
+//    @FXML
+//    private TextField hourSaturday;
+//
+//    @FXML
+//    private TextField hourSunday;
+
     @FXML
     private TextField houropen;
 
@@ -91,8 +113,8 @@ public class PerfilController implements Initializable {
                 restaurantNoExists.printStackTrace();
             }
         }
-        restaurant.setOpeningTime(LocalTime.parse(houropen.getText()));
-        restaurant.setClosingTime(LocalTime.parse(hourclose.getText()));
+//        restaurant.setOpeningTime(LocalTime.parse(houropen.getText()));
+//        restaurant.setClosingTime(LocalTime.parse(hourclose.getText()));
         restaurant.setName(name.getText());
         restaurant.setPhone(phoneNumber.getText());
         restaurant.setAddress(address.getText());
@@ -119,8 +141,8 @@ public class PerfilController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        houropen.setText(restaurant.getOpeningTime().toString());
-        hourclose.setText(restaurant.getClosingTime().toString());
+//        houropen.setText(restaurant.getOpeningTime().toString());
+//        hourclose.setText(restaurant.getClosingTime().toString());
         name.setText(restaurant.getName());
         phoneNumber.setText(restaurant.getPhone());
         address.setText(restaurant.getAddress());
