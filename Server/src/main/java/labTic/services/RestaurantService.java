@@ -115,26 +115,34 @@ public class RestaurantService {
         return (List<Restaurant>) restaurantRepository.findAll();
     }
 
-    public List<Restaurant> filter(String area, String foodtype, String address, String pricerange, Float rating, String style, String name) {
+    public List<Restaurant> filter(List<String> area, List<String> foodtype, String address, List<String> pricerange, Float rating, List<String> style, String name) {
         BooleanBuilder builder = new BooleanBuilder();
         final QRestaurant restaurant = QRestaurant.restaurant;
-        if (area != null && area.trim().length() != 0) {
-            builder.and(restaurant.area.eq(area));
+        if (area != null && area.size() != 0) {
+            for (String element: area) {
+                builder.or(restaurant.area.eq(element));
+            }
         }
-        if (foodtype != null && foodtype.trim().length() != 0) {
-            builder.and(restaurant.foodtype.contains(foodtype));
+        if (foodtype != null && foodtype.size() != 0) {
+            for (String element: foodtype) {
+                builder.or(restaurant.foodtype.contains(element));
+            }
         }
         if (address != null && address.trim().length() != 0) {
             builder.and(restaurant.address.like(address));
         }
-        if (pricerange != null && pricerange.trim().length() != 0) {
-            builder.and(restaurant.priceRange.eq(pricerange));
+        if (pricerange != null && pricerange.size() != 0) {
+            for (String element: pricerange) {
+                builder.or(restaurant.priceRange.eq(element));
+            }
         }
         if (rating != null) {
             builder.and(restaurant.rating.eq(rating));
         }
-        if (style != null && style.trim().length() != 0) {
-            builder.and(restaurant.style.eq(style));
+        if (style != null && style.size() != 0) {
+            for (String element: style) {
+                builder.or(restaurant.style.eq(element));
+            }
         }
         if (name != null && name.trim().length() != 0) {
             builder.and(restaurant.name.like(name));
