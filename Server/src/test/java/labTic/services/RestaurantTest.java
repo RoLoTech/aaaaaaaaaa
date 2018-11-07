@@ -46,7 +46,7 @@ public class RestaurantTest {
 //        } catch (RestaurantNoExists restaurantNoExists) {
 //            restaurantNoExists.printStackTrace();
 //        }
-        Resource backImgFile = new FileSystemResource("C:\\Users\\matia\\OneDrive\\Desktop\\descarga.jpg");
+        Resource backImgFile = new FileSystemResource("C:\\Users\\Seba\\Desktop\\restaurant.jpeg");
         //ClassPathResource backImgFile = new ClassPathResource("image/20180204_193708.jpg");
         byte[] arrayPic = new byte[0];
         try {
@@ -61,11 +61,17 @@ public class RestaurantTest {
         }
 
         try {
-            rs.addPic(1235, arrayPic);
+            rs.addPic(6, arrayPic);
+            rs.updateRestaurant(6, "Pizza");
         } catch (RestaurantNoExists restaurantNoExists) {
             restaurantNoExists.printStackTrace();
         }
-
+        try {
+            rs.addHours(1, "12:00-00:00", "12:00-00:00", "12:00-00:00",
+                    "12:00-00:00", "12:00-01:00", "12:00-02:00", "12:00-00:00");
+        } catch (RestaurantNoExists restaurantNoExists) {
+            restaurantNoExists.printStackTrace();
+        }
     }
 
    /* @Test
