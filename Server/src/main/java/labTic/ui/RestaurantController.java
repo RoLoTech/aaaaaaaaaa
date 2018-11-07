@@ -1,7 +1,5 @@
 package labTic.ui;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -24,8 +22,10 @@ import org.springframework.stereotype.Component;
 
 import java.net.URL;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 @Component
 public class RestaurantController implements Initializable {
@@ -54,6 +54,7 @@ public class RestaurantController implements Initializable {
 
     @FXML
     void btnFiltroMultiple1 (ActionEvent event) {
+
     }
 
     @FXML
@@ -192,49 +193,71 @@ public class RestaurantController implements Initializable {
             showRestaurants();
         }
     }
-
     @FXML
     void btnFiltrar(MouseEvent event) {
-//        x=0;
-//        restaurants = restaurantService.filter(cbLocation.getValue(),cbFoodType.getValue(),"","",null,"","");
-//        showRestaurants();
+        x=0;
+
+        List<String> locations = filtroMultiple1.getItems().stream()
+                    .filter(item -> CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
+                    .map(MenuItem::getText)
+                    .collect(Collectors.toList());
+        List<String> foodTypes = filtroMultiple2.getItems().stream()
+                .filter(item -> CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
+                .map(MenuItem::getText)
+                .collect(Collectors.toList());
+        List<String> prices = filtroMultiple4.getItems().stream()
+                .filter(item -> CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
+                .map(MenuItem::getText)
+                .collect(Collectors.toList());
+        List<String> styles = filtroMultiple3.getItems().stream()
+                .filter(item -> CheckMenuItem.class.isInstance(item) && CheckMenuItem.class.cast(item).isSelected())
+                .map(MenuItem::getText)
+                .collect(Collectors.toList());
+        restaurants = restaurantService.filter(locations,foodTypes,null,prices,null,styles,"");
+        showRestaurants();
     }
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        LocalTime horaActual = LocalTime.now();
+        //LocalTime horaActual = LocalTime.now();
         textRating1.setText(null);
         textRating2.setText(null);
         textRating3.setText(null);
         textRating4.setText(null);
 
         restaurants = restaurantService.findAll();
+
         CheckMenuItem thisFoodType;
         CheckMenuItem thisLocation;
         CheckMenuItem thisPrice;
         CheckMenuItem thisStyle;
-        /*ObservableList<String> prices = FXCollections.observableArrayList("");
-        ObservableList<String> foodTypes = FXCollections.observableArrayList("");
-        ObservableList<String> locations = FXCollections.observableArrayList("");*/
 
         for(int i = 0;i<restaurants.size();i++){
+
             thisLocation = new CheckMenuItem(restaurants.get(i).getArea());
             thisFoodType = new CheckMenuItem(restaurants.get(i).getFoodtype());
             thisPrice = new CheckMenuItem(restaurants.get(i).getPriceRange());
             thisStyle = new CheckMenuItem(restaurants.get(i).getStyle());
 
-            if(!filtroMultiple1.getItems().contains(thisLocation))
+            if(!filtroMultiple1.getItems().contains(thisLocation)) {
                 filtroMultiple1.getItems().add(thisLocation);
+                //locations.add(sLocation);
+            }
 
-            if(!filtroMultiple2.getItems().contains(thisFoodType))
+            if(!filtroMultiple2.getItems().contains(thisFoodType)) {
                 filtroMultiple2.getItems().add(thisFoodType);
+               // foodTypes.add(sFoodType);
+            }
 
-            if(!filtroMultiple3.getItems().contains(thisStyle))
+            if(!filtroMultiple3.getItems().contains(thisStyle)) {
                 filtroMultiple3.getItems().add(thisStyle);
-
-            if(!filtroMultiple4.getItems().contains(thisPrice))
+                //styles.add(sStyle);
+            }
+            if(!filtroMultiple4.getItems().contains(thisPrice)) {
                 filtroMultiple4.getItems().add(thisPrice);
+                //prices.add(sPrice);
+            }
 
         }
 //        cbLocation.setItems(locations);
@@ -245,22 +268,6 @@ public class RestaurantController implements Initializable {
 
     private void showRestaurants(){
 
-        /* private Text textRestaurant1;
-
-    @FXML
-    private Text textRating1;
-
-    @FXML
-    private Text textLocation1;
-
-    @FXML
-    private Text textComida1;
-
-    @FXML
-    private Text textEstilo1;
-
-    @FXML
-    private Text textPrecio1;*/
         if(x<restaurants.size()){
             textRestaurant1.setText(restaurants.get(x).getName());
             textLocation1.setText(restaurants.get(x).getArea());

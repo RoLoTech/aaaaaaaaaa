@@ -93,7 +93,10 @@ public class RestaurantViewController implements Initializable {
         titulo.setText(restaurant.getName());
         ubicacion.setText(restaurant.getAddress());
         tipoComida.setText(restaurant.getFoodtype());
-//        horario.setText("L a V de " +restaurant.getOpeningTime()+ " a "+ restaurant.getClosingTime());
+        horario.setText("Lunes: "+restaurant.getHoursMonday()+" / "+"Martes: "+restaurant.getHoursTuesday()
+            +"\n"+"Miercoles: "+restaurant.getHoursWednesday()+" / "+"Jueves: "+restaurant.getHoursThursday()
+                +"\n"+"Viernes: "+restaurant.getHoursFriday()+" / "+ "Sabado: "+restaurant.getHoursSaturday()
+                    +"\n"+"Domingo: "+restaurant.getHoursSunday());
         precio.setText(restaurant.getPriceRange());
         try{
         BufferedImage img = ImageIO.read(new ByteArrayInputStream(restaurant.getProfilePicture()));
