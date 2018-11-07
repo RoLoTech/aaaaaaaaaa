@@ -14,15 +14,6 @@ public class Restaurant {
 
     private boolean[] tables;
 
-    public Restaurant() {
-    }
- /* String name = firstName.getText();
-    String style = lastName.getText();
-    String sPhoneNumber = phoneNumber.getText();
-    String address = pass.getText();
-    String area = email.getText();
-*/
-
     public Restaurant(long rut, String name, String address, String style, String phoneNumber, String area, String food, String price) {
         this.rut = rut;
         this.name = name;
@@ -34,9 +25,10 @@ public class Restaurant {
         this.priceRange = price;
     }
 
+    public Restaurant(){}
 
     @Id
-    @Column (name = "restaurant_rut", nullable = false, unique = true)
+    @Column(name = "restaurant_rut", nullable = false, unique = true)
     private Long rut;
 
     @Column(name = "restaurant_name")
@@ -93,11 +85,15 @@ public class Restaurant {
     @Column(name = "restaurant_sunday")
     private String hoursSunday;
 
-    @Column (name = "restaurant_description")
+    @Column(name = "restaurant_description")
     private String description;
 
-    @Column (name = "restaurant_availability")
+    @Column(name = "restaurant_availability")
     private Boolean availability;
+
+    @Lob
+    @Column(name = "restaurant_profile_picture")
+    private byte[] profilePicture;
 
     public String getDescription() {
         return description;
@@ -107,20 +103,6 @@ public class Restaurant {
         this.description = description;
     }
 
-    @Lob
-    @Column (name = "restaurant_profile_picture")
-    private byte[] profilePicture;
-
-//    @Lob
-//    @Column(name="pic")
-//    private byte[] pic;
-
-//    @Column (name = "restaurant_opening_time")
-//    private LocalTime openingTime;
-//
-//    @Column (name = "restaurant_closing_time")
-//    private LocalTime closingTime;
-
     public String getPassword() {
         return password;
     }
@@ -128,22 +110,6 @@ public class Restaurant {
     public void setPassword(String password) {
         this.password = password;
     }
-
-//    public LocalTime getOpeningTime() {
-//        return openingTime;
-//    }
-//
-//    public void setOpeningTime(LocalTime openingTime) {
-//        this.openingTime = openingTime;
-//    }
-
-//    public LocalTime getClosingTime() {
-//        return closingTime;
-//    }
-//
-//    public void setClosingTime(LocalTime closingTime) {
-//        this.closingTime = closingTime;
-//    }
 
     public String getName() {
         return name;
@@ -153,7 +119,7 @@ public class Restaurant {
         this.name = name;
     }
 
-    public String getAddress(){
+    public String getAddress() {
         return address;
     }
 
@@ -181,6 +147,14 @@ public class Restaurant {
         this.rut = rut;
     }
 
+    public Integer getCompletedReservations() {
+        return completedReservations;
+    }
+
+    public void setCompletedReservations(Integer completedReservations) {
+        this.completedReservations = completedReservations;
+    }
+
     public String getFoodtype() {
         return foodtype;
     }
@@ -189,7 +163,9 @@ public class Restaurant {
         this.foodtype = foodtype;
     }
 
-    public String getPhone(){ return phone; }
+    public String getPhone() {
+        return phone;
+    }
 
     @Override
     public String toString() {
@@ -201,7 +177,6 @@ public class Restaurant {
                 ", rating=" + rating +
                 '}';
     }
-
 
 
     public byte[] getProfilePicture() {
@@ -276,26 +251,4 @@ public class Restaurant {
         this.hoursSunday = hoursSunday;
     }
 
-
-    //    public void bookTable(int table) throws InvalidTableException, TableAlreadyInUseException {
-//        if (table - 1 < 0 || table - 1 < this.capacity) {
-//            throw new InvalidTableException();
-//        }
-//        if (this.tables[table] == false) {
-//            this.tables[table] = true;
-//        } else {
-//            throw new TableAlreadyInUseException();
-//        }
-//    }
-//
-//    public void releaseTable(int table) throws InvalidTableException, TableAlreadyReleasedException {
-//        if (table - 1 < 0 || table - 1 < this.capacity) {
-//            throw new InvalidTableException();
-//        }
-//        if (this.tables[table] == true) {
-//            this.tables[table] = false;
-//        } else {
-//            throw new TableAlreadyReleasedException();
-//        }
-//    }
 }

@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
@@ -22,16 +24,10 @@ public class FilteringTest {
         assertEquals(1, rs.findAllByFood_type("Panchos").size());
     }
 
-//    @Test
-//    public void testMultipleFilters(){
-//        assertEquals(1, rs.multipleFiltering("Malvin","PanchosHamburguesas","Luis Alberto de Herrera","$$$",new Float(5.0),"Familiar","La Pasiva").size());
-//    }
-//
     @Test
     public void testFinalFilter(){
-        //assertEquals(1, rs.filter("","Panchos","Luis Alberto de Herrera","", null,"","La Pasiva").size());
-//        assertEquals(1, rs.filter("","Panchos","Luis Alberto de Herrera","$$$",new Float(5.0),"Familiar","La Pasiva").size());
-//        assertEquals(1, rs.filter(null,"Panchos","Luis Alberto de Herrera","$$$",new Float(5.0),"Familiar","La Pasiva").size());
-//
+        ArrayList<String> comidas = new ArrayList<>();
+        comidas.add("Panchos");
+      assertEquals(1, rs.filter(null, comidas,"Luis Alberto de Herrera",null, null,null,"La Pasiva").size());
     }
 }

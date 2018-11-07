@@ -18,14 +18,20 @@ public class Booking {
     @JoinColumn(name = "restaurant_rut")
     private Restaurant restaurant;
 
-    @Column (name = "booking_rut")
+    @Column(name = "booking_rut")
     private Long rut;
 
-    @Column
+    @Column (name = "booking_alias")
     private String alias;
 
-    @Column
-    private boolean confirmed;
+    @Column (name = "booking_confirmation")
+    private Boolean confirmed;
+
+    @Column (name = "booking_rejection")
+    private Boolean rejected;
+
+    @Column (name = "booking_finalization")
+    private Boolean finished;
 
     @ManyToOne
     @JoinColumn(name = "tables_ids")
@@ -58,11 +64,28 @@ public class Booking {
         this.id = id;
     }
 
-    public void setConfirmed(){
+    public void setConfirmed() {
         this.confirmed = true;
     }
 
-    public boolean getConfirmed(){
+    public void setRejected() {
+        this.rejected = true;
+    }
+
+    public void setFinished() {
+        this.finished = true;
+        this.restaurant.setCompletedReservations(this.restaurant.getCompletedReservations()+1);
+    }
+
+    public Boolean getConfirmed() {
         return confirmed;
+    }
+
+    public Boolean getRejected() {
+        return rejected;
+    }
+
+    public Boolean getFinished() {
+        return finished;
     }
 }

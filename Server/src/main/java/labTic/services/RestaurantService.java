@@ -49,7 +49,7 @@ public class RestaurantService {
 
         if (name == null || "".equals(name) || address == null || "".equals(address) || style == null || "".equals(style) ||
                 phoneNumber == null || "".equals(phoneNumber) || area == null || "".equals(area) || food == null || "".equals(food)
-                        || price == null || "".equals(price)) {
+                || price == null || "".equals(price)) {
 
             throw new InvalidRestaurantInformation("Alguno de los datos ingresados no es correcto");
 
@@ -77,7 +77,7 @@ public class RestaurantService {
         restaurantRepository.save(oRestaurant);
     }
 
-    public void addPic (long rut, byte[] pic) throws RestaurantNoExists {
+    public void addPic(long rut, byte[] pic) throws RestaurantNoExists {
         if (restaurantRepository.findOneByRut(rut) == null) {
             throw new RestaurantNoExists();
         }
@@ -90,7 +90,6 @@ public class RestaurantService {
     }
 
 
-
     public List<Restaurant> findAllByFood_type(String food_type) {
 
         return restaurantRepository.findAllByFoodtype(food_type);
@@ -100,7 +99,10 @@ public class RestaurantService {
     public Restaurant findOneByName(String name) {
         return restaurantRepository.findOneByName(name);
     }
-    public Restaurant findOneByRut(long rut){return restaurantRepository.findOneByRut(rut);}
+
+    public Restaurant findOneByRut(long rut) {
+        return restaurantRepository.findOneByRut(rut);
+    }
 
     public List<Restaurant> multipleFiltering(String area, String foodtype, String address, String pricerange, Float rating, String style, String name) {
         return restaurantRepository.findRestaurantsByAreaAndFoodtypeAndAddressContainingAndPriceRangeAndRatingAndStyleAndNameContaining(area, foodtype, address, pricerange, rating, style, name);
@@ -119,12 +121,12 @@ public class RestaurantService {
         BooleanBuilder builder = new BooleanBuilder();
         final QRestaurant restaurant = QRestaurant.restaurant;
         if (area != null && area.size() != 0) {
-            for (String element: area) {
+            for (String element : area) {
                 builder.or(restaurant.area.eq(element));
             }
         }
         if (foodtype != null && foodtype.size() != 0) {
-            for (String element: foodtype) {
+            for (String element : foodtype) {
                 builder.or(restaurant.foodtype.contains(element));
             }
         }
@@ -132,7 +134,7 @@ public class RestaurantService {
             builder.and(restaurant.address.like(address));
         }
         if (pricerange != null && pricerange.size() != 0) {
-            for (String element: pricerange) {
+            for (String element : pricerange) {
                 builder.or(restaurant.priceRange.eq(element));
             }
         }
@@ -140,7 +142,7 @@ public class RestaurantService {
             builder.and(restaurant.rating.eq(rating));
         }
         if (style != null && style.size() != 0) {
-            for (String element: style) {
+            for (String element : style) {
                 builder.or(restaurant.style.eq(element));
             }
         }
@@ -165,16 +167,16 @@ public class RestaurantService {
         for (Tables tableToIterate : result) {
             list.add(tableToIterate);
         }
-        boolean succesfulBooking = false;
-        for (int i = 0; i < list.size() && succesfulBooking == false; i++) {
+        boolean successfulBooking = false;
+        for (int i = 0; i < list.size() && !successfulBooking; i++) {
             if (list.get(i).getOccupant() == null) {
                 list.get(i).setOccupant(alias);
                 list.get(i).setStartReservation(startDate);
                 tables = list.get(i);
-                succesfulBooking = true;
+                successfulBooking = true;
             }
         }
-        if (succesfulBooking == false) {
+        if (!successfulBooking) {
             throw new FullRestaurantException();
         }
         Booking booking = new Booking((rut.hashCode() + alias.hashCode()), rut, alias, tables);
@@ -188,30 +190,31 @@ public class RestaurantService {
         for (Tables tables : result) {
             list.add(tables);
         }
-        boolean succesfulRelease = false;
-        for (int i = 0; i < list.size() && succesfulRelease == false; i++) {
+        boolean successfulRelease = false;
+        for (int i = 0; i < list.size() && successfulRelease == false; i++) {
             if (list.get(i).getOccupant() != null && list.get(i).getOccupant().equals(alias)) {
+                bookingRepository.findByAlias(alias).setFinished();
                 list.get(i).setOccupant(null);
                 list.get(i).setStartReservation(null);
-                succesfulRelease = true;
+                successfulRelease = true;
             }
         }
     }
 
-    public void confirmBooking(Booking booking){
+    public List<Restaurant>showActiveRestaurants(){
+        return restaurantRepository.findAllByAvailability(true);
+    }
+
+    public void confirmBooking(Booking booking) {
         booking.setConfirmed();
     }
 
-    public void rejectBooking(Booking booking){
-        bookingRepository.delete(booking);
+    public void rejectBooking(Booking booking) {
+        booking.setRejected();
     }
 
-   /* public List<Restaurant> filterBy(String... args) {
-        List<Restaurant> results = new ArrayList<Restaurant>();
-        if (args.length == 1){
-            results = RestaurantRepository.findAllBy1args[0];
-        }
+    public Integer getFee(Restaurant restaurant) {
+        return restaurant.getCompletedReservations() * 100;
+    }
 
-        return results;
-    } */
 }

@@ -24,6 +24,8 @@ public interface RestaurantRepository extends CrudRepository<Restaurant, Long>, 
 
     List<Restaurant> findByArea(String area);
 
+    List<Restaurant> findAllByAvailability(Boolean availability);
+
    // List<Restaurant> findAll();
 
 }
