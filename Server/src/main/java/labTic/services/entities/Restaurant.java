@@ -251,4 +251,11 @@ public class Restaurant {
         this.hoursSunday = hoursSunday;
     }
 
+    public Boolean getAvailability() {
+        return availability;
+    }
+
+    public void setAvailability(Boolean availability) {
+        this.availability = availability;
+    }
 }

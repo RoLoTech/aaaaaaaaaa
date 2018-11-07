@@ -41,6 +41,8 @@ public class QRestaurant extends EntityPathBase<Restaurant> {
 
     public final StringPath style = createString("style");
 
+    public final BooleanPath availability = createBoolean("availability");
+
     public final ArrayPath<boolean[], Boolean> tables = createArray("tables", boolean[].class);
 
     public QRestaurant(String variable) {

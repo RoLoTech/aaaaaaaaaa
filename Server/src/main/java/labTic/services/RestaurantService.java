@@ -17,6 +17,7 @@ import labTic.persistence.RestaurantRepository;
 import labTic.services.entities.Restaurant;
 
 import javax.persistence.Column;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
 
@@ -55,10 +56,7 @@ public class RestaurantService {
 
         }
 
-        // Verifico si el restaurante no existe
-
         if (restaurantRepository.findOneByRut(rut) != null) {
-
             throw new RestaurantAlreadyExists();
         }
 
@@ -191,7 +189,7 @@ public class RestaurantService {
             list.add(tables);
         }
         boolean successfulRelease = false;
-        for (int i = 0; i < list.size() && successfulRelease == false; i++) {
+        for (int i = 0; i < list.size() && !successfulRelease; i++) {
             if (list.get(i).getOccupant() != null && list.get(i).getOccupant().equals(alias)) {
                 bookingRepository.findByAlias(alias).setFinished();
                 list.get(i).setOccupant(null);
@@ -201,8 +199,13 @@ public class RestaurantService {
         }
     }
 
-    public List<Restaurant>showActiveRestaurants(){
+    public List<Restaurant> showActiveRestaurants() {
         return restaurantRepository.findAllByAvailability(true);
+    }
+
+    public List<Restaurant> showRestaurantsNow() {
+
+        return null;
     }
 
     public void confirmBooking(Booking booking) {
@@ -211,6 +214,55 @@ public class RestaurantService {
 
     public void rejectBooking(Booking booking) {
         booking.setRejected();
+    }
+
+    public void toggleAvailability(Restaurant restaurant) {
+        if (restaurant.getAvailability()) {
+            restaurant.setAvailability(false);
+        } else {
+            restaurant.setAvailability(true);
+        }
+    }
+
+    public String[] getTimeTable(Restaurant restaurant, int day) {
+        String[] times = null;
+        switch (day) {
+            case 1:
+                times = restaurant.getHoursMonday().split(" ");
+                break;
+            case 2:
+                times = restaurant.getHoursTuesday().split(" ");
+                break;
+            case 3:
+                times = restaurant.getHoursMonday().split(" ");
+                break;
+            case 4:
+                times = restaurant.getHoursMonday().split(" ");
+                break;
+            case 5:
+                times = restaurant.getHoursMonday().split(" ");
+                break;
+            case 6:
+                times = restaurant.getHoursMonday().split(" ");
+                break;
+            default:
+                times = restaurant.getHoursSunday().split(" ");
+        }
+        return times;
+    }
+
+    public List<Restaurant> getAvailableRestaurantsNow() {
+        List<Restaurant> candidates = restaurantRepository.findAllByAvailability(true);
+        int day = LocalDateTime.now().getDayOfWeek().getValue();
+        for (Restaurant candidate : candidates) {
+            String[] timeTable = this.getTimeTable(candidate, day);
+            LocalTime openingTime = LocalTime.parse(timeTable[0]);
+            LocalTime closingTime = LocalTime.parse(timeTable[1]);
+            if(LocalTime.now().isBefore(openingTime) || LocalTime.now().isAfter(closingTime)){
+                candidates.remove(candidate);
+            }
+        }
+        return candidates;
     }
 
     public Integer getFee(Restaurant restaurant) {
