@@ -72,6 +72,22 @@ public class RestaurantService {
         restaurantRepository.save(oRestaurant);
     }
 
+    public void addHours(long rut, String monday, String tuesday, String wednesday, String thursday,
+                         String friday, String saturday, String sunday) throws RestaurantNoExists {
+        if (restaurantRepository.findOneByRut(rut) == null) {
+            throw new RestaurantNoExists();
+        }
+        Restaurant oRestaurant = restaurantRepository.findOneByRut(rut);
+        oRestaurant.setHoursMonday(monday);
+        oRestaurant.setHoursTuesday(tuesday);
+        oRestaurant.setHoursWednesday(wednesday);
+        oRestaurant.setHoursThursday(thursday);
+        oRestaurant.setHoursFriday(friday);
+        oRestaurant.setHoursSaturday(saturday);
+        oRestaurant.setHoursSunday(sunday);
+        restaurantRepository.save(oRestaurant);
+    }
+
     public void addPic(long rut, byte[] pic) throws RestaurantNoExists {
         if (restaurantRepository.findOneByRut(rut) == null) {
             throw new RestaurantNoExists();
