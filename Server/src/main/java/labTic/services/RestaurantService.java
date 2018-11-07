@@ -1,7 +1,6 @@
 package labTic.services;
 
 import com.querydsl.core.BooleanBuilder;
-import javafx.scene.control.Tab;
 import labTic.persistence.BookingRepository;
 import labTic.persistence.TableRepository;
 import labTic.services.entities.Booking;
@@ -15,8 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import labTic.persistence.RestaurantRepository;
 import labTic.services.entities.Restaurant;
-
-import javax.persistence.Column;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
@@ -263,6 +260,10 @@ public class RestaurantService {
             }
         }
         return candidates;
+    }
+
+    public List<Booking> getBookings(Restaurant restaurant){
+        return bookingRepository.findAllByRut(restaurant.getRut());
     }
 
     public Integer getFee(Restaurant restaurant) {

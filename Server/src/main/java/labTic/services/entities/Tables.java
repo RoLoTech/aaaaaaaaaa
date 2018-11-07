@@ -11,8 +11,8 @@ import java.time.LocalTime;
 public class Tables {
 
     @Id
-    @GeneratedValue(generator="tables_ids")
-    @GenericGenerator(name="tables_ids", strategy = "increment")
+    @GeneratedValue(generator = "tables_ids")
+    @GenericGenerator(name = "tables_ids", strategy = "increment")
     private Long id;
 
     private Long restaurantRut;
@@ -23,31 +23,10 @@ public class Tables {
 
     private LocalTime startReservation;
 
-    public Tables() {
-    }
-
-
     public Tables(Long restaurantRut, int capacity) {
-        this.restaurantRut=restaurantRut;
-        this.capacity=capacity;
-
-    }
-
-    public Tables(Long restaurantRut) {
-        this.restaurantRut=restaurantRut;
-
-    }
-
-
-
-
-
-    public long getRestaurantRut() {
-        return restaurantRut;
-    }
-
-    public void setRestaurantRut(long restaurantRut) {
         this.restaurantRut = restaurantRut;
+        this.capacity = capacity;
+
     }
 
     public String getOccupant() {
@@ -58,20 +37,8 @@ public class Tables {
         this.occupant = occupant;
     }
 
-    public LocalTime getStartReservation() {
-        return startReservation;
-    }
-
     public void setStartReservation(LocalTime startReservation) {
         this.startReservation = startReservation;
-    }
-
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
     }
 
     public Long getId() {
@@ -81,4 +48,5 @@ public class Tables {
     public void setId(Long id) {
         this.id = id;
     }
+
 }

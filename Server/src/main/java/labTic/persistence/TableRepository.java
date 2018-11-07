@@ -1,6 +1,5 @@
 package labTic.persistence;
 
-import labTic.services.entities.Client;
 import labTic.services.entities.Tables;
 import org.springframework.data.repository.CrudRepository;
 

@@ -9,8 +9,6 @@ public interface BookingRepository extends CrudRepository<Booking, Long> {
 
     Booking findByAlias(String alias);
 
-    List<Booking> findAll();
-
-  //  List<Booking> findAllBy
+    List<Booking> findAllByRut(Long rut);
 
 }

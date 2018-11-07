@@ -8,22 +8,29 @@ import javax.persistence.*;
 public class Client {
 
     @Id
-    @GeneratedValue(generator="clients_ids")
-    @GenericGenerator(name="clients_ids", strategy = "increment")
+    @GeneratedValue(generator = "clients_ids")
+    @GenericGenerator(name = "clients_ids", strategy = "increment")
     private Long id;
 
+    @Column
     private String firstName;
 
+    @Column
     private String lastName;
 
+    @Column
     private String email;
 
+    @Column
     private String user;
 
+    @Column
     private String password;
 
+    @Column
     private String phoneNumber;
 
+    @Column
     private Float rating;
 
     public Client() {
@@ -48,34 +55,6 @@ public class Client {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -84,20 +63,8 @@ public class Client {
         this.phoneNumber = phoneNumber;
     }
 
-    public float getRating() {
-        return rating;
-    }
-
-    public void setRating(float rating) {
-        this.rating = rating;
-    }
-
     public String getPassword() {
         return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public Long getId() {

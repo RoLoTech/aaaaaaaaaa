@@ -3,7 +3,6 @@ package labTic.services.entities;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.*;
 
 @Entity
 @Table(name = "booking")
@@ -21,39 +20,28 @@ public class Booking {
     @Column(name = "booking_rut")
     private Long rut;
 
-    @Column (name = "booking_alias")
+    @Column(name = "booking_alias")
     private String alias;
 
-    @Column (name = "booking_confirmation")
+    @Column(name = "booking_confirmation")
     private Boolean confirmed;
 
-    @Column (name = "booking_rejection")
+    @Column(name = "booking_rejection")
     private Boolean rejected;
 
-    @Column (name = "booking_finalization")
+    @Column(name = "booking_finalization")
     private Boolean finished;
 
     @ManyToOne
     @JoinColumn(name = "tables_ids")
     private Tables table;
 
-    public Booking() {
-    }
-
     public Booking(long id, Long rut, String alias, Tables table) {
         this.id = id;
-        this.rut = this.restaurant.getRut();
+        this.rut = rut;
         this.alias = alias;
         this.table = table;
         this.confirmed = false;
-    }
-
-    public String getAlias() {
-        return alias;
-    }
-
-    public void setAlias(String alias) {
-        this.alias = alias;
     }
 
     public long getId() {
@@ -74,18 +62,6 @@ public class Booking {
 
     public void setFinished() {
         this.finished = true;
-        this.restaurant.setCompletedReservations(this.restaurant.getCompletedReservations()+1);
-    }
-
-    public Boolean getConfirmed() {
-        return confirmed;
-    }
-
-    public Boolean getRejected() {
-        return rejected;
-    }
-
-    public Boolean getFinished() {
-        return finished;
+        this.restaurant.setCompletedReservations(this.restaurant.getCompletedReservations() + 1);
     }
 }

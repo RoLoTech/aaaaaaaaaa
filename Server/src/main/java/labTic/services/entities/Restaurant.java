@@ -1,18 +1,10 @@
 package labTic.services.entities;
 
-
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
-import java.sql.Blob;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @Entity
 @Table(name = "restaurant")
 public class Restaurant {
-
-    private boolean[] tables;
 
     public Restaurant(long rut, String name, String address, String style, String phoneNumber, String area, String food, String price) {
         this.rut = rut;
@@ -25,7 +17,8 @@ public class Restaurant {
         this.priceRange = price;
     }
 
-    public Restaurant(){}
+    public Restaurant() {
+    }
 
     @Id
     @Column(name = "restaurant_rut", nullable = false, unique = true)
@@ -95,20 +88,8 @@ public class Restaurant {
     @Column(name = "restaurant_profile_picture")
     private byte[] profilePicture;
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getPassword() {
         return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getName() {
@@ -139,20 +120,12 @@ public class Restaurant {
         return priceRange;
     }
 
-    public Float getRating() {
-        return rating;
-    }
-
     public void setId(long rut) {
         this.rut = rut;
     }
 
     public Integer getCompletedReservations() {
         return completedReservations;
-    }
-
-    public void setCompletedReservations(Integer completedReservations) {
-        this.completedReservations = completedReservations;
     }
 
     public String getFoodtype() {
@@ -199,56 +172,28 @@ public class Restaurant {
         return hoursMonday;
     }
 
-    public void setHoursMonday(String hoursMonday) {
-        this.hoursMonday = hoursMonday;
-    }
-
     public String getHoursTuesday() {
         return hoursTuesday;
-    }
-
-    public void setHoursTuesday(String hoursTuesday) {
-        this.hoursTuesday = hoursTuesday;
     }
 
     public String getHoursWednesday() {
         return hoursWednesday;
     }
 
-    public void setHoursWednesday(String hoursWednesday) {
-        this.hoursWednesday = hoursWednesday;
-    }
-
     public String getHoursThursday() {
         return hoursThursday;
-    }
-
-    public void setHoursThursday(String hoursThursday) {
-        this.hoursThursday = hoursThursday;
     }
 
     public String getHoursFriday() {
         return hoursFriday;
     }
 
-    public void setHoursFriday(String hoursFriday) {
-        this.hoursFriday = hoursFriday;
-    }
-
     public String getHoursSaturday() {
         return hoursSaturday;
     }
 
-    public void setHoursSaturday(String hoursSaturday) {
-        this.hoursSaturday = hoursSaturday;
-    }
-
     public String getHoursSunday() {
         return hoursSunday;
-    }
-
-    public void setHoursSunday(String hoursSunday) {
-        this.hoursSunday = hoursSunday;
     }
 
     public Boolean getAvailability() {
@@ -257,5 +202,9 @@ public class Restaurant {
 
     public void setAvailability(Boolean availability) {
         this.availability = availability;
+    }
+
+    void setCompletedReservations(int completedReservations) {
+        this.completedReservations = completedReservations;
     }
 }
