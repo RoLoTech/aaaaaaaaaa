@@ -207,4 +207,32 @@ public class Restaurant {
     void setCompletedReservations(int completedReservations) {
         this.completedReservations = completedReservations;
     }
+
+    public void setHoursMonday(String monday) {
+        this.hoursMonday = monday;
+    }
+
+    public void setHoursTuesday(String hoursTuesday) {
+        this.hoursTuesday = hoursTuesday;
+    }
+
+    public void setHoursWednesday(String hoursWednesday) {
+        this.hoursWednesday = hoursWednesday;
+    }
+
+    public void setHoursThursday(String hoursThursday) {
+        this.hoursThursday = hoursThursday;
+    }
+
+    public void setHoursFriday(String hoursFriday) {
+        this.hoursFriday = hoursFriday;
+    }
+
+    public void setHoursSaturday(String hoursSaturday) {
+        this.hoursSaturday = hoursSaturday;
+    }
+
+    public void setHoursSunday(String hoursSunday) {
+        this.hoursSunday = hoursSunday;
+    }
 }
