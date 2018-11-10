@@ -2,6 +2,7 @@ package labTic.ui;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -105,7 +106,7 @@ public class PerfilController implements Initializable {
         restaurantRepository.save(restaurant);
 
 
-        if(image.getText()!=null){
+        if(!"".equals(image.getText())){
             String imageSource = image.getText();
             Resource backImgFile = new FileSystemResource(image.getText());
             byte[] arrayPic = new byte[0];
@@ -136,15 +137,18 @@ public class PerfilController implements Initializable {
     @FXML
     void btnBuscarImagen(MouseEvent event) {
 
-//        FileChooser chooser = new FileChooser();
-//        File file = chooser.showOpenDialog(stage);
-//        if (file != null) {
-//            String fileAsString = file.toString();
-//
-//            image.setText("Chosen: " + fileAsString);
-//        } else {
-//            image.setText(null);
-//        }
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+
+        FileChooser chooser = new FileChooser();
+        File file = chooser.showOpenDialog(stage);
+        if (file != null) {
+           String fileAsString = file.toString();
+
+            image.setText(fileAsString);
+        } else {
+            image.setText(null);
+        }
 
     }
 

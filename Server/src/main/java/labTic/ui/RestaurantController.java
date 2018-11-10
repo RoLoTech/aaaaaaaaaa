@@ -36,7 +36,9 @@ public class RestaurantController implements Initializable {
 
     private Client client;
 
+
     public int x=0;
+
 
     public List<Restaurant> restaurants;
 
