@@ -143,8 +143,7 @@ public class PerfilController implements Initializable {
         FileChooser chooser = new FileChooser();
         File file = chooser.showOpenDialog(stage);
         if (file != null) {
-           String fileAsString = file.toString();
-
+            String fileAsString = file.toString();
             image.setText(fileAsString);
         } else {
             image.setText(null);
