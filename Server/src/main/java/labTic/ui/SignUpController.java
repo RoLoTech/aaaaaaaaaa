@@ -36,6 +36,12 @@ public class SignUpController {
     @FXML
     private TextField phoneNumber;
 
+
+    @FXML
+    void btnVolver(MouseEvent event) {
+
+    }
+
     @FXML
     void loginTab(MouseEvent event) throws Exception {
         ClientMain.changeScene("Client/Login.fxml",event);}

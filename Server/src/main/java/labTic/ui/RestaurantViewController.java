@@ -1,6 +1,7 @@
 package labTic.ui;
 
 import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -51,6 +53,24 @@ public class RestaurantViewController implements Initializable {
     @FXML
     private Text precio;
 
+    @FXML
+    private Text txtDescripcion;
+
+    @FXML
+    private TextField txtPersonas;
+
+    @FXML
+    private TextField txtHora;
+
+    @FXML
+    void tabDescripcion(ActionEvent event) {
+
+    }
+
+    @FXML
+    void tabVistaGeneral(ActionEvent event) {
+
+    }
 
     @FXML
     void btnReservar(MouseEvent event) {
@@ -70,7 +90,7 @@ public class RestaurantViewController implements Initializable {
         Stage stage = (Stage) node.getScene().getWindow();
 
         stage.setScene(new Scene(root));
-        stage.getScene().getStylesheets().add(SignUpController.class.getResource("Client/LogInSignUp.css").toExternalForm());
+        stage.getScene().getStylesheets().add(SignUpController.class.getResource("Client/Restaurant.css").toExternalForm());
     }
 
 

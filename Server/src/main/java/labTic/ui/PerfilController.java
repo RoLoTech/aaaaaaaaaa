@@ -1,8 +1,11 @@
 package labTic.ui;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -59,6 +62,27 @@ public class PerfilController implements Initializable {
 //
 //    @FXML
 //    private TextField hourSunday;
+
+    @FXML
+    private TextField horarioLunes;
+
+    @FXML
+    private TextField horarioMiercoles;
+
+    @FXML
+    private TextField horarioViernes;
+
+    @FXML
+    private TextField horarioDomingo;
+
+    @FXML
+    private TextField horarioMartes;
+
+    @FXML
+    private TextField horarioJueves;
+
+    @FXML
+    private TextField horarioSabado;
 
     @FXML
     private TextField houropen;

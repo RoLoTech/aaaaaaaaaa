@@ -155,6 +155,12 @@ public class RestaurantController implements Initializable {
     @FXML
     private Text text4;
 
+
+    @FXML
+    void btnVolver(MouseEvent event) {
+
+    }
+
     void setClient(Client client){
         this.client = client;
     }
@@ -345,7 +351,7 @@ public class RestaurantController implements Initializable {
             Stage stage = (Stage) node.getScene().getWindow();
 
             stage.setScene(new Scene(root));
-            stage.getScene().getStylesheets().add(SignUpController.class.getResource("Client/Restaurant.css").toExternalForm());
+            stage.getScene().getStylesheets().add(SignUpController.class.getResource("Client/RestaurantView.css").toExternalForm());
 
             /*FXMLLoader loader = new FXMLLoader(getClass().getResource("RestaurantView.fxml"));
             Parent root = loader.load();

@@ -72,7 +72,7 @@ public class LogInRestaurantController {
            Stage stage = (Stage) node.getScene().getWindow();
 
            stage.setScene(new Scene(root));
-           stage.getScene().getStylesheets().add(SignUpController.class.getResource("Client/LogInSignUp.css").toExternalForm());
+           stage.getScene().getStylesheets().add(SignUpController.class.getResource("Restaurant/Perfil.css").toExternalForm());
        }catch(Exception e){
            e.printStackTrace();
 
