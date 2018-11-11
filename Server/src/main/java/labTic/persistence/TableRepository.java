@@ -11,4 +11,6 @@ public interface TableRepository extends CrudRepository<Tables, Long> {
 
     List<Tables> findAllByRestaurantRut(long rut);
 
+    List<Tables> findAllByRestaurantRutAndCapacityGreaterThanEqual(long rut, int capacity);
+
 }

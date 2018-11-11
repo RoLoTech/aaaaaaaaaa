@@ -6,10 +6,7 @@ import labTic.persistence.TableRepository;
 import labTic.services.entities.Booking;
 import labTic.services.entities.QRestaurant;
 import labTic.services.entities.Tables;
-import labTic.services.exceptions.FullRestaurantException;
-import labTic.services.exceptions.RestaurantAlreadyExists;
-import labTic.services.exceptions.InvalidRestaurantInformation;
-import labTic.services.exceptions.RestaurantNoExists;
+import labTic.services.exceptions.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import labTic.persistence.RestaurantRepository;
@@ -171,12 +168,15 @@ public class RestaurantService {
         return list;
     }
 
-    public void book(Long rut, LocalTime startDate, String alias) throws FullRestaurantException {
+    public void book(Long rut, LocalTime startDate, String alias, int assistants) throws FullRestaurantException, NoAvailableTablesException {
         Tables tables = null;
-        Iterable<Tables> result = tableRepository.findAllByRestaurantRut(rut);
+        Iterable<Tables> result = tableRepository.findAllByRestaurantRutAndCapacityGreaterThanEqual(rut, assistants);
         List<Tables> list = new ArrayList<>();
         for (Tables tableToIterate : result) {
             list.add(tableToIterate);
+        }
+        if(list.size()==0){
+            throw new NoAvailableTablesException();
         }
         boolean successfulBooking = false;
         for (int i = 0; i < list.size() && !successfulBooking; i++) {
