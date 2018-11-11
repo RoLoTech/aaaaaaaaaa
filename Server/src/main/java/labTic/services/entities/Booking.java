@@ -3,6 +3,7 @@ package labTic.services.entities;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.time.LocalTime;
 
 @Entity
 @Table(name = "booking")
@@ -23,6 +24,12 @@ public class Booking {
     @Column(name = "booking_alias")
     private String alias;
 
+    @Column(name = "booking_start_date")
+    private LocalTime startDate;
+
+    @Column(name = "booking_assistants")
+    private Integer assistants;
+
     @Column(name = "booking_confirmation")
     private Boolean confirmed;
 
@@ -36,12 +43,23 @@ public class Booking {
     @JoinColumn(name = "tables_ids")
     private Tables table;
 
-    public Booking(long id, Long rut, String alias, Tables table) {
+    public Booking(Long id, Long rut, String alias, Tables table) {
         this.id = id;
         this.rut = rut;
         this.alias = alias;
         this.table = table;
         this.confirmed = false;
+    }
+
+    public Booking(Long id, Long rut, String alias, Integer assistants, LocalTime startDate){
+        this.id = id;
+        this.rut = rut;
+        this.alias = alias;
+        this.assistants = assistants;
+        this.startDate = startDate;
+        this.confirmed = false;
+        this.rejected = false;
+        this.finished = false;
     }
 
     public long getId() {

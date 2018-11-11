@@ -212,7 +212,7 @@ public class Restaurant {
         this.availability = availability;
     }
 
-    void setCompletedReservations(int completedReservations) {
+    public void setCompletedReservations(int completedReservations) {
         this.completedReservations = completedReservations;
     }
 

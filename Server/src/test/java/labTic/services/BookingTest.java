@@ -34,13 +34,13 @@ public class BookingTest {
 //        }
 
 //        Tables  tab = ts.findAllByRestaurantRut(Long.valueOf(12));
-
+/*
         try {
 
             rs.book(rest.getRut(), LocalTime.parse("10:15:30"), "prueba");
         } catch (FullRestaurantException e) {
             e.printStackTrace();
         }
-
+*/
     }
 }

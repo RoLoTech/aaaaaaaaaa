@@ -11,4 +11,8 @@ public interface BookingRepository extends CrudRepository<Booking, Long> {
 
     List<Booking> findAllByRut(Long rut);
 
+    List<Booking> findAllByRutAndConfirmedAndFinishedAndRejected (Long rut, boolean confirmed, boolean finished, boolean rejected);
+
+    Booking findByAliasAndFinished (String alias, boolean finished);
+
 }

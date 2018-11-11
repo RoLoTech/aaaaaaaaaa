@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import labTic.persistence.RestaurantRepository;
 import labTic.services.entities.Restaurant;
+
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
@@ -175,7 +176,7 @@ public class RestaurantService {
         for (Tables tableToIterate : result) {
             list.add(tableToIterate);
         }
-        if(list.size()==0){
+        if (list.size() == 0) {
             throw new NoAvailableTablesException();
         }
         boolean successfulBooking = false;
@@ -190,9 +191,17 @@ public class RestaurantService {
         if (!successfulBooking) {
             throw new FullRestaurantException();
         }
-        Booking booking = new Booking((rut.hashCode() + alias.hashCode()), rut, alias, tables);
+        Booking booking = new Booking((long) (rut.hashCode() + alias.hashCode()), rut, alias, tables);
         bookingRepository.save(booking);
 
+    }
+
+    public void bookWithoutTable(Long rut, LocalTime startDate, String alias, int assistants) throws FullRestaurantException {
+        if (!restaurantRepository.findOneByRut(rut).getAvailability()) {
+            throw new FullRestaurantException();
+        }
+        Booking booking = new Booking((long) (rut.hashCode() + alias.hashCode()), rut, alias, assistants, startDate);
+        bookingRepository.save(booking);
     }
 
     public void release(Restaurant restaurant, String alias) {
@@ -210,6 +219,11 @@ public class RestaurantService {
                 successfulRelease = true;
             }
         }
+    }
+
+    public void releaseWithoutTable(Restaurant restaurant, String alias) {
+        bookingRepository.findByAliasAndFinished(alias, false).setFinished();
+        restaurant.setCompletedReservations(restaurant.getCompletedReservations() + 1);
     }
 
     public List<Restaurant> showActiveRestaurants() {
@@ -271,15 +285,19 @@ public class RestaurantService {
             String[] timeTable = this.getTimeTable(candidate, day);
             LocalTime openingTime = LocalTime.parse(timeTable[0]);
             LocalTime closingTime = LocalTime.parse(timeTable[1]);
-            if(LocalTime.now().isBefore(openingTime) || LocalTime.now().isAfter(closingTime)){
+            if (LocalTime.now().isBefore(openingTime) || LocalTime.now().isAfter(closingTime)) {
                 candidates.remove(candidate);
             }
         }
         return candidates;
     }
 
-    public List<Booking> getBookings(Restaurant restaurant){
+    public List<Booking> getBookings(Restaurant restaurant) {
         return bookingRepository.findAllByRut(restaurant.getRut());
+    }
+
+    public List<Booking> getNewBookings(Restaurant restaurant) {
+        return bookingRepository.findAllByRutAndConfirmedAndFinishedAndRejected(restaurant.getRut(), false, false, false);
     }
 
     public Integer getFee(Restaurant restaurant) {
