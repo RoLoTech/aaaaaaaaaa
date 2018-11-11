@@ -8,119 +8,144 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.text.Text?>
 
-<VBox stylesheets="@LogInSignUp.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labTic.ui.SignUpController">
+<VBox stylesheets="@LogInSignUp.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labTic.ui.SignUpController">
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="back">
          <children>
-            <HBox alignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <padding>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-               </padding>
+            <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Text smooth="false" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="0.0" style="-fx-font-weight: bolder; -fx-fill: white; -fx-font-size: 24;" text="ReservApp">
-                     <effect>
-                        <DropShadow />
-                     </effect>
-                  </Text>
-                  <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                  <HBox alignment="CENTER">
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
                      <children>
-                        <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#signupTab" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white; -fx-font-weight: bold; -fx-font-size: 12;" text="Registrarse">
+                        <Polygon fill="WHITE" onMouseClicked="#btnVolver" opacity="0.0" points="30.0, 53.0, 50.0, 40.0, 50.0, 64.0" stroke="WHITE" strokeType="INSIDE" />
+                        <Text smooth="false" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeMiterLimit="0.0" style="-fx-font-weight: bolder; -fx-fill: white; -fx-font-size: 24;" text="ReservApp">
+                           <effect>
+                              <DropShadow />
+                           </effect>
                            <HBox.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                              <Insets left="10.0" />
                            </HBox.margin>
-                        </Button>
-                        <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#loginTab" style="-fx-background-color: transparent; -fx-text-fill: #aeaeae; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #aeaeae; -fx-font-weight: bold; -fx-font-size: 12;" text="Ingresar">
+                        </Text>
+                        <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#signupTab" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: white; -fx-font-weight: bold; -fx-font-size: 12;" text="Registrarse">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button alignment="CENTER" mnemonicParsing="false" onMouseClicked="#loginTab" style="-fx-background-color: transparent; -fx-text-fill: #aeaeae; -fx-border-width: 0px 0px 2px 0px; -fx-border-color: #aeaeae; -fx-font-weight: bold; -fx-font-size: 12;" text="Ingresar">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                     <children>
+                        <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
+                           <children>
+                              <HBox alignment="CENTER" style="-fx-border-color: white; -fx-border-width: 0 0 2 0;">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="👤" />
+                                    <TextField fx:id="user" promptText="Usuario" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox alignment="CENTER" style="-fx-border-color: white; -fx-border-width: 0 0 2 0;">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="🔑" />
+                                    <PasswordField fx:id="pass" promptText="Contraseña" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox alignment="CENTER" style="-fx-border-color: white; -fx-border-width: 0 0 2 0;">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="📧" />
+                                    <TextField fx:id="email" promptText="Email" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
                            <HBox.margin>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                              <Insets right="5.0" />
                            </HBox.margin>
-                        </Button>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" HBox.hgrow="ALWAYS">
+                           <children>
+                              <HBox alignment="CENTER" style="-fx-border-color: white; -fx-border-width: 0 0 2 0;">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="🖋" />
+                                    <TextField fx:id="firstName" promptText="Nombre" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox alignment="CENTER" style="-fx-border-color: white; -fx-border-width: 0 0 2 0;">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="🖋" />
+                                    <TextField fx:id="lastName" promptText="Apellido" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox alignment="CENTER" style="-fx-border-color: white; -fx-border-width: 0 0 2 0;">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="📱" />
+                                    <TextField fx:id="phoneNumber" promptText="Telefono" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" HBox.hgrow="ALWAYS" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </VBox>
                      </children>
-                  </HBox>
-               </children>
-            </HBox>
-            <VBox alignment="TOP_CENTER" layoutX="12.0" layoutY="100.0" prefHeight="200.0" prefWidth="274.0">
-               <children>
-                  <HBox alignment="CENTER" prefHeight="40.0" style="-fx-border-color: white; -fx-border-width: 0 0 2 0;">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="👤" />
-                        <TextField fx:id="user" promptText="Usuario" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" HBox.hgrow="ALWAYS" />
-                     </children>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
                      <VBox.margin>
-                        <Insets top="20.0" />
+                        <Insets left="10.0" right="10.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox alignment="CENTER" style="-fx-border-color: white; -fx-border-width: 0 0 2 0;">
+                  <HBox alignment="CENTER" prefHeight="28.0" prefWidth="201.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="🔑" />
-                        <PasswordField fx:id="pass" promptText="Contraseña" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" onMouseClicked="#signup" prefHeight="19.0" prefWidth="200.0" style="-fx-background-color: #2f2f2fa3; -fx-background-radius: 100; -fx-text-fill: white; -fx-font-weight: bold;" text="Registrarse" />
                      </children>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
                      <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox alignment="CENTER" style="-fx-border-color: white; -fx-border-width: 0 0 2 0;">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="📧" />
-                        <TextField fx:id="email" promptText="Email" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" HBox.hgrow="ALWAYS" />
-                     </children>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </HBox>
-               </children>
-            </VBox>
-            <HBox layoutX="199.0" layoutY="334.0" prefHeight="28.0" prefWidth="201.0">
-               <children>
-                  <Button mnemonicParsing="false" onMouseClicked="#signup" prefHeight="19.0" prefWidth="200.0" style="-fx-background-color: #2f2f2fa3; -fx-background-radius: 100; -fx-text-fill: white; -fx-font-weight: bold;" text="Registrarse" />
-               </children>
-            </HBox>
-            <VBox alignment="TOP_CENTER" layoutX="314.0" layoutY="100.0" prefHeight="200.0" prefWidth="274.0">
-               <children>
-                  <HBox alignment="CENTER" prefHeight="40.0" style="-fx-border-color: white; -fx-border-width: 0 0 2 0;">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="🖋" />
-                        <TextField fx:id="firstName" promptText="Nombre" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" HBox.hgrow="ALWAYS" />
-                     </children>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox alignment="CENTER" style="-fx-border-color: white; -fx-border-width: 0 0 2 0;">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="🖋" />
-                        <TextField fx:id="lastName" prefHeight="26.0" prefWidth="298.0" promptText="Apellido" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" />
-                     </children>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox alignment="CENTER" style="-fx-border-color: white; -fx-border-width: 0 0 2 0;">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="📱" />
-                        <TextField fx:id="phoneNumber" promptText="Telefono" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" HBox.hgrow="ALWAYS" />
-                     </children>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <VBox.margin>
-                        <Insets top="20.0" />
+                        <Insets bottom="25.0" top="25.0" />
                      </VBox.margin>
                   </HBox>
                </children>
