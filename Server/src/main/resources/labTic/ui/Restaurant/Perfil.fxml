@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox stylesheets="@Perfil.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labTic.ui.PerfilController">
+<VBox stylesheets="@Perfil.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="labTic.ui.PerfilController">
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="back">
          <children>
@@ -128,8 +128,8 @@
                                                                <children>
                                                                   <HBox alignment="TOP_CENTER" style="-fx-border-color: white; -fx-border-width: 0 0 2 0;">
                                                                      <children>
-                                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="🕑" />
-                                                                        <TextField fx:id="horarioLunes" promptText="Horario Apertura" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" text="Lunes: " HBox.hgrow="ALWAYS">
+                                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="🕑 Lunes:" />
+                                                                        <TextField fx:id="horarioLunes" promptText="Horario Apertura" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" HBox.hgrow="ALWAYS">
                                                                            <HBox.margin>
                                                                               <Insets />
                                                                            </HBox.margin>
@@ -144,8 +144,8 @@
                                                                   </HBox>
                                                                   <HBox alignment="TOP_CENTER" style="-fx-border-color: white; -fx-border-width: 0 0 2 0;">
                                                                      <children>
-                                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="🕑" />
-                                                                        <TextField fx:id="horarioMiercoles" promptText="Horario Apertura" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" text="Miércoles: " HBox.hgrow="ALWAYS">
+                                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="🕑 Miércoles" />
+                                                                        <TextField fx:id="horarioMiercoles" promptText="Horario Apertura" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" HBox.hgrow="ALWAYS">
                                                                            <HBox.margin>
                                                                               <Insets />
                                                                            </HBox.margin>
@@ -160,8 +160,8 @@
                                                                   </HBox>
                                                                   <HBox alignment="TOP_CENTER" style="-fx-border-color: white; -fx-border-width: 0 0 2 0;">
                                                                      <children>
-                                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="🕑" />
-                                                                        <TextField fx:id="horarioViernes" promptText="Horario Apertura" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" text="Viernes: " HBox.hgrow="ALWAYS">
+                                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="🕑 Viernes:" />
+                                                                        <TextField fx:id="horarioViernes" promptText="Horario Apertura" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" HBox.hgrow="ALWAYS">
                                                                            <HBox.margin>
                                                                               <Insets />
                                                                            </HBox.margin>
@@ -176,8 +176,8 @@
                                                                   </HBox>
                                                                   <HBox alignment="TOP_CENTER" style="-fx-border-color: white; -fx-border-width: 0 0 2 0;">
                                                                      <children>
-                                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="🕑" />
-                                                                        <TextField fx:id="horarioDomingo" promptText="Horario Apertura" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" text="Domingo: " HBox.hgrow="ALWAYS">
+                                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="🕑 Domingo:" />
+                                                                        <TextField fx:id="horarioDomingo" promptText="Horario Apertura" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" HBox.hgrow="ALWAYS">
                                                                            <HBox.margin>
                                                                               <Insets />
                                                                            </HBox.margin>
@@ -199,8 +199,8 @@
                                                                <children>
                                                                   <HBox alignment="TOP_CENTER" style="-fx-border-color: white; -fx-border-width: 0 0 2 0;">
                                                                      <children>
-                                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="🕑" />
-                                                                        <TextField fx:id="horarioMartes" promptText="Horario Apertura" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" text="Martes: " HBox.hgrow="ALWAYS">
+                                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="🕑 Martes:" />
+                                                                        <TextField fx:id="horarioMartes" promptText="Horario Apertura" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" HBox.hgrow="ALWAYS">
                                                                            <HBox.margin>
                                                                               <Insets />
                                                                            </HBox.margin>
@@ -215,8 +215,8 @@
                                                                   </HBox>
                                                                   <HBox alignment="TOP_CENTER" style="-fx-border-color: white; -fx-border-width: 0 0 2 0;">
                                                                      <children>
-                                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="🕑" />
-                                                                        <TextField fx:id="horarioJueves" promptText="Horario Apertura" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" text="Jueves: " HBox.hgrow="ALWAYS">
+                                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="🕑 Jueves:" />
+                                                                        <TextField fx:id="horarioJueves" promptText="Horario Apertura" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" HBox.hgrow="ALWAYS">
                                                                            <HBox.margin>
                                                                               <Insets />
                                                                            </HBox.margin>
@@ -231,8 +231,8 @@
                                                                   </HBox>
                                                                   <HBox alignment="TOP_CENTER" style="-fx-border-color: white; -fx-border-width: 0 0 2 0;">
                                                                      <children>
-                                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="🕑" />
-                                                                        <TextField fx:id="horarioSabado" promptText="Horario Apertura" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" text="Sábado: " HBox.hgrow="ALWAYS">
+                                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="🕑 Sábado:" />
+                                                                        <TextField fx:id="horarioSabado" promptText="Horario Apertura" style="-fx-background-color: transparent; -fx-prompt-text-fill: white; -fx-text-fill: white;" HBox.hgrow="ALWAYS">
                                                                            <HBox.margin>
                                                                               <Insets />
                                                                            </HBox.margin>

@@ -30,6 +30,14 @@ public class Restaurant {
     @Column(name = "restaurant_address")
     private String address;
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Column(name = "restaurant_phone")
     private String phone;
 

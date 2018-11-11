@@ -64,7 +64,7 @@ public class LogInRestaurantController {
            FXMLLoader loader = new FXMLLoader();
            loader.setControllerFactory((RestaurantMain.getContext()::getBean));
 
-           Parent root = loader.load(SignUpController.class.getResourceAsStream("Restaurant/Perfil.fxml"));
+           Parent root = loader.load(PerfilController.class.getResourceAsStream("Restaurant/Perfil.fxml"));
            PerfilController controller = loader.getController();
            controller.setRestaurant(restaurant);
 
@@ -72,7 +72,7 @@ public class LogInRestaurantController {
            Stage stage = (Stage) node.getScene().getWindow();
 
            stage.setScene(new Scene(root));
-           stage.getScene().getStylesheets().add(SignUpController.class.getResource("Restaurant/Perfil.css").toExternalForm());
+           stage.getScene().getStylesheets().add(PerfilController.class.getResource("Restaurant/Perfil.css").toExternalForm());
        }catch(Exception e){
            e.printStackTrace();
 

@@ -29,9 +29,9 @@ public class RestaurantMain extends Application {
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory((RestaurantMain.getContext()::getBean));
-        root = fxmlLoader.load(SignUpController.class.getResourceAsStream("Restaurant/LogInRestaurant.fxml"));
+        root = fxmlLoader.load(LogInRestaurantController.class.getResourceAsStream("Restaurant/LogInRestaurant.fxml"));
         primaryStage.setScene(new Scene(root));
-        primaryStage.getScene().getStylesheets().add(SignUpController.class.getResource("Client/LogInSignUp.css").toExternalForm());
+        primaryStage.getScene().getStylesheets().add(LogInRestaurantController.class.getResource("Restaurant/LogInRestaurant.css").toExternalForm());
         primaryStage.show();
     }
      public static void main(String[] args){ launch(args); }

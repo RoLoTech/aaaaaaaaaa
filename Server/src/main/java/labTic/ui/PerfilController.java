@@ -108,6 +108,14 @@ public class PerfilController implements Initializable {
         name.setText(restaurant.getName());
         phoneNumber.setText(restaurant.getPhone());
         address.setText(restaurant.getAddress());
+        descripcion.setText(restaurant.getDescription());
+        horarioDomingo.setText(restaurant.getHoursSunday());
+        horarioLunes.setText(restaurant.getHoursMonday());
+        horarioMartes.setText(restaurant.getHoursTuesday());
+        horarioMiercoles.setText(restaurant.getHoursWednesday());
+        horarioJueves.setText(restaurant.getHoursThursday());
+        horarioViernes.setText(restaurant.getHoursFriday());
+        horarioSabado.setText(restaurant.getHoursSaturday());
     }
 
     @FXML
@@ -126,12 +134,19 @@ public class PerfilController implements Initializable {
         restaurant.setName(name.getText());
         restaurant.setPhone(phoneNumber.getText());
         restaurant.setAddress(address.getText());
+        restaurant.setDescription(descripcion.getText());
+
+        restaurant.setHoursMonday(horarioLunes.getText());
+        restaurant.setHoursTuesday(horarioMartes.getText());
+        restaurant.setHoursWednesday(horarioMiercoles.getText());
+        restaurant.setHoursThursday(horarioJueves.getText());
+        restaurant.setHoursFriday(horarioViernes.getText());
+        restaurant.setHoursSaturday(horarioSabado.getText());
+        restaurant.setHoursSunday(horarioDomingo.getText());
 
         restaurantRepository.save(restaurant);
 
-
         if(!"".equals(image.getText())){
-            String imageSource = image.getText();
             Resource backImgFile = new FileSystemResource(image.getText());
             byte[] arrayPic = new byte[0];
             try {
