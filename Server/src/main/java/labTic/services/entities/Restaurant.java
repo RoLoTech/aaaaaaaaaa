@@ -15,6 +15,7 @@ public class Restaurant {
         this.area = area;
         this.foodtype = food;
         this.priceRange = price;
+        this.availability = true;
     }
 
     public Restaurant() {

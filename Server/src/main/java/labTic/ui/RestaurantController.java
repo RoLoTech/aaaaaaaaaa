@@ -16,6 +16,8 @@ import labTic.ClientMain;
 import labTic.services.RestaurantService;
 import labTic.services.entities.Client;
 import labTic.services.entities.Restaurant;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -29,6 +31,8 @@ import java.util.stream.Collectors;
 
 @Component
 public class RestaurantController implements Initializable {
+    Logger logger = LoggerFactory.getLogger(RestaurantController.class);
+
 
 
     @Autowired
@@ -284,11 +288,7 @@ public class RestaurantController implements Initializable {
             textEstilo1.setText(restaurants.get(x).getStyle());
         }
         else {
-            textRestaurant1.setText(null);
-            textLocation1.setText(null);
-            textPrecio1.setText(null);
-            textComida1.setText(null);
-            textEstilo1.setText(null);
+            cleanRestaurant(textRestaurant1, textLocation1,textPrecio1,textComida1,textEstilo1);
         }
 
         if(x<restaurants.size()-1) {
@@ -298,11 +298,7 @@ public class RestaurantController implements Initializable {
             textComida2.setText(restaurants.get(x+1).getFoodtype());
             textEstilo2.setText(restaurants.get(x+1).getStyle());
         }else {
-            textRestaurant2.setText(null);
-            textLocation2.setText(null);
-            textPrecio2.setText(null);
-            textComida2.setText(null);
-            textEstilo2.setText(null);
+            cleanRestaurant(textRestaurant2, textLocation2,textPrecio2,textComida2,textEstilo2);
         }
 
         if(x<restaurants.size()-2) {
@@ -312,11 +308,7 @@ public class RestaurantController implements Initializable {
             textComida3.setText(restaurants.get(x+2).getFoodtype());
             textEstilo3.setText(restaurants.get(x+2).getStyle());
         }else {
-            textRestaurant3.setText(null);
-            textLocation3.setText(null);
-            textPrecio3.setText(null);
-            textComida3.setText(null);
-            textEstilo3.setText(null);
+            cleanRestaurant(textRestaurant3, textLocation3,textPrecio3,textComida3,textEstilo3);
         }
 
         if(x<restaurants.size()-3) {
@@ -326,33 +318,40 @@ public class RestaurantController implements Initializable {
             textComida4.setText(restaurants.get(x+3).getFoodtype());
             textEstilo4.setText(restaurants.get(x+3).getStyle());
         }else {
-            textRestaurant4.setText(null);
-            textLocation4.setText(null);
-            textPrecio4.setText(null);
-            textComida4.setText(null);
-            textEstilo4.setText(null);
+            cleanRestaurant(textRestaurant4, textLocation4,textPrecio4,textComida4,textEstilo4);
         }
 
 
     }
 
-    private void selectRestaurant(int listPosition, Event event) throws Exception{
+    private void cleanRestaurant(Text restaurant, Text location, Text precio, Text comida, Text estilo){
+        restaurant.setText(null);
+        location.setText(null);
+        precio.setText(null);
+        comida.setText(null);
+        estilo.setText(null);
+    }
 
-        if(listPosition < restaurants.size()) {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setControllerFactory((ClientMain.getContext()::getBean));
+    private void selectRestaurant(int listPosition, Event event){
 
-            Parent root = loader.load(RestaurantViewController.class.getResourceAsStream("Client/RestaurantView.fxml"));
-            RestaurantViewController controller = loader.getController();
-            controller.setRestaurant(restaurants.get(listPosition));
-            controller.setClient(client);
+        logger.info(listPosition+" Logueando");
+        try {
 
-            Node node = (Node) event.getSource();
-            Stage stage = (Stage) node.getScene().getWindow();
+            if (listPosition < restaurants.size()) {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setControllerFactory((ClientMain.getContext()::getBean));
 
-            stage.setScene(new Scene(root));
-            stage.getScene().getStylesheets().add(RestaurantViewController.class.getResource("Client/RestaurantView.css").toExternalForm());
+                Parent root = loader.load(RestaurantViewController.class.getResourceAsStream("Client/RestaurantView.fxml"));
+                RestaurantViewController controller = loader.getController();
+                controller.setRestaurant(restaurants.get(listPosition));
+                controller.setClient(client);
 
+                Node node = (Node) event.getSource();
+                Stage stage = (Stage) node.getScene().getWindow();
+
+                stage.setScene(new Scene(root));
+                stage.getScene().getStylesheets().add(RestaurantViewController.class.getResource("Client/RestaurantView.css").toExternalForm());
+            }
             /*FXMLLoader loader = new FXMLLoader(getClass().getResource("RestaurantView.fxml"));
             Parent root = loader.load();
 
@@ -363,6 +362,9 @@ public class RestaurantController implements Initializable {
 
             stage.setScene(new Scene(root));
             stage.getScene().getStylesheets().add(SignUpController.class.getResource("LogInSignUp.css").toExternalForm());*/
+        }catch(Exception e){
+            e.printStackTrace();
         }
+
     }
 }

@@ -36,6 +36,22 @@ public class Client {
     public Client() {
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
     public Client(String firstName, String lastName, String email, String user, String password, String phone_number) {
         this.firstName = firstName;
         this.lastName = lastName;

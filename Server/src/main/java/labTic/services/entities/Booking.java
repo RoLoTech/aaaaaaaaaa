@@ -43,6 +43,8 @@ public class Booking {
     @JoinColumn(name = "tables_ids")
     private Tables table;
 
+    public Booking(){}
+
     public Booking(Long id, Long rut, String alias, Tables table) {
         this.id = id;
         this.rut = rut;

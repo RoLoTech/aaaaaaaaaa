@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,14 +17,19 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import labTic.ClientMain;
+import labTic.services.RestaurantService;
 import labTic.services.entities.Client;
 import labTic.services.entities.Restaurant;
+import labTic.services.exceptions.FullRestaurantException;
+import labTic.services.exceptions.NoAvailableTablesException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.net.URL;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 
 @Component
@@ -34,6 +40,9 @@ public class RestaurantViewController implements Initializable {
     private Restaurant restaurant;
 
     private Client client;
+
+    @Autowired
+    RestaurantService restaurantService;
 
     @FXML
     private ImageView restaurantProfilePic;
@@ -74,6 +83,27 @@ public class RestaurantViewController implements Initializable {
 
     @FXML
     void btnReservar(MouseEvent event) {
+        if(txtHora.getText()!=null && txtPersonas.getText()!=null){
+            try{
+                int cantPersonas = Integer.valueOf(txtPersonas.getText());
+                LocalTime localTime = LocalTime.parse(txtHora.getText());
+                //System.out.println(restaurant.getRut());
+                restaurantService.bookWithoutTable(restaurant.getRut(),localTime,client.getFirstName()+" "+client.getLastName(),cantPersonas);
+
+                //usar timers, invokeLater
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Esperando Verificacion");
+                alert.setHeaderText(null);
+                alert.setContentText("Espere, por favor...");
+                alert.showAndWait();
+
+                //ClientMain.showAlert("Esperando verificacion del Restaurante","Espere, porfavor");
+            }catch(NumberFormatException nfe){
+                ClientMain.showAlert("Error","Asegurese de que ingreso bien los datos");
+            }catch(FullRestaurantException fre) {
+                ClientMain.showAlert("Error", "Restaurante lleno");
+            }
+        }
 
     }
 
@@ -122,7 +152,9 @@ public class RestaurantViewController implements Initializable {
         BufferedImage img = ImageIO.read(new ByteArrayInputStream(restaurant.getProfilePicture()));
         Image image = SwingFXUtils.toFXImage(img, null);
         restaurantProfilePic.setImage(image);
+        txtDescripcion.setText(restaurant.getDescription());
         }catch(Exception e){
+            e.printStackTrace();
 
         }
     }
