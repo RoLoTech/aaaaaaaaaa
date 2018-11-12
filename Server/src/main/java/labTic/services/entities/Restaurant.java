@@ -96,6 +96,22 @@ public class Restaurant {
     @Column(name = "restaurant_profile_picture")
     private byte[] profilePicture;
 
+    @Lob
+    @Column(name = "restaurant_picture_1")
+    private byte[] restaurantPicture1;
+
+    @Lob
+    @Column(name = "restaurant_picture_2")
+    private byte[] restaurantPicture2;
+
+    @Lob
+    @Column(name = "restaurant_picture_3")
+    private byte[] restaurantPicture3;
+
+    @Lob
+    @Column(name = "restaurant_picture_4")
+    private byte[] restaurantPicture4;
+
     public String getPassword() {
         return password;
     }
@@ -242,5 +258,37 @@ public class Restaurant {
 
     public void setHoursSunday(String hoursSunday) {
         this.hoursSunday = hoursSunday;
+    }
+
+    public byte[] getRestaurantPicture1() {
+        return restaurantPicture1;
+    }
+
+    public void setRestaurantPicture1(byte[] restaurantPicture1) {
+        this.restaurantPicture1 = restaurantPicture1;
+    }
+
+    public byte[] getRestaurantPicture2() {
+        return restaurantPicture2;
+    }
+
+    public void setRestaurantPicture2(byte[] restaurantPicture2) {
+        this.restaurantPicture2 = restaurantPicture2;
+    }
+
+    public byte[] getRestaurantPicture3() {
+        return restaurantPicture3;
+    }
+
+    public void setRestaurantPicture3(byte[] restaurantPicture3) {
+        this.restaurantPicture3 = restaurantPicture3;
+    }
+
+    public byte[] getRestaurantPicture4() {
+        return restaurantPicture4;
+    }
+
+    public void setRestaurantPicture4(byte[] restaurantPicture4) {
+        this.restaurantPicture4 = restaurantPicture4;
     }
 }
