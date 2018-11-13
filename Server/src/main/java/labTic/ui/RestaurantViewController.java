@@ -83,15 +83,19 @@ public class RestaurantViewController implements Initializable {
 
     @FXML
     void btnReservar(MouseEvent event) {
-        if(txtHora.getText()!=null && txtPersonas.getText()!=null){
-            try{
+        try {
+            int cantPersonas = Integer.valueOf(txtPersonas.getText());
+        }catch(NumberFormatException nfe){
+            ClientMain.showAlert("Error","Introduzca un numero en cantidad de personas");
+        }
+        //if(txtHora.getText()!=null && txtPersonas.getText()!=null){
+           /* try{
                 int cantPersonas = Integer.valueOf(txtPersonas.getText());
                 LocalTime localTime = LocalTime.parse(txtHora.getText());
                 //System.out.println(restaurant.getRut());
-                restaurantService.bookWithoutTable(restaurant.getRut(),localTime,client.getFirstName()+" "+client.getLastName(),cantPersonas);
 
                 //usar timers, invokeLater
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                /*Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Esperando Verificacion");
                 alert.setHeaderText(null);
                 alert.setContentText("Espere, por favor...");
@@ -103,7 +107,7 @@ public class RestaurantViewController implements Initializable {
             }catch(FullRestaurantException fre) {
                 ClientMain.showAlert("Error", "Restaurante lleno");
             }
-        }
+        }*/
 
     }
 

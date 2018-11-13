@@ -4,7 +4,9 @@ import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ReservaConfirmadaController {
 
     @FXML
