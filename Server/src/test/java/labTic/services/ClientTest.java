@@ -1,8 +1,8 @@
 package labTic.services;
 
 import labTic.ClientMain;
-import labTic.services.exceptions.ClientAlreadyExists;
-import labTic.services.exceptions.InvalidClientInformation;
+import labTic.services.exceptions.ClientAlreadyExistsException;
+import labTic.services.exceptions.InvalidClientInformationException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class ClientTest {
     public void testAdd() {
         try {
             cs.addClient("Rodrigo", "López", "rodri.lopez98@gmail.com", "RoLoTech", "rodrigo270", "098273340");
-        } catch (InvalidClientInformation | ClientAlreadyExists invalidClientInformation) {
+        } catch (InvalidClientInformationException | ClientAlreadyExistsException invalidClientInformation) {
             invalidClientInformation.printStackTrace();
         }
         assertEquals(cs.findOneByEmail("rodri.lopez98@gmail.com").getEmail(), "rodri.lopez98@gmail.com");

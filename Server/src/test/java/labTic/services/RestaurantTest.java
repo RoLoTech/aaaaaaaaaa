@@ -2,8 +2,8 @@ package labTic.services;
 
 
 import labTic.ClientMain;
-import labTic.services.exceptions.InvalidRestaurantInformation;
-import labTic.services.exceptions.RestaurantNoExists;
+import labTic.services.exceptions.InvalidRestaurantInformationException;
+import labTic.services.exceptions.RestaurantDoesNotExistException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +34,7 @@ public class RestaurantTest {
 
 
     @Test
-    public void testBasic() throws InvalidRestaurantInformation {
+    public void testBasic() throws InvalidRestaurantInformationException {
 //        try {
 //            rs.addRestaurant(12l, "La Pasiva", "Luis Alberto de Herrera", "Casual", "099886555", "Brazo Oriental");
 //            assertEquals(rs.findOneByName("La Pasiva").getName(), "La Pasiva");
@@ -63,13 +63,13 @@ public class RestaurantTest {
         try {
             rs.addPic(6, arrayPic);
             rs.updateRestaurant(6, "Pizza");
-        } catch (RestaurantNoExists restaurantNoExists) {
+        } catch (RestaurantDoesNotExistException restaurantNoExists) {
             restaurantNoExists.printStackTrace();
         }
         try {
             rs.addHours(1, "12:00-00:00", "12:00-00:00", "12:00-00:00",
                     "12:00-00:00", "12:00-01:00", "12:00-02:00", "12:00-00:00");
-        } catch (RestaurantNoExists restaurantNoExists) {
+        } catch (RestaurantDoesNotExistException restaurantNoExists) {
             restaurantNoExists.printStackTrace();
         }
     }

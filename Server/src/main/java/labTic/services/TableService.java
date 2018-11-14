@@ -5,9 +5,9 @@ import labTic.persistence.RestaurantRepository;
 import labTic.persistence.TableRepository;
 import labTic.services.entities.Client;
 import labTic.services.entities.Tables;
-import labTic.services.exceptions.ClientAlreadyExists;
-import labTic.services.exceptions.InvalidClientInformation;
-import labTic.services.exceptions.RestaurantNoExists;
+import labTic.services.exceptions.ClientAlreadyExistsException;
+import labTic.services.exceptions.InvalidClientInformationException;
+import labTic.services.exceptions.RestaurantDoesNotExistException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,11 +24,11 @@ public class TableService {
 
 
     public void addTable(long restaurantRut, int capacity)
-            throws RestaurantNoExists {
+            throws RestaurantDoesNotExistException {
 
 
         if (restaurantRepository.findOneByRut(restaurantRut) == null) {
-            throw new RestaurantNoExists();
+            throw new RestaurantDoesNotExistException();
         }
 
 
@@ -42,15 +42,14 @@ public class TableService {
         return tableRepository.findOneByRestaurantRut(restaurantRut);
     }
 
-    public void updateTable(long restaurantRut, String occupant, LocalTime startReservation) throws RestaurantNoExists {
+    public void updateTable(long restaurantRut, String occupant, LocalTime startReservation) throws RestaurantDoesNotExistException {
         if (restaurantRepository.findOneByRut(restaurantRut) == null) {
-            throw new RestaurantNoExists();
+            throw new RestaurantDoesNotExistException();
         }
 
         Tables oTable = tableRepository.findOneByRestaurantRut(restaurantRut);
 
         oTable.setOccupant(occupant);
-        oTable.setStartReservation(startReservation);
         tableRepository.save(oTable);
 
 

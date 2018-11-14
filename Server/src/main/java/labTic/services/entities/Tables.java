@@ -2,6 +2,7 @@ package labTic.services.entities;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,13 +16,14 @@ public class Tables {
     @GenericGenerator(name = "tables_ids", strategy = "increment")
     private Long id;
 
+    @Column
     private Long restaurantRut;
 
+    @Column
     private Integer capacity;
 
+    @Column
     private String occupant;
-
-    private LocalTime startReservation;
 
     public Tables(Long restaurantRut, int capacity) {
         this.restaurantRut = restaurantRut;
@@ -37,10 +39,6 @@ public class Tables {
         this.occupant = occupant;
     }
 
-    public void setStartReservation(LocalTime startReservation) {
-        this.startReservation = startReservation;
-    }
-
     public Long getId() {
         return id;
     }
@@ -49,4 +47,11 @@ public class Tables {
         this.id = id;
     }
 
+    public Long getRestaurantRut() {
+        return restaurantRut;
+    }
+
+    public Integer getCapacity() {
+        return capacity;
+    }
 }

@@ -6,8 +6,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import labTic.ClientMain;
 import labTic.services.ClientService;
-import labTic.services.exceptions.ClientAlreadyExists;
-import labTic.services.exceptions.InvalidClientInformation;
+import labTic.services.exceptions.ClientAlreadyExistsException;
+import labTic.services.exceptions.InvalidClientInformationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -52,7 +52,7 @@ public class SignUpController {
     }
 
     @FXML
-    void signup(MouseEvent event) throws ClientAlreadyExists, InvalidClientInformation {
+    void signup(MouseEvent event) throws ClientAlreadyExistsException, InvalidClientInformationException {
 
         String sFirstName = firstName.getText();
         String sLastName = lastName.getText();
@@ -66,10 +66,10 @@ public class SignUpController {
             clientService.addClient(sFirstName,sLastName,sPhoneNumber,sUser,sPassword,sEmail);
             ClientMain.showAlert("Registro Exitoso","Usuario Registrado Correctamente");
             clean();
-        }catch(ClientAlreadyExists cas){
+        }catch(ClientAlreadyExistsException cas){
             ClientMain.showAlert("Error", "El Usuario ya fue registrado");
             clean();
-        }catch(InvalidClientInformation ici){
+        }catch(InvalidClientInformationException ici){
             ClientMain.showAlert("Error", "No deje campos vacios");
         }
     }

@@ -5,8 +5,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import labTic.ClientMain;
 import labTic.services.RestaurantService;
-import labTic.services.exceptions.InvalidRestaurantInformation;
-import labTic.services.exceptions.RestaurantAlreadyExists;
+import labTic.services.exceptions.InvalidRestaurantInformationException;
+import labTic.services.exceptions.RestaurantAlreadyExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -66,9 +66,9 @@ public class ManagerController {
             restaurantService.addRestaurant(rut, name, address, style, sPhoneNumber, area, food, price);
             ClientMain.showAlert("Registro Exitoso","Restaurante Registrado Correctamente");
             clean();
-        }catch(RestaurantAlreadyExists ras){
+        }catch(RestaurantAlreadyExistsException ras){
             ClientMain.showAlert("Error", "El Restaurante ya fue registrado");
-        }catch(InvalidRestaurantInformation iri){
+        }catch(InvalidRestaurantInformationException iri){
             ClientMain.showAlert("Error", "No deje campos vacios");
         }catch(NumberFormatException nfe){
             ClientMain.showAlert("Error","El rut solo debe contener numeros");

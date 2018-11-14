@@ -58,8 +58,8 @@ public class ReservaPendienteController {
         this.client = client;
         this.restaurant = restaurant;
         LocalTime localTime = LocalTime.now();
-        try {
-            restaurantService.bookWithoutTable(restaurant.getRut(), localTime, client.getFirstName() + " " + client.getLastName(), cantPersonas);
+        /*try {
+            //restaurantService.bookWithoutTable(restaurant.getRut(), localTime, client.getFirstName() + " " + client.getLastName(), cantPersonas);
             // Clase en la que está el código a ejecutar
             //initial time = System.now();
             TimerTask timerTask = new TimerTask() {
@@ -106,7 +106,7 @@ public class ReservaPendienteController {
 
             stage.setScene(new Scene(root));
             stage.getScene().getStylesheets().add(RestaurantViewController.class.getResource("Client/RestaurantView.css").toExternalForm());
-        }
+        }*/
     }
 
 

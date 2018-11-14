@@ -3,21 +3,19 @@ package labTic.services;
 import com.querydsl.core.BooleanBuilder;
 import labTic.persistence.BookingRepository;
 import labTic.persistence.TableRepository;
-import labTic.services.entities.Booking;
-import labTic.services.entities.QRestaurant;
-import labTic.services.entities.Tables;
+import labTic.services.entities.*;
 import labTic.services.exceptions.*;
+import labTic.services.rmi.RestaurantManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import labTic.persistence.RestaurantRepository;
-import labTic.services.entities.Restaurant;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
 
 @Service
-public class RestaurantService {
+public class RestaurantService implements RestaurantManager {
 
     @Autowired
     private TableRepository tableRepository;
@@ -41,18 +39,18 @@ public class RestaurantService {
     }
 
     public void addRestaurant(long rut, String name, String address, String style, String phoneNumber, String area, String food, String price)
-            throws InvalidRestaurantInformation, RestaurantAlreadyExists {
+            throws InvalidRestaurantInformationException, RestaurantAlreadyExistsException {
 
         if (name == null || "".equals(name) || address == null || "".equals(address) || style == null || "".equals(style) ||
                 phoneNumber == null || "".equals(phoneNumber) || area == null || "".equals(area) || food == null || "".equals(food)
                 || price == null || "".equals(price)) {
 
-            throw new InvalidRestaurantInformation("Alguno de los datos ingresados no es correcto");
+            throw new InvalidRestaurantInformationException("Alguno de los datos ingresados no es correcto");
 
         }
 
         if (restaurantRepository.findOneByRut(rut) != null) {
-            throw new RestaurantAlreadyExists();
+            throw new RestaurantAlreadyExistsException();
         }
 
         Restaurant oRestaurant = new Restaurant(rut, name, address, style, phoneNumber, area, food, price);
@@ -61,9 +59,9 @@ public class RestaurantService {
 
     }
 
-    public void updateRestaurant(long rut, String food_type) throws RestaurantNoExists {
+    public void updateRestaurant(long rut, String food_type) throws RestaurantDoesNotExistException {
         if (restaurantRepository.findOneByRut(rut) == null) {
-            throw new RestaurantNoExists();
+            throw new RestaurantDoesNotExistException();
         }
         Restaurant oRestaurant = restaurantRepository.findOneByRut(rut);
         oRestaurant.setFood_type(food_type);
@@ -71,9 +69,9 @@ public class RestaurantService {
     }
 
     public void addHours(long rut, String monday, String tuesday, String wednesday, String thursday,
-                         String friday, String saturday, String sunday) throws RestaurantNoExists {
+                         String friday, String saturday, String sunday) throws RestaurantDoesNotExistException {
         if (restaurantRepository.findOneByRut(rut) == null) {
-            throw new RestaurantNoExists();
+            throw new RestaurantDoesNotExistException();
         }
         Restaurant oRestaurant = restaurantRepository.findOneByRut(rut);
         oRestaurant.setHoursMonday(monday);
@@ -86,23 +84,18 @@ public class RestaurantService {
         restaurantRepository.save(oRestaurant);
     }
 
-    public void addPic(long rut, byte[] pic) throws RestaurantNoExists {
+    public void addPic(long rut, byte[] pic) throws RestaurantDoesNotExistException {
         if (restaurantRepository.findOneByRut(rut) == null) {
-            throw new RestaurantNoExists();
+            throw new RestaurantDoesNotExistException();
         }
-
         Restaurant oRestaurant = restaurantRepository.findOneByRut(rut);
-
         oRestaurant.setProfilePicture(pic);
         restaurantRepository.save(oRestaurant);
-
     }
 
 
     public List<Restaurant> findAllByFood_type(String food_type) {
-
         return restaurantRepository.findAllByFoodtype(food_type);
-
     }
 
     public Restaurant findOneByName(String name) {
@@ -111,11 +104,6 @@ public class RestaurantService {
 
     public Restaurant findOneByRut(long rut) {
         return restaurantRepository.findOneByRut(rut);
-    }
-
-    public List<Restaurant> multipleFiltering(String area, String foodtype, String address, String pricerange, Float rating, String style, String name) {
-        return restaurantRepository.findRestaurantsByAreaAndFoodtypeAndAddressContainingAndPriceRangeAndRatingAndStyleAndNameContaining(area, foodtype, address, pricerange, rating, style, name);
-
     }
 
     public List<Restaurant> findByArea(String area) {
@@ -169,61 +157,36 @@ public class RestaurantService {
         return list;
     }
 
-    public void book(Long rut, LocalTime startDate, String alias, int assistants) throws FullRestaurantException, NoAvailableTablesException {
-        Tables tables = null;
-        Iterable<Tables> result = tableRepository.findAllByRestaurantRutAndCapacityGreaterThanEqual(rut, assistants);
-        List<Tables> list = new ArrayList<>();
-        for (Tables tableToIterate : result) {
-            list.add(tableToIterate);
+    public void book(Long rut, String alias, int assistants) throws FullRestaurantException, NoAvailableTablesException {
+        if(this.getCurrentCapacity(restaurantRepository.findOneByRut(rut))==0){
+            throw new FullRestaurantException();
         }
-        if (list.size() == 0) {
+        if(this.getCurrentCapacity(restaurantRepository.findOneByRut(rut))<assistants){
             throw new NoAvailableTablesException();
         }
-        boolean successfulBooking = false;
-        for (int i = 0; i < list.size() && !successfulBooking; i++) {
-            if (list.get(i).getOccupant() == null) {
-                list.get(i).setOccupant(alias);
-                list.get(i).setStartReservation(startDate);
-                tables = list.get(i);
-                successfulBooking = true;
+        int unassignedAssistants = assistants;
+        List<Tables> list = tableRepository.findAllByRestaurantRutAndCapacityGreaterThanEqualAndOccupantIsNull(rut, assistants);
+        if (list.size()==0){
+            list = this.tableRepository.findAllByRestaurantRutAndOccupantIsNull(rut);
+            int index = 0;
+            while(unassignedAssistants > 0){
+                unassignedAssistants = unassignedAssistants - list.get(index).getCapacity();
+                Booking booking = new Booking((long) (rut.hashCode() + alias.hashCode()), rut, alias, list.get(index));
+                bookingRepository.save(booking);
+                index++;
             }
         }
-        if (!successfulBooking) {
-            throw new FullRestaurantException();
-        }
-        Booking booking = new Booking((long) (rut.hashCode() + alias.hashCode()), rut, alias, tables);
-        bookingRepository.save(booking);
-
-    }
-
-    public void bookWithoutTable(Long rut, LocalTime startDate, String alias, int assistants) throws FullRestaurantException {
-        if (!restaurantRepository.findOneByRut(rut).getAvailability()) {
-            throw new FullRestaurantException();
-        }
-        Booking booking = new Booking((long) (rut.hashCode() + alias.hashCode()), rut, alias, assistants, startDate);
-        bookingRepository.save(booking);
     }
 
     public void release(Restaurant restaurant, String alias) {
-        Iterable<Tables> result = tableRepository.findAllByRestaurantRut(restaurant.getRut());
-        List<Tables> list = new ArrayList<>();
-        for (Tables tables : result) {
-            list.add(tables);
+        List<Tables> result = tableRepository.findAllByRestaurantRutAndOccupant(restaurant.getRut(), alias);
+        for (Tables table: result) {
+            table.setOccupant(null);
         }
-        boolean successfulRelease = false;
-        for (int i = 0; i < list.size() && !successfulRelease; i++) {
-            if (list.get(i).getOccupant() != null && list.get(i).getOccupant().equals(alias)) {
-                bookingRepository.findByAlias(alias).setFinished();
-                list.get(i).setOccupant(null);
-                list.get(i).setStartReservation(null);
-                successfulRelease = true;
-            }
+        List<Booking> bookingsToFinalize = (List<Booking>) bookingRepository.findByAliasAndConfirmedAndFinished(alias, true, false);
+        for (Booking booking: bookingsToFinalize) {
+            booking.setFinished();
         }
-    }
-
-    public void releaseWithoutTable(Restaurant restaurant, String alias) {
-        bookingRepository.findByAliasAndFinished(alias, false).setFinished();
-        restaurant.setCompletedReservations(restaurant.getCompletedReservations() + 1);
     }
 
     public List<Restaurant> showActiveRestaurants() {
@@ -302,6 +265,22 @@ public class RestaurantService {
 
     public Integer getFee(Restaurant restaurant) {
         return restaurant.getCompletedReservations() * 100;
+    }
+
+    public int getCurrentCapacity(Restaurant restaurant){
+        int capacity = 0;
+        List<Tables> result = (List<Tables>) tableRepository.findAllByRestaurantRutAndOccupantIsNull(restaurant.getRut());
+        for (Tables table: result) {
+            capacity = capacity + table.getCapacity();
+        }
+        return capacity;
+    }
+
+    List<Tables> getCustomerTables(Restaurant restaurant, Client client) throws NoBookingsMadeException {
+        if (tableRepository.findAllByRestaurantRutAndOccupant(restaurant.getRut(), client.getFirstName() + " " + client.getLastName()).size()==0){
+            throw new NoBookingsMadeException();
+        }
+        return tableRepository.findAllByRestaurantRutAndOccupant(restaurant.getRut(), client.getFirstName() + " " + client.getLastName());
     }
 
 }

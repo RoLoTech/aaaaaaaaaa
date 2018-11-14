@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import labTic.persistence.RestaurantRepository;
 import labTic.services.RestaurantService;
 import labTic.services.entities.Restaurant;
-import labTic.services.exceptions.RestaurantNoExists;
+import labTic.services.exceptions.RestaurantDoesNotExistException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
@@ -162,7 +162,7 @@ public class PerfilController implements Initializable {
 
             try {
                 restaurantService.addPic(restaurant.getRut(), arrayPic);
-            } catch (RestaurantNoExists restaurantNoExists) {
+            } catch (RestaurantDoesNotExistException restaurantNoExists) {
                 restaurantNoExists.printStackTrace();
             }
         }
