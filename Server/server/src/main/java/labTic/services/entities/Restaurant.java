@@ -113,6 +113,11 @@ public class Restaurant {
     @Column(name = "restaurant_picture_4")
     private byte[] restaurantPicture4;
 
+
+    @Column(name = "restaurant_tables")
+    private Tables tables;
+
+
     public String getPassword() {
         return password;
     }
@@ -291,5 +296,13 @@ public class Restaurant {
 
     public void setRestaurantPicture4(byte[] restaurantPicture4) {
         this.restaurantPicture4 = restaurantPicture4;
+    }
+
+    public Tables getTables() {
+        return tables;
+    }
+
+    public void setTables(Tables tables) {
+        this.tables = tables;
     }
 }

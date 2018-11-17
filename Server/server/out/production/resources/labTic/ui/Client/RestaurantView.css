@@ -1,0 +1,67 @@
+.back {
+    -fx-background-image: url(images/LoginSignUpFilter.jpg);
+    -fx-background-size: cover;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0;
+}
+
+.tab-pane
+{
+    -fx-tab-min-width:90px;
+}
+
+.tab{
+    -fx-background-insets: 0 1 0 1,0,0;
+}
+.tab-pane .tab
+{
+    -fx-background-color: transparent;
+    -fx-border-width: 0px 0px 2px 0px;
+    -fx-border-color:  #aeaeae;
+    -fx-font-weight: bold;
+    -fx-font-size: 12;
+
+}
+
+.tab-pane .tab:selected
+{
+
+    -fx-text-fill: white;
+    -fx-border-color:  WHITE;
+
+}
+
+.tab .tab-label {
+    -fx-alignment: CENTER;
+    -fx-text-fill: #828282;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.tab:selected .tab-label {
+    -fx-alignment: CENTER;
+    -fx-text-fill: white;
+}
+
+.container {
+
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-background-radius: 20 20 20 20;
+
+}
+
+.btnReservar {
+
+    -fx-background-color: #fff;
+    /*-fx-background-radius: 0 10 10 0;*/
+    -fx-background-radius: 10;
+    -fx-text-fill: #2f2f2f;
+    -fx-font-weight: bold;
+    -fx-border-width: 0;
+    -fx-border-color: #2f2f2f;
+    -fx-border-radius: 0;
+
+
+}
