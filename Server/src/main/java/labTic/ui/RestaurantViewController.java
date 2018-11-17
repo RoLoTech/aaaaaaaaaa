@@ -99,7 +99,7 @@ public class RestaurantViewController implements Initializable {
             Stage stage = (Stage) node.getScene().getWindow();
 
             stage.setScene(new Scene(root));
-            stage.getScene().getStylesheets().add(RestaurantController.class.getResource("Client/Restaurant.css").toExternalForm());
+            stage.getScene().getStylesheets().add(RestaurantController.class.getResource("Client/RestaurantView.css").toExternalForm());
 
         }catch(NumberFormatException nfe){
             ClientMain.showAlert("Error","Introduzca un numero en cantidad de personas");

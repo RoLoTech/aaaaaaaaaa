@@ -1,16 +1,19 @@
 package labTic.ui;
 
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import labTic.ClientMain;
+import labTic.persistence.BookingRepository;
 import labTic.services.RestaurantService;
 import labTic.services.entities.Booking;
 import labTic.services.entities.Client;
@@ -20,6 +23,9 @@ import labTic.services.exceptions.NoAvailableTablesException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.time.LocalTime;
 import java.util.Timer;
@@ -32,6 +38,13 @@ public class ReservaPendienteController {
     private Restaurant restaurant;
 
     private Client client;
+
+    private boolean cancelar = false;
+
+    private Booking booking;
+
+    @Autowired
+    BookingRepository bookingRepository;
 
     @Autowired
     RestaurantService restaurantService;
@@ -60,13 +73,25 @@ public class ReservaPendienteController {
     public void setRestaurantAndClient(Restaurant restaurant, Client client, int cantPersonas, Event event) {
         this.client = client;
         this.restaurant = restaurant;
+        this.restaurant = restaurant;
+        txtDireccion.setText(restaurant.getAddress());
+        txtRestaurant.setText(restaurant.getName());
+        txtUbicacion.setText(restaurant.getArea());
+        txtTelefono.setText(restaurant.getPhone());
+        try{
+            BufferedImage img = ImageIO.read(new ByteArrayInputStream(restaurant.getProfilePicture()));
+            Image image = SwingFXUtils.toFXImage(img, null);
+            imgRestaurant.setImage(image);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         long startTime = System.currentTimeMillis();
 
         Timer timer = new Timer();
         TimerTask timerTask = new TimerTask() {
             public void run(){
                 long thisTime = System.currentTimeMillis();
-                Booking booking = new Booking(); //Aca va la funcion que devuelve la reserva de la base de datos
+                booking = new Booking(); //Aca va la funcion que devuelve la reserva de la base de datos
 
                 if(booking.getConfirmed() == true){
                     ClientMain.showAlert("Exito","Reserva Confirmada");
@@ -79,8 +104,13 @@ public class ReservaPendienteController {
                     timer.cancel();
                 }
                 if( thisTime-startTime > 600000 ){
+                    booking.setRejected();
+                    bookingRepository.save(booking);
                     ClientMain.showAlert("Error","La reserva no ha sido confirmada");
                     goBackToRestaurantView(event);
+                    timer.cancel();
+                }
+                if(cancelar == true){
                     timer.cancel();
                 }
             }
@@ -118,6 +148,7 @@ public class ReservaPendienteController {
             ReservaConfirmadaController controller = loader.getController();
             controller.setRestaurant(restaurant);
             controller.setClient(client);
+            controller.setBooking(booking);
 
             Node node = (Node) event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();
@@ -134,6 +165,10 @@ public class ReservaPendienteController {
 
     @FXML
     void btnCancelar(MouseEvent event) {
+        booking.setRejected();
+        bookingRepository.save(booking);
+        ClientMain.showAlert("Cancelado","Reserva Cancelada");
+        goBackToRestaurantView(event);
 
     }
 
