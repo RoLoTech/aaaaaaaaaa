@@ -28,6 +28,7 @@ import org.springframework.stereotype.Component;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
@@ -85,8 +86,29 @@ public class RestaurantViewController implements Initializable {
     void btnReservar(MouseEvent event) {
         try {
             int cantPersonas = Integer.valueOf(txtPersonas.getText());
+            restaurantService.book(restaurant.getRut(),client.getFirstName()+" "+client.getLastName(),cantPersonas);
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setControllerFactory((ClientMain.getContext()::getBean));
+
+            Parent root = loader.load(ReservaPendienteController.class.getResourceAsStream("Client/ReservaPendiente.fxml"));
+            ReservaPendienteController controller = loader.getController();
+            controller.setRestaurantAndClient(restaurant,client,cantPersonas,event);
+
+            Node node = (Node) event.getSource();
+            Stage stage = (Stage) node.getScene().getWindow();
+
+            stage.setScene(new Scene(root));
+            stage.getScene().getStylesheets().add(RestaurantController.class.getResource("Client/Restaurant.css").toExternalForm());
+
         }catch(NumberFormatException nfe){
             ClientMain.showAlert("Error","Introduzca un numero en cantidad de personas");
+        }catch(FullRestaurantException fre){
+            ClientMain.showAlert("Error","Restaurante lleno");
+        }catch(NoAvailableTablesException nate){
+            ClientMain.showAlert("Error","No hay mesas disponibles");
+        }catch(IOException ie){
+            ie.printStackTrace();
         }
         //if(txtHora.getText()!=null && txtPersonas.getText()!=null){
            /* try{

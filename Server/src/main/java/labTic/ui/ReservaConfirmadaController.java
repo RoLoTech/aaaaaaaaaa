@@ -4,10 +4,16 @@ import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import labTic.services.entities.Client;
+import labTic.services.entities.Restaurant;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ReservaConfirmadaController {
+
+    private Restaurant restaurant;
+
+    private Client client;
 
     @FXML
     private ImageView imgRestaurant;
@@ -36,6 +42,14 @@ public class ReservaConfirmadaController {
     @FXML
     void btnVolver(MouseEvent event) {
 
+    }
+
+    void setRestaurant(Restaurant restaurant){
+        this.restaurant = restaurant;
+
+    }
+    void setClient(Client client){
+        this.client = client;
     }
 
 }

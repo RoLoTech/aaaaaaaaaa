@@ -12,9 +12,11 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import labTic.ClientMain;
 import labTic.services.RestaurantService;
+import labTic.services.entities.Booking;
 import labTic.services.entities.Client;
 import labTic.services.entities.Restaurant;
 import labTic.services.exceptions.FullRestaurantException;
+import labTic.services.exceptions.NoAvailableTablesException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,6 +24,7 @@ import java.io.IOException;
 import java.time.LocalTime;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.*;
 
 @Component
 public class ReservaPendienteController {
@@ -54,45 +57,39 @@ public class ReservaPendienteController {
     @FXML
     private Text txtDireccion;
 
-    public void setRestaurantAndClient(Restaurant restaurant, Client client, int cantPersonas, Event event) throws IOException {
+    public void setRestaurantAndClient(Restaurant restaurant, Client client, int cantPersonas, Event event) {
         this.client = client;
         this.restaurant = restaurant;
-        LocalTime localTime = LocalTime.now();
-        /*try {
-            //restaurantService.bookWithoutTable(restaurant.getRut(), localTime, client.getFirstName() + " " + client.getLastName(), cantPersonas);
-            // Clase en la que está el código a ejecutar
-            //initial time = System.now();
-            TimerTask timerTask = new TimerTask() {
-                public void run() {
+        long startTime = System.currentTimeMillis();
 
-                    //reservation  = check reservation
-                    //if reservation.confirmed == true
-                    //      confirmed = true
-                    //      timer.cancel()
-                    //if reservation.rejected == true
-                    //      rejected = true
-                    //      timer.cancel()
-                    //if initial time - system.now() > 10 minutos
-                    //      reservation.rejected = true
-                    //      timer.cancel()
+        Timer timer = new Timer();
+        TimerTask timerTask = new TimerTask() {
+            public void run(){
+                long thisTime = System.currentTimeMillis();
+                Booking booking = new Booking(); //Aca va la funcion que devuelve la reserva de la base de datos
 
+                if(booking.getConfirmed() == true){
+                    ClientMain.showAlert("Exito","Reserva Confirmada");
+                    goToReservaConfirmadaController(event);
+                    timer.cancel();
                 }
-            };
+                if(booking.getRejected()==true){
+                    ClientMain.showAlert("Error","Reserva rechazada por el restaurante");
+                    goBackToRestaurantView(event);
+                    timer.cancel();
+                }
+                if( thisTime-startTime > 600000 ){
+                    ClientMain.showAlert("Error","La reserva no ha sido confirmada");
+                    goBackToRestaurantView(event);
+                    timer.cancel();
+                }
+            }
+        };
+        timer.scheduleAtFixedRate(timerTask, 0, 5000);
+    }
 
-            // Aquí se pone en marcha el timer cada segundo.
-            Timer timer = new Timer();
-            // Dentro de 0 milisegundos avísame cada 1000 milisegundos
-            timer.scheduleAtFixedRate(timerTask, 0, 1000);
-            //if confirmed == true
-            //      showAlert - Reserva confirmada
-            //      cambiamos de ventana a la de reserva confirmada
-            //if rejected == true
-            //      showAlert - Reserva rechazada
-            //      cambiamos de ventana a la de buscar restaurantes
-        }catch(FullRestaurantException fre){
-
-            ClientMain.showAlert("Error","Restaurante lleno");
-
+    void goBackToRestaurantView(Event event){
+        try {
             FXMLLoader loader = new FXMLLoader();
             loader.setControllerFactory((ClientMain.getContext()::getBean));
 
@@ -106,7 +103,31 @@ public class ReservaPendienteController {
 
             stage.setScene(new Scene(root));
             stage.getScene().getStylesheets().add(RestaurantViewController.class.getResource("Client/RestaurantView.css").toExternalForm());
-        }*/
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    void goToReservaConfirmadaController(Event event){
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setControllerFactory((ClientMain.getContext()::getBean));
+
+            Parent root = loader.load(ReservaConfirmadaController.class.getResourceAsStream("Client/ReservaConfirmada.fxml"));
+            ReservaConfirmadaController controller = loader.getController();
+            controller.setRestaurant(restaurant);
+            controller.setClient(client);
+
+            Node node = (Node) event.getSource();
+            Stage stage = (Stage) node.getScene().getWindow();
+
+            stage.setScene(new Scene(root));
+            stage.getScene().getStylesheets().add(ReservaConfirmadaController.class.getResource("Client/RestaurantView.css").toExternalForm());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
 

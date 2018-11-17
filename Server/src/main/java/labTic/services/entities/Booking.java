@@ -84,4 +84,40 @@ public class Booking {
         this.finished = true;
         this.restaurant.setCompletedReservations(this.restaurant.getCompletedReservations() + 1);
     }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public Long getRut() {
+        return rut;
+    }
+
+    public String getAlias() {
+        return alias;
+    }
+
+    public LocalTime getStartDate() {
+        return startDate;
+    }
+
+    public Integer getAssistants() {
+        return assistants;
+    }
+
+    public Boolean getConfirmed() {
+        return confirmed;
+    }
+
+    public Boolean getRejected() {
+        return rejected;
+    }
+
+    public Boolean getFinished() {
+        return finished;
+    }
+
+    public Tables getTable() {
+        return table;
+    }
 }
