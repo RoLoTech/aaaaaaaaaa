@@ -9,6 +9,9 @@ import labTic.services.rmi.RestaurantManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import labTic.persistence.RestaurantRepository;
+import labTic.services.entities.QRestaurant;
+import labTic.services.entities.QClient;
+import labTic.services.entities.QTable;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
