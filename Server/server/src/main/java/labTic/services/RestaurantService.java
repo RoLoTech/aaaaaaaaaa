@@ -203,10 +203,12 @@ public class RestaurantService implements RestaurantManager {
 
     public void confirmBooking(Booking booking) {
         booking.setConfirmed();
+        bookingRepository.save(booking);
     }
 
     public void rejectBooking(Booking booking) {
         booking.setRejected();
+        bookingRepository.save(booking);
     }
 
     public void toggleAvailability(Restaurant restaurant) {
@@ -293,11 +295,12 @@ public class RestaurantService implements RestaurantManager {
         }
         return false;
     }*/
-    public Booking getClientBookingsOnHold(Restaurant restaurant, Client client) {
-        return bookingRepository.findByAliasAndFinished(client.getFirstName() +" "+ client.getLastName(), false);
+    public Booking getClientBookingsOnHold(Restaurant restaurant, String alias) {
+        return bookingRepository.findByAliasAndFinished(alias, false);
     }
     public Booking getCurrentBooking(String alias, Restaurant restaurant){
-        return bookingRepository.findOneByAliasAndRestaurantAndFinished(alias,restaurant,false);
+        return bookingRepository.findByAliasAndRestaurantAndFinished(alias,restaurant,false);
     }
+    public List<Booking> getUnFinishedBookings(Restaurant restaurant){return bookingRepository.findAllByRutAndFinishedAndConfirmed(restaurant.getRut(),false,true);}
 
 }

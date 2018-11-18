@@ -47,6 +47,8 @@ public class ReservaPendienteController implements Initializable {
 
     private Booking booking;
 
+    private String alias;
+
     @Autowired
     BookingRepository bookingRepository;
 
@@ -76,11 +78,12 @@ public class ReservaPendienteController implements Initializable {
     @FXML
     private Text txtDireccion;
 
-    public void setRestaurantAndClient(Restaurant restaurant, Client client, int cantPersonas, Event event) {
+    public void setRestaurantAndClient(Restaurant restaurant, Client client, int cantPersonas, Event event,String alias) {
         this.event = event;
         this.client = client;
         this.restaurant = restaurant;
         this.restaurant = restaurant;
+        this.alias = alias;
         txtPersonas.setText(""+cantPersonas);
         txtDireccion.setText(restaurant.getAddress());
         txtRestaurant.setText(restaurant.getName());
@@ -162,7 +165,7 @@ public class ReservaPendienteController implements Initializable {
         TimerTask timerTask = new TimerTask() {
             public void run(){
                 long thisTime = System.currentTimeMillis();
-                booking = restaurantService.getCurrentBooking(client.getFirstName()+" "+client.getLastName(),restaurant); //Aca va la funcion que devuelve la reserva de la base de datos
+                booking = restaurantService.getClientBookingsOnHold(restaurant,alias); //Aca va la funcion que devuelve la reserva de la base de datos
 
                 if(booking.getConfirmed() == true){
                     ClientMain.showAlert("Exito","Reserva Confirmada");

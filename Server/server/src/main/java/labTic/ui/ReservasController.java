@@ -78,10 +78,9 @@ public class ReservasController implements Initializable {
                 nCcantidad.setCellValueFactory(new PropertyValueFactory<Booking,Integer>("assistants"));
 
                 ObservableList<Booking> confirmedBookingsObservableList = FXCollections.observableArrayList();
-                List<Booking> confirmedBookingsSimpleList = new ArrayList<>();
-                for(int i = 0; i<newBookingsSimpleList.size();i++){
-                    if(newBookingsSimpleList.get(i).getConfirmed() && !newBookingsSimpleList.get(i).getFinished() && !newBookingsSimpleList.get(i).getRejected())
-                        confirmedBookingsObservableList.add(newBookingsSimpleList.get(i));
+                List<Booking> confirmedBookingsSimpleList = restaurantService.getUnFinishedBookings(restaurant);
+                for(int i = 0; i<confirmedBookingsSimpleList.size();i++){
+                    confirmedBookingsObservableList.add(confirmedBookingsSimpleList.get(i));
                 }
                 table1.setItems(confirmedBookingsObservableList);
                 cAlias.setCellValueFactory(new PropertyValueFactory<Booking,String>("alias"));

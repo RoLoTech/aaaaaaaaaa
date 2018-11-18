@@ -51,6 +51,9 @@ public class Booking {
         this.alias = alias;
         this.table = table;
         this.confirmed = false;
+        //cambios
+        this.finished = false;
+        this.rejected = false;
     }
 
     public Booking(Long id, Long rut, String alias, Integer assistants, LocalTime startDate){

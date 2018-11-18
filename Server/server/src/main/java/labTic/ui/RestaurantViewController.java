@@ -72,14 +72,16 @@ public class RestaurantViewController implements Initializable {
         try {
             String personas = txtPersonas.getText();
             int cantPersonas = Integer.valueOf(personas);
-            restaurantService.book(restaurant.getRut(),client.getFirstName()+" "+client.getLastName(),cantPersonas);
+            String alias = client.getFirstName()+" "+client.getLastName();
+
+            restaurantService.book(restaurant.getRut(),alias,cantPersonas);
 
             FXMLLoader loader = new FXMLLoader();
             loader.setControllerFactory((ClientMain.getContext()::getBean));
 
             Parent root = loader.load(ReservaPendienteController.class.getResourceAsStream("Client/ReservaPendiente.fxml"));
             ReservaPendienteController controller = loader.getController();
-            controller.setRestaurantAndClient(restaurant,client,cantPersonas,event);
+            controller.setRestaurantAndClient(restaurant,client,cantPersonas,event,alias);
 
             Node node = (Node) event.getSource();
             Stage stage = (Stage) node.getScene().getWindow();

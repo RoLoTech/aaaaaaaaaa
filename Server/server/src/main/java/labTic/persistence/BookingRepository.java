@@ -16,8 +16,10 @@ public interface BookingRepository extends CrudRepository<Booking, Long> {
 
     Booking findByAliasAndFinished(String alias, boolean finished);
 
-    Booking findOneByAliasAndRestaurantAndFinished(String alias, Restaurant restaurant, boolean finished);
+    Booking findByAliasAndRestaurantAndFinished(String alias, Restaurant restaurant, boolean finished);
 
     Booking findByAliasAndConfirmedAndFinished(String alias, boolean confirmed, boolean finished);
+
+    List<Booking> findAllByRutAndFinishedAndConfirmed(Long rut,boolean finished,boolean confirmed);
 
 }
