@@ -2,6 +2,7 @@ package labTic.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.input.MouseEvent;
 
 public class ReservasController {
@@ -33,4 +34,16 @@ public class ReservasController {
 
     }
 
+    @FXML
+    private ToggleButton btnDisponible;
+
+    @FXML
+    void btnDisponibleClick(MouseEvent event) {
+
+        if (btnDisponible.isSelected())
+            btnDisponible.setText("No Disponible");
+        else
+            btnDisponible.setText("Disponible");
+
+    }
 }
