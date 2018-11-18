@@ -1,5 +1,7 @@
 package labTic.ui;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -15,7 +18,9 @@ import labTic.ClientMain;
 import labTic.RestaurantMain;
 import labTic.persistence.RestaurantRepository;
 import labTic.services.RestaurantService;
+import labTic.services.TableService;
 import labTic.services.entities.Restaurant;
+import labTic.services.entities.Tables;
 import labTic.services.exceptions.RestaurantDoesNotExistException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -27,6 +32,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.ResourceBundle;
 
 @Component
@@ -39,6 +45,9 @@ public class PerfilController implements Initializable {
 
     @Autowired
     private RestaurantRepository restaurantRepository;
+
+    @Autowired
+    private TableService tableService;
 
     @FXML
     private TextArea descripcion;
@@ -105,19 +114,27 @@ public class PerfilController implements Initializable {
     private TextField image;
 
     @FXML
-    private TableView<?> tblMesas;
+    private TableView<Tables> tblMesas;
 
     @FXML
-    private TableColumn<?, ?> tblMesasc1;
+    private TableColumn<Tables, Long> tblMesasc1;
 
     @FXML
-    private TableColumn<?, ?> tblMesasc2;
+    private TableColumn<Tables, Integer> tblMesasc2;
 
     @FXML
     private TextField txtAgregarMesaPersonas;
 
     @FXML
     void btnAgregarMesa(MouseEvent event) {
+        try {
+            int cantPersonasMesa = Integer.valueOf(txtAgregarMesaPersonas.getText());
+            tableService.addTable(restaurant.getRut(),cantPersonasMesa);
+            updateTables();
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
 
     }
 
@@ -135,6 +152,19 @@ public class PerfilController implements Initializable {
         horarioJueves.setText(restaurant.getHoursThursday());
         horarioViernes.setText(restaurant.getHoursFriday());
         horarioSabado.setText(restaurant.getHoursSaturday());
+
+        updateTables();
+
+    }
+
+    private void updateTables(){
+        ObservableList<Tables> tablesObservableList = FXCollections.observableArrayList();
+        List<Tables> tablesList = restaurantService.getAllTables(restaurant);
+        for(int i =0; i<tablesList.size();i++)
+            tablesObservableList.add(tablesList.get(i));
+        tblMesas.setItems(tablesObservableList);
+        tblMesasc1.setCellValueFactory(new PropertyValueFactory<Tables,Long>("id"));
+        tblMesasc2.setCellValueFactory(new PropertyValueFactory<Tables,Integer>("capacity"));
     }
 
     @FXML
@@ -227,11 +257,6 @@ public class PerfilController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        houropen.setText(restaurant.getOpeningTime().toString());
-//        hourclose.setText(restaurant.getClosingTime().toString());
-       /* name.setText(restaurant.getName());
-        phoneNumber.setText(restaurant.getPhone());
-        address.setText(restaurant.getAddress());*/
 
     }
 }

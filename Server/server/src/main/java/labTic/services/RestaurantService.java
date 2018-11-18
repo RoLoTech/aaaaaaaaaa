@@ -303,4 +303,7 @@ public class RestaurantService implements RestaurantManager {
     }
     public List<Booking> getUnFinishedBookings(Restaurant restaurant){return bookingRepository.findAllByRutAndFinishedAndConfirmed(restaurant.getRut(),false,true);}
 
+    public List<Tables> getAllTables(Restaurant restaurant){
+        return tableRepository.findAllByRestaurant(restaurant);
+    }
 }
