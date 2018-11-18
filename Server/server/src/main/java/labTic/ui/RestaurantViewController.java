@@ -68,19 +68,6 @@ public class RestaurantViewController implements Initializable {
     private TextField txtPersonas;
 
     @FXML
-    private TextField txtHora;
-
-    @FXML
-    void tabDescripcion(ActionEvent event) {
-
-    }
-
-    @FXML
-    void tabVistaGeneral(ActionEvent event) {
-
-    }
-
-    @FXML
     void btnReservar(MouseEvent event) {
         try {
             String personas = txtPersonas.getText();
