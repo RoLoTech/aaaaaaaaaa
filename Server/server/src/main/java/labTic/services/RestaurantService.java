@@ -161,18 +161,18 @@ public class RestaurantService implements RestaurantManager {
     }
 
     public void book(Long rut, String alias, int assistants) throws FullRestaurantException, NoAvailableTablesException {
-        if(this.getCurrentCapacity(restaurantRepository.findOneByRut(rut))==0){
+        if (this.getCurrentCapacity(restaurantRepository.findOneByRut(rut)) == 0) {
             throw new FullRestaurantException();
         }
-        if(this.getCurrentCapacity(restaurantRepository.findOneByRut(rut))<assistants){
+        if (this.getCurrentCapacity(restaurantRepository.findOneByRut(rut)) < assistants) {
             throw new NoAvailableTablesException();
         }
         int unassignedAssistants = assistants;
         List<Tables> list = tableRepository.findAllByRestaurantRutAndCapacityGreaterThanEqualAndOccupantIsNull(rut, assistants);
-        if (list.size()==0){
+        if (list.size() == 0) {
             list = this.tableRepository.findAllByRestaurantRutAndOccupantIsNull(rut);
             int index = 0;
-            while(unassignedAssistants > 0){
+            while (unassignedAssistants > 0) {
                 unassignedAssistants = unassignedAssistants - list.get(index).getCapacity();
                 Booking booking = new Booking((long) (rut.hashCode() + alias.hashCode()), rut, alias, list.get(index));
                 bookingRepository.save(booking);
@@ -183,11 +183,11 @@ public class RestaurantService implements RestaurantManager {
 
     public void release(Restaurant restaurant, String alias) {
         List<Tables> result = tableRepository.findAllByRestaurantRutAndOccupant(restaurant.getRut(), alias);
-        for (Tables table: result) {
+        for (Tables table : result) {
             table.setOccupant(null);
         }
         List<Booking> bookingsToFinalize = (List<Booking>) bookingRepository.findByAliasAndConfirmedAndFinished(alias, true, false);
-        for (Booking booking: bookingsToFinalize) {
+        for (Booking booking : bookingsToFinalize) {
             booking.setFinished();
         }
     }
@@ -270,20 +270,26 @@ public class RestaurantService implements RestaurantManager {
         return restaurant.getCompletedReservations() * 100;
     }
 
-    public int getCurrentCapacity(Restaurant restaurant){
+    public Integer getCurrentCapacity(Restaurant restaurant) {
         int capacity = 0;
         List<Tables> result = (List<Tables>) tableRepository.findAllByRestaurantRutAndOccupantIsNull(restaurant.getRut());
-        for (Tables table: result) {
+        for (Tables table : result) {
             capacity = capacity + table.getCapacity();
         }
         return capacity;
     }
 
     List<Tables> getCustomerTables(Restaurant restaurant, Client client) throws NoBookingsMadeException {
-        if (tableRepository.findAllByRestaurantRutAndOccupant(restaurant.getRut(), client.getFirstName() + " " + client.getLastName()).size()==0){
+        if (tableRepository.findAllByRestaurantRutAndOccupant(restaurant.getRut(), client.getFirstName() + " " + client.getLastName()).size() == 0) {
             throw new NoBookingsMadeException();
         }
         return tableRepository.findAllByRestaurantRutAndOccupant(restaurant.getRut(), client.getFirstName() + " " + client.getLastName());
     }
 
+    public Boolean getClientBookingsOnHold(Restaurant restaurant, Client client) {
+        if(bookingRepository.findByAliasAndFinished(client.getFirstName() + client.getLastName(), false).getConfirmed()){
+            return true;
+        }
+        return false;
+    }
 }

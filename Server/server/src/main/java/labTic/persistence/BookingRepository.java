@@ -11,10 +11,10 @@ public interface BookingRepository extends CrudRepository<Booking, Long> {
 
     List<Booking> findAllByRut(Long rut);
 
-    List<Booking> findAllByRutAndConfirmedAndFinishedAndRejected (Long rut, boolean confirmed, boolean finished, boolean rejected);
+    List<Booking> findAllByRutAndConfirmedAndFinishedAndRejected(Long rut, boolean confirmed, boolean finished, boolean rejected);
 
-    Booking findByAliasAndFinished (String alias, boolean finished);
+    Booking findByAliasAndFinished(String alias, boolean finished);
 
-    Booking findByAliasAndConfirmedAndFinished (String alias, boolean confirmed, boolean finished);
+    Booking findByAliasAndConfirmedAndFinished(String alias, boolean confirmed, boolean finished);
 
 }
