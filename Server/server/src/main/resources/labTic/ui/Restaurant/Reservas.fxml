@@ -49,7 +49,11 @@
                            <children>
                               <VBox styleClass="gridpane" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="ttlTable" text="Reservas Confirmadas" />
+                                    <HBox alignment="CENTER_LEFT" prefHeight="27.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="ttlTable" text="Reservas Confirmadas" />
+                                       </children>
+                                    </HBox>
                                     <TableView fx:id="table1" onMouseClicked="#clickTable1" prefHeight="200.0" prefWidth="200.0">
                                       <columns>
                                         <TableColumn fx:id="cAlias" prefWidth="75.0" text="C1" />
@@ -60,7 +64,7 @@
                               </VBox>
                               <VBox styleClass="gridpane" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <HBox alignment="CENTER">
+                                    <HBox alignment="CENTER" prefHeight="27.0">
                                        <children>
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="ttlTable" text="Reservas Sin Confirmar" />
                                           <HBox HBox.hgrow="ALWAYS" />

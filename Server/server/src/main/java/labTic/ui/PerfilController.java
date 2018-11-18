@@ -7,10 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -106,6 +103,23 @@ public class PerfilController implements Initializable {
 
     @FXML
     private TextField image;
+
+    @FXML
+    private TableView<?> tblMesas;
+
+    @FXML
+    private TableColumn<?, ?> tblMesasc1;
+
+    @FXML
+    private TableColumn<?, ?> tblMesasc2;
+
+    @FXML
+    private TextField txtAgregarMesaPersonas;
+
+    @FXML
+    void btnAgregarMesa(MouseEvent event) {
+
+    }
 
     void setRestaurant(Restaurant restaurant){
 
