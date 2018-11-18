@@ -114,8 +114,10 @@ public class Restaurant {
     private byte[] restaurantPicture4;
 
 
-    @Column(name = "restaurant_tables")
-    private Tables tables;
+    @ManyToOne
+    @JoinColumn(name = "tables_ids")
+    private Tables table;
+
 
 
     public String getPassword() {
@@ -298,11 +300,12 @@ public class Restaurant {
         this.restaurantPicture4 = restaurantPicture4;
     }
 
-    public Tables getTables() {
-        return tables;
+
+    public Tables getTable() {
+        return table;
     }
 
-    public void setTables(Tables tables) {
-        this.tables = tables;
+    public void setTable(Tables table) {
+        this.table = table;
     }
 }
