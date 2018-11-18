@@ -164,7 +164,7 @@ public class ReservaPendienteController implements Initializable {
         TimerTask timerTask = new TimerTask() {
             public void run(){
                 long thisTime = System.currentTimeMillis();
-                booking = restaurantService.getClientBookingsOnHold(restaurant,alias); //Aca va la funcion que devuelve la reserva de la base de datos
+                booking = restaurantService.getClientBookingsOnHold(alias); //Aca va la funcion que devuelve la reserva de la base de datos
 
                 if(booking.getConfirmed() == true){
                     ClientMain.showAlert("Exito","Reserva Confirmada");

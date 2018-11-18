@@ -12,15 +12,23 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import labTic.ClientMain;
 import labTic.services.ClientService;
+import labTic.services.RestaurantService;
+import labTic.services.entities.Booking;
 import labTic.services.entities.Client;
+import labTic.services.entities.Restaurant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.io.IOException;
 
 @Component
 public class LogInController  {
 
     @Autowired
     private ClientService clientService;
+
+    @Autowired
+    private RestaurantService restaurantService;
 
 
 //    @Autowired
@@ -43,7 +51,11 @@ public class LogInController  {
                 Client cliente = (Client)clientService.findOneByUser(sUser);
                 if(cliente.getPassword().equals(sPassword)) {
                     ClientMain.showAlert("Exito", "Usuario Logueado Correctamente");
-                    goToRestaurant(cliente,event);
+                    Booking booking = restaurantService.getClientBookingsOnHold(cliente.getFirstName()+" "+cliente.getLastName());
+                    if(booking!=null)
+                        goToReservaConfirmada(booking.getAlias(),booking.getRestaurant(),booking,event);
+                    else
+                        goToRestaurant(cliente,event);
                 }
                 else {
                     ClientMain.showAlert("Error", "Datos Incorrectos");
@@ -92,6 +104,27 @@ public class LogInController  {
 
         stage.setScene(new Scene(root));
         stage.getScene().getStylesheets().add(RestaurantController.class.getResource("Client/Restaurant.css").toExternalForm());
+    }
+
+    private void goToReservaConfirmada(String alias, Restaurant restaurant, Booking booking, Event event) {
+      try {
+          FXMLLoader loader = new FXMLLoader();
+          loader.setControllerFactory((ClientMain.getContext()::getBean));
+
+          Parent root = loader.load(ReservaConfirmadaController.class.getResourceAsStream("Client/ReservaConfirmada.fxml"));
+          ReservaConfirmadaController controller = loader.getController();
+          controller.setClient(alias);
+          controller.setBooking(booking);
+          controller.setRestaurant(restaurant);
+
+          Node node = (Node) event.getSource();
+          Stage stage = (Stage) node.getScene().getWindow();
+
+          stage.setScene(new Scene(root));
+          stage.getScene().getStylesheets().add(ReservaConfirmadaController.class.getResource("Client/RestaurantView.css").toExternalForm());
+      }catch(Exception e){
+          e.printStackTrace();
+      }
     }
 
 

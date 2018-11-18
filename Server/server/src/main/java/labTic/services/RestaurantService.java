@@ -295,7 +295,7 @@ public class RestaurantService implements RestaurantManager {
         }
         return false;
     }*/
-    public Booking getClientBookingsOnHold(Restaurant restaurant, String alias) {
+    public Booking getClientBookingsOnHold(String alias) {
         return bookingRepository.findByAliasAndFinished(alias, false);
     }
     public Booking getCurrentBooking(String alias, Restaurant restaurant){

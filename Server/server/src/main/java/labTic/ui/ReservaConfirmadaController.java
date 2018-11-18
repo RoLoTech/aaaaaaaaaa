@@ -24,6 +24,8 @@ public class ReservaConfirmadaController {
 
     private Booking booking;
 
+    private String alias;
+
     @FXML
     private ImageView imgRestaurant;
 
@@ -73,6 +75,7 @@ public class ReservaConfirmadaController {
     void setClient(Client client){
         this.client = client;
     }
+    void setClient(String alias){this.alias = alias;}
     void setBooking(Booking booking){
         this.booking = booking;
         txtMesa.setText(""+booking.getTable().getId());
