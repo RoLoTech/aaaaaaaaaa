@@ -23,6 +23,8 @@ public class Tables {
     @Column
     private String occupant;
 
+    public Tables(){}
+
     public Tables(Restaurant restaurant, int capacity) {
         this.restaurant = restaurant;
         this.capacity = capacity;

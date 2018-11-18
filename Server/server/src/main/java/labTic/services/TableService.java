@@ -32,14 +32,14 @@ public class TableService {
         }
 
 
-        Tables oTable = new Tables(restaurantRut, capacity);
+        Tables oTable = new Tables(restaurantRepository.findOneByRut(restaurantRut), capacity);
 
         tableRepository.save(oTable);
 
     }
 
     public Tables findAllByRestaurantRut(Long restaurantRut){
-        return tableRepository.findOneByRestaurantRut(restaurantRut);
+        return tableRepository.findOneByRestaurant(restaurantRepository.findOneByRut(restaurantRut));
     }
 
     public void updateTable(long restaurantRut, String occupant, LocalTime startReservation) throws RestaurantDoesNotExistException {
@@ -47,7 +47,7 @@ public class TableService {
             throw new RestaurantDoesNotExistException();
         }
 
-        Tables oTable = tableRepository.findOneByRestaurantRut(restaurantRut);
+        Tables oTable = tableRepository.findOneByRestaurant(restaurantRepository.findOneByRut(restaurantRut));
 
         oTable.setOccupant(occupant);
         tableRepository.save(oTable);

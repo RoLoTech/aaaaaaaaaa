@@ -2,8 +2,11 @@ package labTic.ui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
@@ -11,6 +14,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import labTic.ClientMain;
+import labTic.RestaurantMain;
 import labTic.persistence.RestaurantRepository;
 import labTic.services.RestaurantService;
 import labTic.services.entities.Restaurant;
@@ -125,6 +130,22 @@ public class PerfilController implements Initializable {
 
     @FXML
     void reservasTab(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setControllerFactory((RestaurantMain.getContext()::getBean));
+
+            Parent root = loader.load(ReservasController.class.getResourceAsStream("Restaurant/Reservas.fxml"));
+            ReservasController controller = loader.getController();
+            controller.setRestaurant(restaurant);
+
+            Node node = (Node) event.getSource();
+            Stage stage = (Stage) node.getScene().getWindow();
+
+            stage.setScene(new Scene(root));
+            stage.getScene().getStylesheets().add(ReservasController.class.getResource("Restaurant/Reservas.css").toExternalForm());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
 

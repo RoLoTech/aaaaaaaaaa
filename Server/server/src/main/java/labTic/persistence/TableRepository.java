@@ -1,5 +1,6 @@
 package labTic.persistence;
 
+import labTic.services.entities.Restaurant;
 import labTic.services.entities.Tables;
 import org.springframework.data.repository.CrudRepository;
 
@@ -7,14 +8,14 @@ import java.util.List;
 
 public interface TableRepository extends CrudRepository<Tables, Long> {
 
-    Tables findOneByRestaurantRut(long restaurantRut);
+    Tables findOneByRestaurant(Restaurant restaurant);
 
-    List<Tables> findAllByRestaurantRut(long rut);
+    List<Tables> findAllByRestaurant(Restaurant restaurant);
 
-    List<Tables> findAllByRestaurantRutAndCapacityGreaterThanEqualAndOccupantIsNull(long rut, int capacity);
+    List<Tables> findAllByRestaurantAndCapacityGreaterThanEqualAndOccupantIsNull(Restaurant restaurant, int capacity);
 
-    List<Tables> findAllByRestaurantRutAndOccupantIsNull(long rut);
+    List<Tables> findAllByRestaurantAndOccupantIsNull(Restaurant restaurant);
 
-    List<Tables> findAllByRestaurantRutAndOccupant(long rut, String occupant);
+    List<Tables> findAllByRestaurantAndOccupant(Restaurant restaurant, String occupant);
 
 }

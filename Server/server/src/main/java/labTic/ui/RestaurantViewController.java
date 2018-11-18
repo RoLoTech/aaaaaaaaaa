@@ -1,15 +1,14 @@
 package labTic.ui;
 
+
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -30,7 +29,6 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalTime;
 import java.util.ResourceBundle;
 
 @Component
@@ -85,7 +83,8 @@ public class RestaurantViewController implements Initializable {
     @FXML
     void btnReservar(MouseEvent event) {
         try {
-            int cantPersonas = Integer.valueOf(txtPersonas.getText());
+            String personas = txtPersonas.getText();
+            int cantPersonas = Integer.valueOf(personas);
             restaurantService.book(restaurant.getRut(),client.getFirstName()+" "+client.getLastName(),cantPersonas);
 
             FXMLLoader loader = new FXMLLoader();

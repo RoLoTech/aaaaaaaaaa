@@ -1,9 +1,11 @@
 package labTic.ui;
 
 import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -27,13 +29,15 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.time.LocalTime;
+import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.*;
 
 @Component
-public class ReservaPendienteController {
+public class ReservaPendienteController implements Initializable {
 
     private Restaurant restaurant;
 
@@ -48,6 +52,8 @@ public class ReservaPendienteController {
 
     @Autowired
     RestaurantService restaurantService;
+
+    private Event event;
 
     @FXML
     private ImageView imgRestaurant;
@@ -71,6 +77,7 @@ public class ReservaPendienteController {
     private Text txtDireccion;
 
     public void setRestaurantAndClient(Restaurant restaurant, Client client, int cantPersonas, Event event) {
+        this.event = event;
         this.client = client;
         this.restaurant = restaurant;
         this.restaurant = restaurant;
@@ -84,39 +91,7 @@ public class ReservaPendienteController {
             imgRestaurant.setImage(image);
         }catch(Exception e){
             e.printStackTrace();
-        }
-        long startTime = System.currentTimeMillis();
-
-        Timer timer = new Timer();
-        TimerTask timerTask = new TimerTask() {
-            public void run(){
-                long thisTime = System.currentTimeMillis();
-                booking = new Booking(); //Aca va la funcion que devuelve la reserva de la base de datos
-
-                if(booking.getConfirmed() == true){
-                    ClientMain.showAlert("Exito","Reserva Confirmada");
-                    goToReservaConfirmadaController(event);
-                    timer.cancel();
-                }
-                if(booking.getRejected()==true){
-                    ClientMain.showAlert("Error","Reserva rechazada por el restaurante");
-                    goBackToRestaurantView(event);
-                    timer.cancel();
-                }
-                if( thisTime-startTime > 600000 ){
-                    booking.setRejected();
-                    bookingRepository.save(booking);
-                    ClientMain.showAlert("Error","La reserva no ha sido confirmada");
-                    goBackToRestaurantView(event);
-                    timer.cancel();
-                }
-                if(cancelar == true){
-                    timer.cancel();
-                }
-            }
-        };
-        timer.scheduleAtFixedRate(timerTask, 0, 5000);
-    }
+        } }
 
     void goBackToRestaurantView(Event event){
         try {
@@ -167,6 +142,7 @@ public class ReservaPendienteController {
     void btnCancelar(MouseEvent event) {
         booking.setRejected();
         bookingRepository.save(booking);
+        cancelar = true;
         ClientMain.showAlert("Cancelado","Reserva Cancelada");
         goBackToRestaurantView(event);
 
@@ -177,4 +153,39 @@ public class ReservaPendienteController {
 
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        long startTime = System.currentTimeMillis();
+
+        Timer timer = new Timer();
+        TimerTask timerTask = new TimerTask() {
+            public void run(){
+                long thisTime = System.currentTimeMillis();
+                booking = restaurantService.getClientBookingsOnHold(restaurant,client); //Aca va la funcion que devuelve la reserva de la base de datos
+
+                if(booking.getConfirmed() == true){
+                    ClientMain.showAlert("Exito","Reserva Confirmada");
+                    goToReservaConfirmadaController(event);
+                    timer.cancel();
+                }
+                if(booking.getRejected()==true){
+                    ClientMain.showAlert("Error","Reserva rechazada por el restaurante");
+                    goBackToRestaurantView(event);
+                    timer.cancel();
+                }
+                if( thisTime-startTime > 600000 ){
+                    booking.setRejected();
+                    bookingRepository.save(booking);
+                    ClientMain.showAlert("Error","La reserva no ha sido confirmada");
+                    goBackToRestaurantView(event);
+                    timer.cancel();
+                }
+                if(cancelar == true){
+                    timer.cancel();
+                }
+            }
+        };
+        timer.scheduleAtFixedRate(timerTask, 0, 5000);
+
+    }
 }

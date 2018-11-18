@@ -238,7 +238,7 @@ public class RestaurantController implements Initializable {
         textRating3.setText(null);
         textRating4.setText(null);
 
-        restaurants = restaurantService.findAll();
+        restaurants = restaurantService.showActiveRestaurants();
 
         CheckMenuItem thisFoodType;
         CheckMenuItem thisLocation;
