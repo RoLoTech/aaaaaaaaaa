@@ -1,8 +1,9 @@
 package labTic.services;
 
+import commons.exceptions.ClientAlreadyExistsException;
+import commons.exceptions.InvalidClientInformationException;
 import labTic.ClientMain;
-import labTic.services.exceptions.ClientAlreadyExistsException;
-import labTic.services.exceptions.InvalidClientInformationException;
+import labTic.business.ClientService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,13 +1,13 @@
 package labTic.ui;
 
+import commons.exceptions.ClientAlreadyExistsException;
+import commons.exceptions.InvalidClientInformationException;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import labTic.ClientMain;
-import labTic.services.ClientService;
-import labTic.services.exceptions.ClientAlreadyExistsException;
-import labTic.services.exceptions.InvalidClientInformationException;
+import labTic.business.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -1,6 +1,6 @@
 package labTic.persistence;
 
-import labTic.services.entities.Restaurant;
+import labTic.business.entities.Restaurant;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.CrudRepository;
 

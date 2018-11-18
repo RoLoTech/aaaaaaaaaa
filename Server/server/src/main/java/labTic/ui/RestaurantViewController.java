@@ -1,8 +1,9 @@
 package labTic.ui;
 
 
+import commons.exceptions.FullRestaurantException;
+import commons.exceptions.NoAvailableTablesException;
 import javafx.embed.swing.SwingFXUtils;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,11 +17,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import labTic.ClientMain;
-import labTic.services.RestaurantService;
-import labTic.services.entities.Client;
-import labTic.services.entities.Restaurant;
-import labTic.services.exceptions.FullRestaurantException;
-import labTic.services.exceptions.NoAvailableTablesException;
+import labTic.business.RestaurantService;
+import labTic.business.entities.Client;
+import labTic.business.entities.Restaurant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

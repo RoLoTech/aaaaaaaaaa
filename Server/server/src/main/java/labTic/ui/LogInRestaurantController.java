@@ -11,10 +11,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import labTic.ClientMain;
-import labTic.ManagerMain;
 import labTic.RestaurantMain;
-import labTic.services.RestaurantService;
-import labTic.services.entities.Restaurant;
+import labTic.business.RestaurantService;
+import labTic.business.entities.Restaurant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

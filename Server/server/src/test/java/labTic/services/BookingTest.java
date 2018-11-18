@@ -1,15 +1,14 @@
 package labTic.services;
 
 import labTic.ClientMain;
-import labTic.services.entities.Restaurant;
-import labTic.services.exceptions.FullRestaurantException;
+import labTic.business.RestaurantService;
+import labTic.business.TableService;
+import labTic.business.entities.Restaurant;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.time.LocalTime;
 
 
 @SpringBootTest(classes = ClientMain.class)

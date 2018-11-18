@@ -1,4 +1,4 @@
-package labTic.services.entities;
+package labTic.business.entities;
 
 import javax.persistence.*;
 

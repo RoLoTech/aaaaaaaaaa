@@ -9,9 +9,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.input.MouseEvent;
-import labTic.services.RestaurantService;
-import labTic.services.entities.Booking;
-import labTic.services.entities.Restaurant;
+import labTic.business.RestaurantService;
+import labTic.business.entities.Booking;
+import labTic.business.entities.Restaurant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

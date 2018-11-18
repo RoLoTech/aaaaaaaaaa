@@ -1,7 +1,6 @@
 package labTic.ui;
 
 import javafx.embed.swing.SwingFXUtils;
-import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,25 +15,20 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import labTic.ClientMain;
 import labTic.persistence.BookingRepository;
-import labTic.services.RestaurantService;
-import labTic.services.entities.Booking;
-import labTic.services.entities.Client;
-import labTic.services.entities.Restaurant;
-import labTic.services.exceptions.FullRestaurantException;
-import labTic.services.exceptions.NoAvailableTablesException;
+import labTic.business.RestaurantService;
+import labTic.business.entities.Booking;
+import labTic.business.entities.Client;
+import labTic.business.entities.Restaurant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.net.URL;
-import java.time.LocalTime;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.*;
 
 @Component
 public class ReservaPendienteController implements Initializable {

@@ -1,4 +1,4 @@
-package labTic.services.entities;
+package labTic.business.entities;
 
 import com.querydsl.core.types.Path;
 import com.querydsl.core.types.PathMetadata;

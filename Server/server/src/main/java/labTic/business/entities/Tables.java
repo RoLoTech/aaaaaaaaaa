@@ -1,9 +1,8 @@
-package labTic.services.entities;
+package labTic.business.entities;
 
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.time.LocalTime;
 
 @Entity
 public class Tables {

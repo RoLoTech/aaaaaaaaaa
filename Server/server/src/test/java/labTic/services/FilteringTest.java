@@ -1,6 +1,7 @@
 package labTic.services;
 
 import labTic.ClientMain;
+import labTic.business.RestaurantService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class FilteringTest {
 
     @Test
     public void testSimpleFilter(){
-        assertEquals(1, rs.findAllByFood_type("Panchos").size());
+        assertEquals(1, rs.findAllByFoodType("Panchos").size());
     }
 
     @Test

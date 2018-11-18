@@ -1,15 +1,14 @@
-package labTic.services;
+package labTic.business;
 
-import labTic.services.exceptions.ClientAlreadyExistsException;
-import labTic.services.exceptions.InvalidClientInformationException;
-import labTic.services.rmi.ClientManager;
+import commons.exceptions.ClientAlreadyExistsException;
+import commons.exceptions.InvalidClientInformationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import labTic.persistence.ClientRepository;
-import labTic.services.entities.Client;
+import labTic.business.entities.Client;
 
 @Service
-public class ClientService implements ClientManager {
+public class ClientService {
 
     @Autowired
     private ClientRepository clientRepository;

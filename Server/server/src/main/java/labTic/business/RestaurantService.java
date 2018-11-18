@@ -1,24 +1,21 @@
-package labTic.services;
+package labTic.business;
 
 import com.querydsl.core.BooleanBuilder;
+import commons.exceptions.*;
 import labTic.persistence.BookingRepository;
 import labTic.persistence.TableRepository;
-import labTic.services.entities.*;
-import labTic.services.exceptions.*;
-import labTic.services.rmi.RestaurantManager;
+import labTic.business.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import labTic.persistence.RestaurantRepository;
-import labTic.services.entities.QRestaurant;
-import labTic.services.entities.QClient;
-import labTic.services.entities.QTable;
+import labTic.business.entities.QRestaurant;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
 
 @Service
-public class RestaurantService implements RestaurantManager {
+public class RestaurantService {
 
     @Autowired
     private TableRepository tableRepository;
@@ -97,7 +94,7 @@ public class RestaurantService implements RestaurantManager {
     }
 
 
-    public List<Restaurant> findAllByFood_type(String food_type) {
+    public List<Restaurant> findAllByFoodType(String food_type) {
         return restaurantRepository.findAllByFoodtype(food_type);
     }
 
@@ -107,14 +104,6 @@ public class RestaurantService implements RestaurantManager {
 
     public Restaurant findOneByRut(long rut) {
         return restaurantRepository.findOneByRut(rut);
-    }
-
-    public List<Restaurant> findByArea(String area) {
-        return restaurantRepository.findByArea(area);
-    }
-
-    public List<Restaurant> findAll() {
-        return (List<Restaurant>) restaurantRepository.findAll();
     }
 
     public List<Restaurant> filter(List<String> area, List<String> foodtype, String address, List<String> pricerange, Float rating, List<String> style, String name) {
@@ -282,7 +271,7 @@ public class RestaurantService implements RestaurantManager {
         return capacity;
     }
 
-    List<Tables> getCustomerTables(Restaurant restaurant, Client client) throws NoBookingsMadeException {
+    public List<Tables> getCustomerTables(Restaurant restaurant, Client client) throws NoBookingsMadeException {
         if (tableRepository.findAllByRestaurantAndOccupant(restaurant, client.getFirstName() + " " + client.getLastName()).size() == 0) {
             throw new NoBookingsMadeException();
         }

@@ -1,16 +1,17 @@
 package labTic.services;
 
 
+import commons.exceptions.InvalidRestaurantInformationException;
+import commons.exceptions.RestaurantDoesNotExistException;
 import labTic.ClientMain;
-import labTic.services.exceptions.InvalidRestaurantInformationException;
-import labTic.services.exceptions.RestaurantDoesNotExistException;
+import labTic.business.BookingService;
+import labTic.business.RestaurantService;
+import labTic.business.TableService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.test.context.junit4.SpringRunner;
 

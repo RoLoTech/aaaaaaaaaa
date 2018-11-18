@@ -1,5 +1,6 @@
 package labTic.ui;
 
+import commons.exceptions.RestaurantDoesNotExistException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,11 +18,11 @@ import javafx.stage.Stage;
 import labTic.ClientMain;
 import labTic.RestaurantMain;
 import labTic.persistence.RestaurantRepository;
-import labTic.services.RestaurantService;
-import labTic.services.TableService;
-import labTic.services.entities.Restaurant;
-import labTic.services.entities.Tables;
-import labTic.services.exceptions.RestaurantDoesNotExistException;
+import labTic.business.RestaurantService;
+import labTic.business.RestaurantService;
+import labTic.business.TableService;
+import labTic.business.entities.Restaurant;
+import labTic.business.entities.Tables;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
@@ -257,6 +258,11 @@ public class PerfilController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+//        houropen.setText(restaurant.getOpeningTime().toString());
+//        hourclose.setText(restaurant.getClosingTime().toString());
+       /* name.setText(restaurant.getName());
+        phoneNumber.setText(restaurant.getPhone());
+        address.setText(restaurant.getAddress());*/
 
     }
 }

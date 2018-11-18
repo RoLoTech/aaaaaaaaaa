@@ -1,12 +1,12 @@
 package labTic.ui;
 
+import commons.exceptions.InvalidRestaurantInformationException;
+import commons.exceptions.RestaurantAlreadyExistsException;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import labTic.ClientMain;
-import labTic.services.RestaurantService;
-import labTic.services.exceptions.InvalidRestaurantInformationException;
-import labTic.services.exceptions.RestaurantAlreadyExistsException;
+import labTic.business.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

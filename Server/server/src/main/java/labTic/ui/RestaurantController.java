@@ -13,9 +13,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import labTic.ClientMain;
-import labTic.services.RestaurantService;
-import labTic.services.entities.Client;
-import labTic.services.entities.Restaurant;
+import labTic.business.RestaurantService;
+import labTic.business.entities.Client;
+import labTic.business.entities.Restaurant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +23,6 @@ import org.springframework.stereotype.Component;
 
 
 import java.net.URL;
-import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;

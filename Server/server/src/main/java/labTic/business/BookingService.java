@@ -1,4 +1,4 @@
-package labTic.services;
+package labTic.business;
 
 import org.springframework.stereotype.Service;
 

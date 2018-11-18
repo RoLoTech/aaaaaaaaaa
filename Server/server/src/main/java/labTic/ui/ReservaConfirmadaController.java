@@ -6,9 +6,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
-import labTic.services.entities.Booking;
-import labTic.services.entities.Client;
-import labTic.services.entities.Restaurant;
+import labTic.business.entities.Booking;
+import labTic.business.entities.Client;
+import labTic.business.entities.Restaurant;
 import org.springframework.stereotype.Component;
 
 import javax.imageio.ImageIO;

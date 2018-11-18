@@ -1,4 +1,4 @@
-package labTic.services.exceptions;
+package commons.exceptions;
 
 public class InvalidClientInformationException extends Exception {
 

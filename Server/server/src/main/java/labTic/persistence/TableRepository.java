@@ -1,7 +1,7 @@
 package labTic.persistence;
 
-import labTic.services.entities.Restaurant;
-import labTic.services.entities.Tables;
+import labTic.business.entities.Restaurant;
+import labTic.business.entities.Tables;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
