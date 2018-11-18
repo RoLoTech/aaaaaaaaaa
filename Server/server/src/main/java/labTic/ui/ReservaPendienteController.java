@@ -70,8 +70,7 @@ public class ReservaPendienteController implements Initializable {
     private Text txtUbicacion;
 
     @FXML
-    private Text txtPersonas;
-
+    private Text txtPersonas2;
     @FXML
     private Text txtTelefono;
 
