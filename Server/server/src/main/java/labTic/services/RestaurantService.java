@@ -294,10 +294,10 @@ public class RestaurantService implements RestaurantManager {
         return false;
     }*/
     public Booking getClientBookingsOnHold(Restaurant restaurant, Client client) {
-        if (bookingRepository.findByAliasAndFinished(client.getFirstName() + client.getLastName(), false) != null)
-            return bookingRepository.findByAliasAndFinished(client.getFirstName() + client.getLastName(), false);
-        else
-            return null;
+        return bookingRepository.findByAliasAndFinished(client.getFirstName() +" "+ client.getLastName(), false);
+    }
+    public Booking getCurrentBooking(String alias, Restaurant restaurant){
+        return bookingRepository.findOneByAliasAndRestaurantAndFinished(alias,restaurant,false);
     }
 
 }

@@ -1,6 +1,7 @@
 package labTic.persistence;
 
 import labTic.services.entities.Booking;
+import labTic.services.entities.Restaurant;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
@@ -14,6 +15,8 @@ public interface BookingRepository extends CrudRepository<Booking, Long> {
     List<Booking> findAllByRutAndConfirmedAndFinishedAndRejected(Long rut, boolean confirmed, boolean finished, boolean rejected);
 
     Booking findByAliasAndFinished(String alias, boolean finished);
+
+    Booking findOneByAliasAndRestaurantAndFinished(String alias, Restaurant restaurant, boolean finished);
 
     Booking findByAliasAndConfirmedAndFinished(String alias, boolean confirmed, boolean finished);
 

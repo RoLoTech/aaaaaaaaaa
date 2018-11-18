@@ -81,6 +81,7 @@ public class ReservaPendienteController implements Initializable {
         this.client = client;
         this.restaurant = restaurant;
         this.restaurant = restaurant;
+        txtPersonas.setText(""+cantPersonas);
         txtDireccion.setText(restaurant.getAddress());
         txtRestaurant.setText(restaurant.getName());
         txtUbicacion.setText(restaurant.getArea());
@@ -161,7 +162,7 @@ public class ReservaPendienteController implements Initializable {
         TimerTask timerTask = new TimerTask() {
             public void run(){
                 long thisTime = System.currentTimeMillis();
-                booking = restaurantService.getClientBookingsOnHold(restaurant,client); //Aca va la funcion que devuelve la reserva de la base de datos
+                booking = restaurantService.getCurrentBooking(client.getFirstName()+" "+client.getLastName(),restaurant); //Aca va la funcion que devuelve la reserva de la base de datos
 
                 if(booking.getConfirmed() == true){
                     ClientMain.showAlert("Exito","Reserva Confirmada");
